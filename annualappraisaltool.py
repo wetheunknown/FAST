@@ -12,11 +12,6 @@ Original file is located at
 """
 
 
-
-!pip install pdf2image
-!apt-get install -y poppler-utils
-!pip install PyPDF2 python-docx fpdf pillow
-
 """# FBD"""
 
 import datetime
