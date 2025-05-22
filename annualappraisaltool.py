@@ -11,7 +11,7 @@ Original file is located at
 # ReportLab/Holidays - PIP Installation
 """
 
-!pip install reportlab
+
 !pip install holidays
 !pip install pdf2image
 !apt-get install -y poppler-utils
