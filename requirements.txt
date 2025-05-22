@@ -1,3 +1,9 @@
 streamlit
 reportlab
 holidays
+pdf2image
+poppler-utils
+PyPDF2
+python-docx
+fpdf
+pillow
