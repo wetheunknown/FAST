@@ -11,7 +11,7 @@ from docx import Document as DocxDocument
 
 # Constants
 WRAP_WIDTH = 95
-MAX_UPLOADS = 10
+MAX_UPLOADS = 5
 
 st.title("FAST – Federal Advocacy Support Toolkit")
 
@@ -42,7 +42,7 @@ checkbox_descriptions = {
     }
 }
 
-# Set up initial/default session state for form widgets
+# Default state for the form
 DEFAULT_STATE = {
     "steward_name": "",
     "employee_name": "",
@@ -58,6 +58,7 @@ for i in range(MAX_UPLOADS):
 for key in checkbox_descriptions:
     DEFAULT_STATE[key] = False
 
+# Initialize state if needed
 if "initial_state" not in st.session_state:
     st.session_state["initial_state"] = DEFAULT_STATE.copy()
     for k, v in DEFAULT_STATE.items():
@@ -169,6 +170,7 @@ with fbd_col:
 
 # --- FORM UI ---
 with st.form("grievance_form"):
+    # Basic info
     steward_name = st.text_input("Steward’s Name", value=st.session_state["steward_name"], key="steward_name")
     employee_name = st.text_input("Grievant’s Name", value=st.session_state["employee_name"], key="employee_name")
     years_list = [str(y) for y in range(2023, datetime.date.today().year + 2)]
@@ -183,6 +185,7 @@ with st.form("grievance_form"):
     issue_description = st.text_area("Summary of Grievance", value=st.session_state["issue_description"], key="issue_description")
     desired_outcome = st.text_area("Requested Resolution", value=st.session_state["desired_outcome"], key="desired_outcome")
 
+    # File uploads
     uploaded_files = []
     for i in range(MAX_UPLOADS):
         uploaded_files.append(
@@ -193,6 +196,7 @@ with st.form("grievance_form"):
             )
         )
 
+    # Alleged Violations
     st.subheader("Alleged Violations")
     selected_reasons = []
     articles_set = set()
@@ -204,58 +208,62 @@ with st.form("grievance_form"):
             articles_set.update(info["articles"])
             arguments.append(info["argument"])
 
-    if st.form_submit_button("Generate Grievance PDF"):
-        article_list = ", ".join(sorted(articles_set))
-        full_argument = "This grievance challenges the annual performance appraisal based on the following concerns:\n\n"
-        for a in arguments:
-            full_argument += f"- {a}\n\n"
+    # The submit button
+    submitted = st.form_submit_button("Generate Grievance PDF")
 
-        form_data = {
-            "Steward": steward_name,
-            "Employee": employee_name,
-            "Appraisal Year": appraisal_year,
-            "Current Rating": rating_received,
-            "Prior Year’s Rating": previous_rating,
-            "Summary of Grievance": issue_description,
-            "Requested Resolution": desired_outcome,
-            "Date Received": str(st.session_state["date_received"]),
-            "Articles of Violation": article_list
-        }
+# --- PDF Generation / Download ---
+if submitted:
+    article_list = ", ".join(sorted(articles_set))
+    full_argument = "This grievance challenges the annual performance appraisal based on the following concerns:\n\n"
+    for a in arguments:
+        full_argument += f"- {a}\n\n"
 
-        base_pdf = generate_pdf(form_data, full_argument)
+    form_data = {
+        "Steward": steward_name,
+        "Employee": employee_name,
+        "Appraisal Year": appraisal_year,
+        "Current Rating": rating_received,
+        "Prior Year’s Rating": previous_rating,
+        "Summary of Grievance": issue_description,
+        "Requested Resolution": desired_outcome,
+        "Date Received": str(st.session_state["date_received"]),
+        "Articles of Violation": article_list
+    }
 
-        merger = PdfMerger()
-        with open(base_pdf, "rb") as f:
-            merger.append(f)
+    base_pdf = generate_pdf(form_data, full_argument)
 
-        for file in uploaded_files:
-            if file is not None:
-                filename = file.name
-                ext = os.path.splitext(filename)[1].lower()
-                try:
-                    if ext == ".pdf":
-                        with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp:
-                            tmp.write(file.read())
-                            tmp.flush()
-                        with open(tmp.name, "rb") as f:
-                            PdfReader(f)
-                        with open(tmp.name, "rb") as f:
+    merger = PdfMerger()
+    with open(base_pdf, "rb") as f:
+        merger.append(f)
+
+    for file in uploaded_files:
+        if file is not None:
+            filename = file.name
+            ext = os.path.splitext(filename)[1].lower()
+            try:
+                if ext == ".pdf":
+                    with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp:
+                        tmp.write(file.read())
+                        tmp.flush()
+                    with open(tmp.name, "rb") as f:
+                        PdfReader(f)
+                    with open(tmp.name, "rb") as f:
+                        merger.append(f)
+                else:
+                    converted_path = convert_to_pdf(file, filename)
+                    if converted_path:
+                        with open(converted_path, "rb") as f:
                             merger.append(f)
-                    else:
-                        converted_path = convert_to_pdf(file, filename)
-                        if converted_path:
-                            with open(converted_path, "rb") as f:
-                                merger.append(f)
-                except Exception as e:
-                    st.warning(f"⚠️ Skipped {filename} due to error: {e}")
+            except Exception as e:
+                st.warning(f"⚠️ Skipped {filename} due to error: {e}")
 
-        output_name = f"{employee_name.replace(' ', '_')}_{appraisal_year}_Argument.pdf"
-        final_path = os.path.join(tempfile.gettempdir(), output_name)
-        merger.write(final_path)
-        merger.close()
+    output_name = f"{employee_name.replace(' ', '_')}_{appraisal_year}_Argument.pdf"
+    final_path = os.path.join(tempfile.gettempdir(), output_name)
+    merger.write(final_path)
+    merger.close()
 
-        st.session_state.final_packet_path = final_path
-        st.session_state.final_packet_name = output_name
+    st.session_state.final_packet_path = final_path
+    st.session_state.final_packet_name = output_name
 
 # --- Download button and reset button ---
 if "final_packet_path" in st.session_state and st.session_state.final_packet_path:
