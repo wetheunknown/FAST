@@ -9,7 +9,6 @@ from textwrap import wrap
 from PyPDF2 import PdfMerger, PdfReader
 from docx import Document as DocxDocument
 
-# Constants
 WRAP_WIDTH = 95
 MAX_UPLOADS = 5
 
@@ -42,28 +41,6 @@ checkbox_descriptions = {
     }
 }
 
-# Default state for the form
-DEFAULT_STATE = {
-    "steward_name": "",
-    "employee_name": "",
-    "issue_description": "",
-    "desired_outcome": "",
-    "appraisal_year": str(datetime.date.today().year),
-    "rating_received": "1.0",
-    "previous_rating": "1.0",
-    "date_received": datetime.date.today(),
-}
-for i in range(MAX_UPLOADS):
-    DEFAULT_STATE[f"file_uploader_{i}"] = None
-for key in checkbox_descriptions:
-    DEFAULT_STATE[key] = False
-
-# Initialize state if needed
-if "initial_state" not in st.session_state:
-    st.session_state["initial_state"] = DEFAULT_STATE.copy()
-    for k, v in DEFAULT_STATE.items():
-        st.session_state[k] = v
-
 def draw_wrapped_section(c, title, text, x, y, width, height, line_height):
     c.setFont("Helvetica-Bold", 12)
     c.drawString(x, y, title)
@@ -93,7 +70,8 @@ def generate_pdf(data, argument):
     for key, value in data.items():
         y = draw_wrapped_section(c, f"{key}:", str(value), x, y, width, height, line_height)
 
-    y = draw_wrapped_section(c, "Argument:", argument, x, y, width, height, line_height)
+    if argument:
+        y = draw_wrapped_section(c, "Argument:", argument, x, y, width, height, line_height)
 
     c.save()
     return temp_file.name
@@ -160,7 +138,7 @@ date_col, fbd_col = st.columns([1, 1])
 with date_col:
     date_received = st.date_input(
         "Date Received",
-        value=st.session_state["date_received"],
+        value=datetime.date.today(),
         key="date_received",
         help="Date you received the appraisal."
     )
@@ -170,22 +148,20 @@ with fbd_col:
 
 # --- FORM UI ---
 with st.form("grievance_form"):
-    # Basic info
-    steward_name = st.text_input("Steward’s Name", value=st.session_state["steward_name"], key="steward_name")
-    employee_name = st.text_input("Grievant’s Name", value=st.session_state["employee_name"], key="employee_name")
+    steward_name = st.text_input("Steward’s Name", key="steward_name")
+    employee_name = st.text_input("Grievant’s Name", key="employee_name")
     years_list = [str(y) for y in range(2023, datetime.date.today().year + 2)]
-    appraisal_year = st.selectbox("Appraisal Year", years_list, index=years_list.index(st.session_state["appraisal_year"]), key="appraisal_year")
+    appraisal_year = st.selectbox("Appraisal Year", years_list, index=len(years_list)-1, key="appraisal_year")
     ratings = [f"{x:.1f}" for x in [i * 0.1 for i in range(10, 51)]]
     col1, col2 = st.columns(2)
     with col1:
-        rating_received = st.selectbox("Current Rating", ratings, index=ratings.index(st.session_state["rating_received"]), key="rating_received")
+        rating_received = st.selectbox("Current Rating", ratings, index=0, key="rating_received")
     with col2:
-        previous_rating = st.selectbox("Prior Year’s Rating", ratings, index=ratings.index(st.session_state["previous_rating"]), key="previous_rating")
+        previous_rating = st.selectbox("Prior Year’s Rating", ratings, index=0, key="previous_rating")
 
-    issue_description = st.text_area("Summary of Grievance", value=st.session_state["issue_description"], key="issue_description")
-    desired_outcome = st.text_area("Requested Resolution", value=st.session_state["desired_outcome"], key="desired_outcome")
+    issue_description = st.text_area("Summary of Grievance", key="issue_description")
+    desired_outcome = st.text_area("Requested Resolution", key="desired_outcome")
 
-    # File uploads
     uploaded_files = []
     for i in range(MAX_UPLOADS):
         uploaded_files.append(
@@ -196,27 +172,28 @@ with st.form("grievance_form"):
             )
         )
 
-    # Alleged Violations
     st.subheader("Alleged Violations")
     selected_reasons = []
     articles_set = set()
     arguments = []
     for desc, info in checkbox_descriptions.items():
-        checked = st.checkbox(desc, value=st.session_state[desc], key=desc)
+        checked = st.checkbox(desc, key=f"checkbox_{desc}")
         if checked:
             selected_reasons.append(desc)
             articles_set.update(info["articles"])
             arguments.append(info["argument"])
 
-    # The submit button
     submitted = st.form_submit_button("Generate Grievance PDF")
 
 # --- PDF Generation / Download ---
 if submitted:
     article_list = ", ".join(sorted(articles_set))
-    full_argument = "This grievance challenges the annual performance appraisal based on the following concerns:\n\n"
-    for a in arguments:
-        full_argument += f"- {a}\n\n"
+    # Only include argument section if something was checked
+    full_argument = ""
+    if arguments:
+        full_argument = "This grievance challenges the annual performance appraisal based on the following concerns:\n\n"
+        for a in arguments:
+            full_argument += f"- {a}\n\n"
 
     form_data = {
         "Steward": steward_name,
@@ -265,18 +242,7 @@ if submitted:
     st.session_state.final_packet_path = final_path
     st.session_state.final_packet_name = output_name
 
-# --- Download button and reset button ---
+# --- Download button ---
 if "final_packet_path" in st.session_state and st.session_state.final_packet_path:
     with open(st.session_state.final_packet_path, "rb") as f:
         st.download_button("📅 Download Completed Grievance Packet", f, file_name=st.session_state.final_packet_name)
-
-if st.button("Reset Form"):
-    # Restore the initial state
-    for k, v in st.session_state["initial_state"].items():
-        st.session_state[k] = v
-    # Remove generated packet if present
-    if "final_packet_path" in st.session_state:
-        del st.session_state["final_packet_path"]
-    if "final_packet_name" in st.session_state:
-        del st.session_state["final_packet_name"]
-    st.experimental_rerun()
