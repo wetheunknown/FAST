@@ -163,7 +163,6 @@ with date_col:
         key="date_received",
         help="Date you received the appraisal."
     )
-    st.session_state["date_received"] = date_received
 with fbd_col:
     fbd = calculate_fbd(st.session_state["date_received"])
     st.info(f"🗕️ File By Date (15 business days): {fbd}")
@@ -171,29 +170,18 @@ with fbd_col:
 # --- FORM UI ---
 with st.form("grievance_form"):
     steward_name = st.text_input("Steward’s Name", value=st.session_state["steward_name"], key="steward_name")
-    st.session_state["steward_name"] = steward_name
-
     employee_name = st.text_input("Grievant’s Name", value=st.session_state["employee_name"], key="employee_name")
-    st.session_state["employee_name"] = employee_name
-
     years_list = [str(y) for y in range(2023, datetime.date.today().year + 2)]
     appraisal_year = st.selectbox("Appraisal Year", years_list, index=years_list.index(st.session_state["appraisal_year"]), key="appraisal_year")
-    st.session_state["appraisal_year"] = appraisal_year
-
     ratings = [f"{x:.1f}" for x in [i * 0.1 for i in range(10, 51)]]
     col1, col2 = st.columns(2)
     with col1:
         rating_received = st.selectbox("Current Rating", ratings, index=ratings.index(st.session_state["rating_received"]), key="rating_received")
-        st.session_state["rating_received"] = rating_received
     with col2:
         previous_rating = st.selectbox("Prior Year’s Rating", ratings, index=ratings.index(st.session_state["previous_rating"]), key="previous_rating")
-        st.session_state["previous_rating"] = previous_rating
 
     issue_description = st.text_area("Summary of Grievance", value=st.session_state["issue_description"], key="issue_description")
-    st.session_state["issue_description"] = issue_description
-
     desired_outcome = st.text_area("Requested Resolution", value=st.session_state["desired_outcome"], key="desired_outcome")
-    st.session_state["desired_outcome"] = desired_outcome
 
     uploaded_files = []
     for i in range(MAX_UPLOADS):
@@ -211,7 +199,6 @@ with st.form("grievance_form"):
     arguments = []
     for desc, info in checkbox_descriptions.items():
         checked = st.checkbox(desc, value=st.session_state[desc], key=desc)
-        st.session_state[desc] = checked
         if checked:
             selected_reasons.append(desc)
             articles_set.update(info["articles"])
