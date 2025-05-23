@@ -208,7 +208,7 @@ if submitted:
     # Only include argument section if something was checked
     full_argument = ""
     if arguments:
-        full_argument = "\nThis grievance challenges the annual performance appraisal based on the following concerns:\n\n"
+        full_argument = "\nThis grievance challenges the annual performance appraisal based on the following concerns:\n\n\n"
         for a in arguments:
             full_argument += f"{a}\n\n"
 
