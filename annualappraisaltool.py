@@ -15,9 +15,6 @@ MAX_UPLOADS = 10
 
 st.title("FAST – Federal Advocacy Support Toolkit")
 
-if "reset_counter" not in st.session_state:
-    st.session_state.reset_counter = 0
-
 checkbox_descriptions = {
     "Rating decreased without justification": {
         "articles": ["Article 21, Section 4"],
@@ -44,6 +41,27 @@ checkbox_descriptions = {
         "argument": "The rating is inconsistent with peer comparisons, violating Article 21, Section 5."
     }
 }
+
+# Set up initial/default session state for form widgets
+DEFAULT_STATE = {
+    "steward_name": "",
+    "employee_name": "",
+    "issue_description": "",
+    "desired_outcome": "",
+    "appraisal_year": str(datetime.date.today().year),
+    "rating_received": "1.0",
+    "previous_rating": "1.0",
+    "date_received": datetime.date.today(),
+}
+for i in range(MAX_UPLOADS):
+    DEFAULT_STATE[f"file_uploader_{i}"] = None
+for key in checkbox_descriptions:
+    DEFAULT_STATE[key] = False
+
+if "initial_state" not in st.session_state:
+    st.session_state["initial_state"] = DEFAULT_STATE.copy()
+    for k, v in DEFAULT_STATE.items():
+        st.session_state[k] = v
 
 def draw_wrapped_section(c, title, text, x, y, width, height, line_height):
     c.setFont("Helvetica-Bold", 12)
@@ -137,49 +155,64 @@ def calculate_fbd(start_date):
 
 # --- Date and FBD input/display together ---
 st.header("Appraisal Grievance Intake")
-counter = st.session_state.reset_counter
 date_col, fbd_col = st.columns([1, 1])
 with date_col:
     date_received = st.date_input(
         "Date Received",
-        value=datetime.date.today(),
-        key=f"date_received_{counter}",
+        value=st.session_state["date_received"],
+        key="date_received",
         help="Date you received the appraisal."
     )
+    st.session_state["date_received"] = date_received
 with fbd_col:
-    fbd = calculate_fbd(st.session_state.get(f"date_received_{counter}", datetime.date.today()))
+    fbd = calculate_fbd(st.session_state["date_received"])
     st.info(f"🗕️ File By Date (15 business days): {fbd}")
 
 # --- FORM UI ---
-with st.form(f"grievance_form_{counter}"):
-    steward_name = st.text_input("Steward’s Name", key=f"steward_name_{counter}")
-    employee_name = st.text_input("Grievant’s Name", key=f"employee_name_{counter}")
+with st.form("grievance_form"):
+    steward_name = st.text_input("Steward’s Name", value=st.session_state["steward_name"], key="steward_name")
+    st.session_state["steward_name"] = steward_name
+
+    employee_name = st.text_input("Grievant’s Name", value=st.session_state["employee_name"], key="employee_name")
+    st.session_state["employee_name"] = employee_name
+
     years_list = [str(y) for y in range(2023, datetime.date.today().year + 2)]
-    appraisal_year = st.selectbox("Appraisal Year", years_list, key=f"appraisal_year_{counter}")
+    appraisal_year = st.selectbox("Appraisal Year", years_list, index=years_list.index(st.session_state["appraisal_year"]), key="appraisal_year")
+    st.session_state["appraisal_year"] = appraisal_year
+
     ratings = [f"{x:.1f}" for x in [i * 0.1 for i in range(10, 51)]]
     col1, col2 = st.columns(2)
     with col1:
-        rating_received = st.selectbox("Current Rating", ratings, key=f"rating_received_{counter}")
+        rating_received = st.selectbox("Current Rating", ratings, index=ratings.index(st.session_state["rating_received"]), key="rating_received")
+        st.session_state["rating_received"] = rating_received
     with col2:
-        previous_rating = st.selectbox("Prior Year’s Rating", ratings, key=f"previous_rating_{counter}")
+        previous_rating = st.selectbox("Prior Year’s Rating", ratings, index=ratings.index(st.session_state["previous_rating"]), key="previous_rating")
+        st.session_state["previous_rating"] = previous_rating
 
-    issue_description = st.text_area("Summary of Grievance", key=f"issue_description_{counter}")
-    desired_outcome = st.text_area("Requested Resolution", key=f"desired_outcome_{counter}")
+    issue_description = st.text_area("Summary of Grievance", value=st.session_state["issue_description"], key="issue_description")
+    st.session_state["issue_description"] = issue_description
 
-    uploaded_files = [
-        st.file_uploader(
-            f"Supporting Document {i+1}",
-            type=["pdf", "docx", "txt", "jpg", "jpeg", "png"],
-            key=f"file_uploader_{i}_{counter}"
-        ) for i in range(MAX_UPLOADS)
-    ]
+    desired_outcome = st.text_area("Requested Resolution", value=st.session_state["desired_outcome"], key="desired_outcome")
+    st.session_state["desired_outcome"] = desired_outcome
+
+    uploaded_files = []
+    for i in range(MAX_UPLOADS):
+        uploaded_files.append(
+            st.file_uploader(
+                f"Supporting Document {i+1}",
+                type=["pdf", "docx", "txt", "jpg", "jpeg", "png"],
+                key=f"file_uploader_{i}",
+            )
+        )
 
     st.subheader("Alleged Violations")
     selected_reasons = []
     articles_set = set()
     arguments = []
     for desc, info in checkbox_descriptions.items():
-        if st.checkbox(desc, key=f"{desc}_{counter}"):
+        checked = st.checkbox(desc, value=st.session_state[desc], key=desc)
+        st.session_state[desc] = checked
+        if checked:
             selected_reasons.append(desc)
             articles_set.update(info["articles"])
             arguments.append(info["argument"])
@@ -198,7 +231,7 @@ with st.form(f"grievance_form_{counter}"):
             "Prior Year’s Rating": previous_rating,
             "Summary of Grievance": issue_description,
             "Requested Resolution": desired_outcome,
-            "Date Received": str(st.session_state.get(f"date_received_{counter}", datetime.date.today())),
+            "Date Received": str(st.session_state["date_received"]),
             "Articles of Violation": article_list
         }
 
@@ -243,7 +276,12 @@ if "final_packet_path" in st.session_state and st.session_state.final_packet_pat
         st.download_button("📅 Download Completed Grievance Packet", f, file_name=st.session_state.final_packet_name)
 
 if st.button("Reset Form"):
-    st.session_state.reset_counter += 1
-    st.session_state.final_packet_path = None
-    st.session_state.final_packet_name = None
+    # Restore the initial state
+    for k, v in st.session_state["initial_state"].items():
+        st.session_state[k] = v
+    # Remove generated packet if present
+    if "final_packet_path" in st.session_state:
+        del st.session_state["final_packet_path"]
+    if "final_packet_name" in st.session_state:
+        del st.session_state["final_packet_name"]
     st.experimental_rerun()
