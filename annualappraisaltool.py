@@ -46,17 +46,33 @@ checkbox_descriptions = {
 }
 
 def reset_form():
-    keys = ["steward_name", "employee_name", "appraisal_year", "rating_received", "previous_rating",
-            "issue_description", "desired_outcome", "date_received"]
-    for key in keys:
-        st.session_state[key] = "" if key != "date_received" else datetime.date.today()
+    # Text inputs
+    st.session_state["steward_name"] = ""
+    st.session_state["employee_name"] = ""
+    st.session_state["issue_description"] = ""
+    st.session_state["desired_outcome"] = ""
+
+    # Set default year selectbox to current year as string
+    st.session_state["appraisal_year"] = str(datetime.date.today().year)
+    # Set default ratings (first option in ratings list)
+    st.session_state["rating_received"] = "1.0"
+    st.session_state["previous_rating"] = "1.0"
+
+    # Date input
+    st.session_state["date_received"] = datetime.date.today()
+
+    # File uploaders
     for i in range(MAX_UPLOADS):
         st.session_state[f"file_uploader_{i}"] = None
+
+    # Checkboxes
     for key in checkbox_descriptions:
         st.session_state[key] = False
-    st.session_state.reset_triggered = True
+
+    # Download state
     st.session_state.final_packet_path = None
     st.session_state.final_packet_name = None
+    st.session_state.reset_triggered = True
 
 def draw_wrapped_section(c, title, text, x, y, width, height, line_height):
     c.setFont("Helvetica-Bold", 12)
@@ -159,7 +175,8 @@ st.header("Appraisal Grievance Intake")
 with st.form("grievance_form"):
     steward_name = st.text_input("Steward’s Name", key="steward_name")
     employee_name = st.text_input("Grievant’s Name", key="employee_name")
-    appraisal_year = st.selectbox("Appraisal Year", [str(y) for y in range(2023, datetime.date.today().year + 2)], key="appraisal_year")
+    years_list = [str(y) for y in range(2023, datetime.date.today().year + 2)]
+    appraisal_year = st.selectbox("Appraisal Year", years_list, key="appraisal_year")
     ratings = [f"{x:.1f}" for x in [i * 0.1 for i in range(10, 51)]]
     col1, col2 = st.columns(2)
     with col1:
