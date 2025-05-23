@@ -15,9 +15,16 @@ MAX_UPLOADS = 10
 st.title("FAST – Federal Advocacy Support Toolkit")
 
 checkbox_descriptions = {
-    "Rating decreased without justification": {
-        "articles": ["Article 21, Section 4"],
-        "argument": "The rating was lowered without sufficient explanation or evidence, in violation of Article 21, Section 4."
+    "Performance standards did not permit the accurate evaluation of their job performance based on objective criteria related to their position.": {
+        "articles": ["Article 12 Section 3, 5 U.S.C §§ 9508, 5 U.S.C. §§ 4302, 5 C.F.R. Part 430"],
+        "argument": "Management is supposed to, to the maximum extent feasible, provide an accurate evaluation of an employee’s job performance based on objective criteria related to the position. By"
+        " failing to do this, management has failed to follow the guidance provided through the National Agreement, Article 12 Section 3; 5 USC 4302; 5 USC 9508; 5 CFR Part 430. Each of these specify"
+        " instructions to how the appraisal system is to work. Each of these consistently state that an accurate evaluation must be provided to employees. 5 USC 4302 states 'performance standards which"
+        " will, to the maximum extent feasible, permit the accurate evaluation of job performance on the basis of objective criteria (which may include the extent of courtesy demonstrated to the public)"
+        " related to the job in question for each employee or position under the system.' By not utilizing performance standards to provide an accurate evaluation, not only violates the employee’s rights"
+        " granted under the National Agreement, but also violates the laws and regulations intended to protect federal employees from harm. By failing to utilize the performance standards to the degree at"
+        " which they were intended to be used to evaluate an employee’s performance to provide an accurate evaluation of their work, management has failed to comply and created an unjust and unfair appraisal"
+        " for this grievant and management needs to reconsider the appraisal score given."
     },
     "Supervisor failed to communicate expectations": {
         "articles": ["Article 12, Section 3"],
