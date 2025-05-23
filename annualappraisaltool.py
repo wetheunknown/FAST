@@ -10,7 +10,7 @@ from PyPDF2 import PdfMerger, PdfReader
 from docx import Document as DocxDocument
 
 WRAP_WIDTH = 95
-MAX_UPLOADS = 5
+MAX_UPLOADS = 10
 
 st.title("FAST – Federal Advocacy Support Toolkit")
 
