@@ -9,14 +9,15 @@ from textwrap import wrap
 from PyPDF2 import PdfMerger, PdfReader
 from docx import Document as DocxDocument
 
-# Title
+# Constants
+WRAP_WIDTH = 95
+MAX_UPLOADS = 10
+
 st.title("FAST – Federal Advocacy Support Toolkit")
 
-# Initialize session state for form fields
 if "reset_triggered" not in st.session_state:
     st.session_state.reset_triggered = False
 
-# --- Grievance Reasons ---
 checkbox_descriptions = {
     "Rating decreased without justification": {
         "articles": ["Article 21, Section 4"],
@@ -44,23 +45,32 @@ checkbox_descriptions = {
     }
 }
 
-# --- Reset Functionality ---
 def reset_form():
-    st.session_state.steward_name = ""
-    st.session_state.employee_name = ""
-    st.session_state.appraisal_year = "2024"
-    st.session_state.rating_received = "3.0"
-    st.session_state.previous_rating = "3.0"
-    st.session_state.issue_description = ""
-    st.session_state.desired_outcome = ""
-    st.session_state.date_received = datetime.date.today()
-    for i in range(10):
+    keys = ["steward_name", "employee_name", "appraisal_year", "rating_received", "previous_rating",
+            "issue_description", "desired_outcome", "date_received"]
+    for key in keys:
+        st.session_state[key] = "" if key != "date_received" else datetime.date.today()
+    for i in range(MAX_UPLOADS):
         st.session_state[f"file_uploader_{i}"] = None
     for key in checkbox_descriptions:
         st.session_state[key] = False
     st.session_state.reset_triggered = True
 
-# --- PDF Generator ---
+def draw_wrapped_section(c, title, text, x, y, width, height, line_height):
+    c.setFont("Helvetica-Bold", 12)
+    c.drawString(x, y, title)
+    y -= line_height
+    c.setFont("Helvetica", 10)
+    for line in text.split('\n'):
+        for wrapped in wrap(line, WRAP_WIDTH):
+            if y < 50:
+                c.showPage()
+                y = height - 50
+            c.drawString(x, y, wrapped)
+            y -= line_height
+    y -= line_height
+    return y
+
 def generate_pdf(data, argument):
     temp_file = tempfile.NamedTemporaryFile(delete=False, suffix=".pdf")
     c = canvas.Canvas(temp_file.name, pagesize=letter)
@@ -68,34 +78,18 @@ def generate_pdf(data, argument):
     x, y = 50, height - 50
     line_height = 16
 
-    def draw_wrapped_section(title, text):
-        nonlocal y
-        c.setFont("Helvetica-Bold", 12)
-        c.drawString(x, y, title)
-        y -= line_height
-        c.setFont("Helvetica", 10)
-        for line in text.split('\n'):
-            for wrapped in wrap(line, 95):
-                if y < 50:
-                    c.showPage()
-                    y = height - 50
-                c.drawString(x, y, wrapped)
-                y -= line_height
-        y -= line_height
-
     c.setFont("Helvetica-Bold", 16)
     c.drawString(x, y, "📄 Grievance Summary")
     y -= line_height * 2
 
     for key, value in data.items():
-        draw_wrapped_section(f"{key}:", str(value))
+        y = draw_wrapped_section(c, f"{key}:", str(value), x, y, width, height, line_height)
 
-    draw_wrapped_section("Argument:", argument)
+    y = draw_wrapped_section(c, "Argument:", argument, x, y, width, height, line_height)
 
     c.save()
     return temp_file.name
 
-# --- File Conversion ---
 def convert_to_pdf(file, filename):
     temp_pdf_path = os.path.join(tempfile.gettempdir(), f"converted_{filename}.pdf")
     ext = os.path.splitext(filename)[1].lower()
@@ -109,7 +103,7 @@ def convert_to_pdf(file, filename):
         if ext == ".txt":
             content = file.read().decode("utf-8").splitlines()
             for line in content:
-                for wrapped in wrap(line, 95):
+                for wrapped in wrap(line, WRAP_WIDTH):
                     if y < 50:
                         c.showPage()
                         y = height - 50
@@ -121,19 +115,17 @@ def convert_to_pdf(file, filename):
                 tmp_path = tmp.name
             doc = DocxDocument(tmp_path)
             for para in doc.paragraphs:
-                for wrapped in wrap(para.text, 95):
+                for wrapped in wrap(para.text, WRAP_WIDTH):
                     if y < 50:
                         c.showPage()
                         y = height - 50
                     c.drawString(x, y, wrapped)
                     y -= line_height
         elif ext in [".jpg", ".jpeg", ".png"]:
-            from reportlab.platypus import Image as RLImage
             img_path = os.path.join(tempfile.gettempdir(), filename)
             with open(img_path, "wb") as f:
                 f.write(file.read())
-            img = RLImage(img_path, width=400, height=400)
-            img.drawOn(c, x, y - 400)
+            c.drawImage(img_path, x, y - 400, width=400, height=400)
             y -= 420
         else:
             return None
@@ -143,22 +135,6 @@ def convert_to_pdf(file, filename):
     except Exception as e:
         st.warning(f"⚠️ Failed to convert {filename}: {e}")
         return None
-
-# --- Form UI ---
-st.header("Appraisal Grievance Intake")
-steward_name = st.text_input("Steward’s Name", key="steward_name")
-employee_name = st.text_input("Grievant’s Name", key="employee_name")
-appraisal_year = st.selectbox("Appraisal Year", [str(y) for y in range(2023, datetime.date.today().year + 2)], key="appraisal_year")
-ratings = [f"{x:.1f}" for x in [i * 0.1 for i in range(10, 51)]]
-col1, col2 = st.columns(2)
-with col1:
-    rating_received = st.selectbox("Current Rating", ratings, key="rating_received")
-with col2:
-    previous_rating = st.selectbox("Prior Year’s Rating", ratings, key="previous_rating")
-
-issue_description = st.text_area("Summary of Grievance", key="issue_description")
-desired_outcome = st.text_area("Requested Resolution", key="desired_outcome")
-date_received = st.date_input("Date Received", value=datetime.date.today(), key="date_received")
 
 def calculate_fbd(start_date):
     us_holidays = holidays.US()
@@ -170,75 +146,92 @@ def calculate_fbd(start_date):
             business_days += 1
     return current_date
 
-fbd = calculate_fbd(date_received)
-st.info(f"📅 File By Date (15 business days): {fbd}")
+# --- FORM UI ---
+st.header("Appraisal Grievance Intake")
+with st.form("grievance_form"):
+    steward_name = st.text_input("Steward’s Name", key="steward_name")
+    employee_name = st.text_input("Grievant’s Name", key="employee_name")
+    appraisal_year = st.selectbox("Appraisal Year", [str(y) for y in range(2023, datetime.date.today().year + 2)], key="appraisal_year")
+    ratings = [f"{x:.1f}" for x in [i * 0.1 for i in range(10, 51)]]
+    col1, col2 = st.columns(2)
+    with col1:
+        rating_received = st.selectbox("Current Rating", ratings, key="rating_received")
+    with col2:
+        previous_rating = st.selectbox("Prior Year’s Rating", ratings, key="previous_rating")
 
-# --- File Upload Section ---
-st.subheader("Attach Supporting Documents")
-uploaded_files = [st.file_uploader(f"Supporting Document {i+1}", type=["pdf", "docx", "txt", "jpg", "jpeg", "png"], key=f"file_uploader_{i}") for i in range(10)]
+    issue_description = st.text_area("Summary of Grievance", key="issue_description")
+    desired_outcome = st.text_area("Requested Resolution", key="desired_outcome")
+    date_received = st.date_input("Date Received", value=datetime.date.today(), key="date_received")
 
-# --- Checkbox UI ---
-st.subheader("Alleged Violations")
-selected_reasons = []
-articles_set = set()
-arguments = []
-for desc, info in checkbox_descriptions.items():
-    if st.checkbox(desc, key=desc):
-        selected_reasons.append(desc)
-        articles_set.update(info["articles"])
-        arguments.append(info["argument"])
+    fbd = calculate_fbd(date_received)
+    st.info(f"🗕️ File By Date (15 business days): {fbd}")
 
-# --- Generate Button ---
-if st.button("Generate Grievance PDF"):
-    article_list = ", ".join(sorted(articles_set))
-    full_argument = "This grievance challenges the annual performance appraisal based on the following concerns:\n\n"
-    for a in arguments:
-        full_argument += f"- {a}\n\n"
+    uploaded_files = [st.file_uploader(f"Supporting Document {i+1}", type=["pdf", "docx", "txt", "jpg", "jpeg", "png"], key=f"file_uploader_{i}") for i in range(MAX_UPLOADS)]
 
-    form_data = {
-        "Steward": steward_name,
-        "Employee": employee_name,
-        "Appraisal Year": appraisal_year,
-        "Current Rating": rating_received,
-        "Prior Year’s Rating": previous_rating,
-        "Summary of Grievance": issue_description,
-        "Requested Resolution": desired_outcome,
-        "Date Received": str(date_received),
-        "File By Date": str(fbd),
-        "Articles of Violation": article_list
-    }
+    st.subheader("Alleged Violations")
+    selected_reasons = []
+    articles_set = set()
+    arguments = []
+    for desc, info in checkbox_descriptions.items():
+        if st.checkbox(desc, key=desc):
+            selected_reasons.append(desc)
+            articles_set.update(info["articles"])
+            arguments.append(info["argument"])
 
-    base_pdf = generate_pdf(form_data, full_argument)
+    if st.form_submit_button("Generate Grievance PDF"):
+        article_list = ", ".join(sorted(articles_set))
+        full_argument = "This grievance challenges the annual performance appraisal based on the following concerns:\n\n"
+        for a in arguments:
+            full_argument += f"- {a}\n\n"
 
-    merger = PdfMerger()
-    merger.append(base_pdf)
-    for file in uploaded_files:
-        if file is not None:
-            filename = file.name
-            ext = os.path.splitext(filename)[1].lower()
-            try:
-                if ext == ".pdf":
-                    with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp:
-                        tmp.write(file.read())
-                        tmp.flush()
-                        PdfReader(tmp.name)
-                        merger.append(tmp.name)
-                else:
-                    converted_path = convert_to_pdf(file, filename)
-                    if converted_path:
-                        merger.append(converted_path)
-            except Exception as e:
-                st.warning(f"⚠️ Skipped {filename} due to error: {e}")
+        form_data = {
+            "Steward": steward_name,
+            "Employee": employee_name,
+            "Appraisal Year": appraisal_year,
+            "Current Rating": rating_received,
+            "Prior Year’s Rating": previous_rating,
+            "Summary of Grievance": issue_description,
+            "Requested Resolution": desired_outcome,
+            "Date Received": str(date_received),
+            "File By Date": str(fbd),
+            "Articles of Violation": article_list
+        }
 
-    output_name = f"{employee_name.replace(' ', '_')}_{appraisal_year}_Argument.pdf"
-    final_path = os.path.join(tempfile.gettempdir(), output_name)
-    merger.write(final_path)
-    merger.close()
+        base_pdf = generate_pdf(form_data, full_argument)
 
-    with open(final_path, "rb") as f:
-        st.download_button("📥 Download Completed Grievance Packet", f, file_name=output_name)
+        merger = PdfMerger()
+        with open(base_pdf, "rb") as f:
+            merger.append(f)
 
-# --- Reset Button ---
+        for file in uploaded_files:
+            if file is not None:
+                filename = file.name
+                ext = os.path.splitext(filename)[1].lower()
+                try:
+                    if ext == ".pdf":
+                        with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp:
+                            tmp.write(file.read())
+                            tmp.flush()
+                        with open(tmp.name, "rb") as f:
+                            PdfReader(f)
+                        with open(tmp.name, "rb") as f:
+                            merger.append(f)
+                    else:
+                        converted_path = convert_to_pdf(file, filename)
+                        if converted_path:
+                            with open(converted_path, "rb") as f:
+                                merger.append(f)
+                except Exception as e:
+                    st.warning(f"⚠️ Skipped {filename} due to error: {e}")
+
+        output_name = f"{employee_name.replace(' ', '_')}_{appraisal_year}_Argument.pdf"
+        final_path = os.path.join(tempfile.gettempdir(), output_name)
+        merger.write(final_path)
+        merger.close()
+
+        with open(final_path, "rb") as f:
+            st.download_button("📅 Download Completed Grievance Packet", f, file_name=output_name)
+
 if st.button("Reset Form"):
     reset_form()
     st.experimental_rerun()
