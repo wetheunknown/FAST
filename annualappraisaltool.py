@@ -188,9 +188,6 @@ with st.form("grievance_form"):
     desired_outcome = st.text_area("Requested Resolution", key="desired_outcome")
     date_received = st.date_input("Date Received", value=datetime.date.today(), key="date_received")
 
-    fbd = calculate_fbd(date_received)
-    st.info(f"🗕️ File By Date (15 business days): {fbd}")
-
     uploaded_files = [st.file_uploader(f"Supporting Document {i+1}", type=["pdf", "docx", "txt", "jpg", "jpeg", "png"], key=f"file_uploader_{i}") for i in range(MAX_UPLOADS)]
 
     st.subheader("Alleged Violations")
@@ -209,6 +206,7 @@ with st.form("grievance_form"):
         for a in arguments:
             full_argument += f"- {a}\n\n"
 
+        # REMOVE "File By Date" from the form_data dict
         form_data = {
             "Steward": steward_name,
             "Employee": employee_name,
@@ -218,7 +216,6 @@ with st.form("grievance_form"):
             "Summary of Grievance": issue_description,
             "Requested Resolution": desired_outcome,
             "Date Received": str(date_received),
-            "File By Date": str(fbd),
             "Articles of Violation": article_list
         }
 
@@ -257,6 +254,11 @@ with st.form("grievance_form"):
         # Store for download outside the form
         st.session_state.final_packet_path = final_path
         st.session_state.final_packet_name = output_name
+
+# ---- FBD INFO (OUTSIDE FORM, ALWAYS UPDATED) ----
+if "date_received" in st.session_state and st.session_state["date_received"]:
+    fbd = calculate_fbd(st.session_state["date_received"])
+    st.info(f"🗕️ File By Date (15 business days): {fbd}")
 
 if st.session_state.final_packet_path:
     with open(st.session_state.final_packet_path, "rb") as f:
