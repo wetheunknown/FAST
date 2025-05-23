@@ -15,9 +15,6 @@ MAX_UPLOADS = 10
 
 st.title("FAST – Federal Advocacy Support Toolkit")
 
-if "reset_triggered" not in st.session_state:
-    st.session_state.reset_triggered = False
-
 checkbox_descriptions = {
     "Rating decreased without justification": {
         "articles": ["Article 21, Section 4"],
@@ -44,35 +41,6 @@ checkbox_descriptions = {
         "argument": "The rating is inconsistent with peer comparisons, violating Article 21, Section 5."
     }
 }
-
-def reset_form():
-    # Only reset keys that exist in session_state
-    if "steward_name" in st.session_state:
-        st.session_state["steward_name"] = ""
-    if "employee_name" in st.session_state:
-        st.session_state["employee_name"] = ""
-    if "issue_description" in st.session_state:
-        st.session_state["issue_description"] = ""
-    if "desired_outcome" in st.session_state:
-        st.session_state["desired_outcome"] = ""
-    if "appraisal_year" in st.session_state:
-        st.session_state["appraisal_year"] = str(datetime.date.today().year)
-    if "rating_received" in st.session_state:
-        st.session_state["rating_received"] = "1.0"
-    if "previous_rating" in st.session_state:
-        st.session_state["previous_rating"] = "1.0"
-    if "date_received" in st.session_state:
-        st.session_state["date_received"] = datetime.date.today()
-    for i in range(MAX_UPLOADS):
-        key = f"file_uploader_{i}"
-        if key in st.session_state:
-            st.session_state[key] = None
-    for key in checkbox_descriptions:
-        if key in st.session_state:
-            st.session_state[key] = False
-    st.session_state.final_packet_path = None
-    st.session_state.final_packet_name = None
-    st.session_state.reset_triggered = True
 
 def draw_wrapped_section(c, title, text, x, y, width, height, line_height):
     c.setFont("Helvetica-Bold", 12)
@@ -164,12 +132,6 @@ def calculate_fbd(start_date):
             business_days += 1
     return current_date
 
-# Initialize download state variables outside the form
-if "final_packet_path" not in st.session_state:
-    st.session_state.final_packet_path = None
-if "final_packet_name" not in st.session_state:
-    st.session_state.final_packet_name = None
-
 # --- Date and FBD input/display together ---
 st.header("Appraisal Grievance Intake")
 date_col, fbd_col = st.columns([1, 1])
@@ -200,7 +162,6 @@ with st.form("grievance_form"):
 
     issue_description = st.text_area("Summary of Grievance", key="issue_description")
     desired_outcome = st.text_area("Requested Resolution", key="desired_outcome")
-    # Date input is now above, not in the form
 
     uploaded_files = [
         st.file_uploader(
@@ -270,15 +231,14 @@ with st.form("grievance_form"):
         merger.write(final_path)
         merger.close()
 
-        # Store for download outside the form
         st.session_state.final_packet_path = final_path
         st.session_state.final_packet_name = output_name
 
 # --- Download button and reset button ---
-if st.session_state.final_packet_path:
+if "final_packet_path" in st.session_state and st.session_state.final_packet_path:
     with open(st.session_state.final_packet_path, "rb") as f:
         st.download_button("📅 Download Completed Grievance Packet", f, file_name=st.session_state.final_packet_name)
 
 if st.button("Reset Form"):
-    reset_form()
+    st.session_state.clear()
     st.experimental_rerun()
