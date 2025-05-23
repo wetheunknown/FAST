@@ -46,30 +46,30 @@ checkbox_descriptions = {
 }
 
 def reset_form():
-    # Text inputs
-    st.session_state["steward_name"] = ""
-    st.session_state["employee_name"] = ""
-    st.session_state["issue_description"] = ""
-    st.session_state["desired_outcome"] = ""
-
-    # Set default year selectbox to current year as string
-    st.session_state["appraisal_year"] = str(datetime.date.today().year)
-    # Set default ratings (first option in ratings list)
-    st.session_state["rating_received"] = "1.0"
-    st.session_state["previous_rating"] = "1.0"
-
-    # Date input
-    st.session_state["date_received"] = datetime.date.today()
-
-    # File uploaders
+    # Only reset keys that exist in session_state
+    if "steward_name" in st.session_state:
+        st.session_state["steward_name"] = ""
+    if "employee_name" in st.session_state:
+        st.session_state["employee_name"] = ""
+    if "issue_description" in st.session_state:
+        st.session_state["issue_description"] = ""
+    if "desired_outcome" in st.session_state:
+        st.session_state["desired_outcome"] = ""
+    if "appraisal_year" in st.session_state:
+        st.session_state["appraisal_year"] = str(datetime.date.today().year)
+    if "rating_received" in st.session_state:
+        st.session_state["rating_received"] = "1.0"
+    if "previous_rating" in st.session_state:
+        st.session_state["previous_rating"] = "1.0"
+    if "date_received" in st.session_state:
+        st.session_state["date_received"] = datetime.date.today()
     for i in range(MAX_UPLOADS):
-        st.session_state[f"file_uploader_{i}"] = None
-
-    # Checkboxes
+        key = f"file_uploader_{i}"
+        if key in st.session_state:
+            st.session_state[key] = None
     for key in checkbox_descriptions:
-        st.session_state[key] = False
-
-    # Download state
+        if key in st.session_state:
+            st.session_state[key] = False
     st.session_state.final_packet_path = None
     st.session_state.final_packet_name = None
     st.session_state.reset_triggered = True
