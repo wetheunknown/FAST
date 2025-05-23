@@ -55,6 +55,8 @@ def reset_form():
     for key in checkbox_descriptions:
         st.session_state[key] = False
     st.session_state.reset_triggered = True
+    st.session_state.final_packet_path = None
+    st.session_state.final_packet_name = None
 
 def draw_wrapped_section(c, title, text, x, y, width, height, line_height):
     c.setFont("Helvetica-Bold", 12)
@@ -146,6 +148,12 @@ def calculate_fbd(start_date):
             business_days += 1
     return current_date
 
+# Initialize download state variables outside the form
+if "final_packet_path" not in st.session_state:
+    st.session_state.final_packet_path = None
+if "final_packet_name" not in st.session_state:
+    st.session_state.final_packet_name = None
+
 # --- FORM UI ---
 st.header("Appraisal Grievance Intake")
 with st.form("grievance_form"):
@@ -229,8 +237,13 @@ with st.form("grievance_form"):
         merger.write(final_path)
         merger.close()
 
-        with open(final_path, "rb") as f:
-            st.download_button("📅 Download Completed Grievance Packet", f, file_name=output_name)
+        # Store for download outside the form
+        st.session_state.final_packet_path = final_path
+        st.session_state.final_packet_name = output_name
+
+if st.session_state.final_packet_path:
+    with open(st.session_state.final_packet_path, "rb") as f:
+        st.download_button("📅 Download Completed Grievance Packet", f, file_name=st.session_state.final_packet_name)
 
 if st.button("Reset Form"):
     reset_form()
