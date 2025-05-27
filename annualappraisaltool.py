@@ -295,7 +295,7 @@ if grievance_type == "AWOL - Annual/Sick Leave":
     issue_description = st.text_area("Summary of Grievance", key="issue_description")
     desired_outcome = st.text_area("Requested Resolution", key="desired_outcome")
 
-    st.subheader("Select Alleged Violations")
+    st.subheader("Alleged Violations")
 
     # Define AWOL-related checkbox content
     awol_violations = {
@@ -320,8 +320,15 @@ if grievance_type == "AWOL - Annual/Sick Leave":
                 # Add all 43 violations from VBA here with descriptions and mapped arguments.
     }
 
-    selected_articles = []
-    selected_arguments = []
+    selected_reasons = []
+    articles_set = set()
+    arguments = []
+    for desc, info in annual_checkbox_descriptions.items():
+        checked = st.checkbox(desc, key=f"checkbox_{desc}")
+        if checked:
+            selected_reasons.append(desc)
+            articles_set.update(info["articles"])
+            arguments.append(info["argument"])
 
     for label, (article, argument) in awol_violations.items():
         if st.checkbox(label):
