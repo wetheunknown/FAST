@@ -326,9 +326,10 @@ if grievance_type == "AWOL - Annual/Sick Leave":
             article_list = ", ".join(sorted(set(selected_articles)))
 
             form_data = {
-                "Case Number": case_number,
-                "Grievant": grievant,
                 "Steward": steward,
+                "Grievant": grievant,
+                "Issue Description": issue_description,
+                "Desired Outcome": desired_outcome,
                 "Articles of Violation": article_list
             }
 
