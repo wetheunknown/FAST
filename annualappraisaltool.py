@@ -128,7 +128,7 @@ if grievance_type == "Annual Appraisal":
         " for this grievant and management needs to reconsider the appraisal score given."
     },
     "Management was given specific distribution amounts per level of rating for employees.": {
-        "articles": ["Article 12, Section 3"],
+        "articles": ["Article 12, Section 3, 5 C.F.R. Part 430.208, IRM 6.430.2.5.7"],
         "argument": "     It is highly inappropriate for management to establish and distribute annual appraisals based upon specific distribution amounts per level of rating of employees. By utilizing this system"
         " of restricting the amount allowed per level of rating, management removes the ability for employees to be fairly and accurately rated upon their performance over the year the annual appraisal period"
         ' covers. IRM 6.430.2.5.7 states "Presumptive ratings, for ratings of record, are prohibited by 5 CFR Section 430.208 (a)(2).” It then goes on to say “A rating of record can be based only on the'
@@ -142,7 +142,7 @@ if grievance_type == "Annual Appraisal":
         " is violating the laws and regulations in place to prevent harm."
     },
     "Performance elements were not clearly defined": {
-        "articles": ["Article 12 Section 3, 5 C.F.R. Part 430.208, IRM 6.430.2.5.7"],
+        "articles": ["Article 12 Section 3"],
         "argument": "Performance elements were not clearly defined, violating Article 21, Section 2."
     },
     "Employee was not given opportunity to improve": {
