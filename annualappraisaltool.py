@@ -273,3 +273,53 @@ if grievance_type == "Annual Appraisal":
     if "final_packet_path" in st.session_state and st.session_state.final_packet_path:
         with open(st.session_state.final_packet_path, "rb") as f:
             st.download_button("📅 Download Completed Grievance Packet", f, file_name=st.session_state.final_packet_name)
+
+if grievance_type == "AWOL":
+    st.header("AWOL - Annual or Sick Leave Grievance Intake")
+    
+    grievant = st.text_input("Grievant's Name")
+    steward = st.text_input("Steward's Name")
+    issue_description = st.text_area("Summary of Grievance", key="issue_description")
+    desired_outcome = st.text_area("Requested Resolution", key="desired_outcome")
+
+    st.subheader("Select Alleged Violations")
+
+    # Define AWOL-related checkbox content
+    awol_violations = {
+        "Denied leave without written reason (Art 32 §1A1)": (
+            "Article 32 Section 1(A)(1)",
+            "It is a violation of an employee's rights to deny annual leave without providing a statement of the reason(s) for the denial..."
+        ),
+        "Improper increment denial (Art 32 §1A2)": (
+            "Article 32 Section 1(A)(2)",
+            "It is a violation... to refuse annual time in increments other than 15 minutes as laid out by the NA..."
+        ),
+        # Add all 43 violations from VBA here with descriptions and mapped arguments.
+    }
+
+    selected_articles = []
+    selected_arguments = []
+
+    for label, (article, argument) in awol_violations.items():
+        if st.checkbox(label):
+            selected_articles.append(article)
+            selected_arguments.append(argument)
+
+    if st.button("Generate AWOL Grievance PDF"):
+        if not case_number or not grievant or not steward:
+            st.warning("Please fill out all required fields.")
+        else:
+            full_argument = "\n\n".join(selected_arguments)
+            article_list = ", ".join(sorted(set(selected_articles)))
+
+            form_data = {
+                "Case Number": case_number,
+                "Grievant": grievant,
+                "Steward": steward,
+                "Articles of Violation": article_list
+            }
+
+            awol_pdf = generate_pdf(form_data, full_argument)
+
+            with open(awol_pdf, "rb") as f:
+                st.download_button("📄 Download AWOL Grievance PDF", f, file_name=f"{grievant.replace(' ', '_')}_AWOL_Grievance.pdf")
