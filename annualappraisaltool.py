@@ -14,6 +14,17 @@ MAX_UPLOADS = 10
 
 st.title("Federal Advocacy Support Toolkit \n FAST - Provided by NTEU CH. 66")
 
+st.subheader("📌 Select Grievance Type")
+
+grievance_type = st.radio(
+    "Choose the type of grievance you'd like to file:",
+    ["Annual Appraisal", "AWOL (Coming Soon)", "Telework (Coming Soon)"],
+    index=0
+)
+
+if grievance_type == "Annual Appraisal":
+    st.header("Annual Appraisal Intake")
+    
 checkbox_descriptions = {
     "Performance standards did not permit the accurate evaluation of their job performance based on objective criteria related to their position.": {
         "articles": ["Article 12 Section 3, 5 U.S.C §§ 9508, 5 U.S.C. §§ 4302, 5 C.F.R. Part 430"],
