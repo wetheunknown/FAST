@@ -276,7 +276,18 @@ if grievance_type == "Annual Appraisal":
 
 if grievance_type == "AWOL - Annual/Sick Leave":
     st.header("AWOL - Annual or Sick Leave Grievance Intake")
-    
+
+    # --- Date and FBD input/display together ---
+    st.header("Appraisal Grievance Intake")
+    date_col, fbd_col = st.columns([1, 1])
+    with date_col:
+        date_received = st.date_input(
+            "Date Received",
+            value=datetime.date.today(),
+            key="date_received",
+            help="Date the AWOL Notice was given to grievant."
+        )
+        
     grievant = st.text_input("Grievant's Name")
     steward = st.text_input("Steward's Name")
     issue_description = st.text_area("Summary of Grievance", key="issue_description")
