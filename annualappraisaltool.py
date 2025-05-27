@@ -18,7 +18,7 @@ st.subheader("📌 Select Grievance Type")
 
 grievance_type = st.radio(
     "Choose the type of grievance you'd like to file:",
-    ["Annual Appraisal", "AWOL (Coming Soon)", "Telework (Coming Soon)"],
+    ["Annual Appraisal", "AWOL - Annual/Sick Leave", "Telework (Coming Soon)"],
     index=0
 )
 
@@ -274,7 +274,7 @@ if grievance_type == "Annual Appraisal":
         with open(st.session_state.final_packet_path, "rb") as f:
             st.download_button("📅 Download Completed Grievance Packet", f, file_name=st.session_state.final_packet_name)
 
-if grievance_type == "AWOL":
+if grievance_type == "AWOL - Annual/Sick Leave":
     st.header("AWOL - Annual or Sick Leave Grievance Intake")
     
     grievant = st.text_input("Grievant's Name")
