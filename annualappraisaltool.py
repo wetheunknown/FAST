@@ -319,7 +319,7 @@ if grievance_type == "AWOL - Annual/Sick Leave":
             selected_arguments.append(argument)
 
     if st.button("Generate AWOL Grievance PDF"):
-        if not case_number or not grievant or not steward:
+        if not steward or not grievant or not issue_description or not desired_outcome:
             st.warning("Please fill out all required fields.")
         else:
             full_argument = "\n\n".join(selected_arguments)
