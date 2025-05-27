@@ -12,7 +12,7 @@ from docx import Document as DocxDocument
 WRAP_WIDTH = 95
 MAX_UPLOADS = 10
 
-st.title("Provided by NTEU CH. 66\nFAST\nFederal Advocacy Support Toolkit")
+st.title("Provided by NTEU CH. 66: \nFAST\nFederal Advocacy Support Toolkit")
 
 checkbox_descriptions = {
     "Performance standards did not permit the accurate evaluation of their job performance based on objective criteria related to their position.": {
