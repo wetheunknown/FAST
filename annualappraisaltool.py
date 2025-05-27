@@ -21,9 +21,6 @@ grievance_type = st.radio(
     ["Annual Appraisal", "AWOL (Coming Soon)", "Telework (Coming Soon)"],
     index=0
 )
-
-if grievance_type == "Annual Appraisal":
-    st.header("Annual Appraisal Intake")
     
 checkbox_descriptions = {
     "Performance standards did not permit the accurate evaluation of their job performance based on objective criteria related to their position.": {
@@ -160,117 +157,120 @@ def calculate_fbd(start_date):
             business_days += 1
     return current_date
 
-# --- Date and FBD input/display together ---
-st.header("Appraisal Grievance Intake")
-date_col, fbd_col = st.columns([1, 1])
-with date_col:
-    date_received = st.date_input(
-        "Date Received",
-        value=datetime.date.today(),
-        key="date_received",
-        help="Date the appraisal was given to grievant."
-    )
-with fbd_col:
-    fbd = calculate_fbd(st.session_state["date_received"])
-    st.info(f"🗕️ File By Date (15 business days): {fbd}")
-
-# --- FORM UI ---
-with st.form("grievance_form"):
-    steward_name = st.text_input("Steward’s Name", key="steward_name")
-    employee_name = st.text_input("Grievant’s Name", key="employee_name")
-    years_list = [str(y) for y in range(2023, datetime.date.today().year + 2)]
-    appraisal_year = st.selectbox("Appraisal Year", years_list, index=len(years_list)-1, key="appraisal_year")
-    ratings = [f"{x:.1f}" for x in [i * 0.1 for i in range(10, 51)]]
-    col1, col2 = st.columns(2)
-    with col1:
-        rating_received = st.selectbox("Current Rating", ratings, index=0, key="rating_received")
-    with col2:
-        previous_rating = st.selectbox("Prior Year’s Rating", ratings, index=0, key="previous_rating")
-
-    issue_description = st.text_area("Summary of Grievance", key="issue_description")
-    desired_outcome = st.text_area("Requested Resolution", key="desired_outcome")
-
-    uploaded_files = []
-    for i in range(MAX_UPLOADS):
-        uploaded_files.append(
-            st.file_uploader(
-                f"Supporting Document {i+1}",
-                type=["pdf", "docx", "txt", "jpg", "jpeg", "png"],
-                key=f"file_uploader_{i}",
-            )
+if grievance_type == "Annual Appraisal":
+    st.header("Annual Appraisal Intake")
+    
+    # --- Date and FBD input/display together ---
+    st.header("Appraisal Grievance Intake")
+    date_col, fbd_col = st.columns([1, 1])
+    with date_col:
+        date_received = st.date_input(
+            "Date Received",
+            value=datetime.date.today(),
+            key="date_received",
+            help="Date the appraisal was given to grievant."
         )
-
-    st.subheader("Alleged Violations")
-    selected_reasons = []
-    articles_set = set()
-    arguments = []
-    for desc, info in checkbox_descriptions.items():
-        checked = st.checkbox(desc, key=f"checkbox_{desc}")
-        if checked:
-            selected_reasons.append(desc)
-            articles_set.update(info["articles"])
-            arguments.append(info["argument"])
-
-    submitted = st.form_submit_button("Generate Grievance PDF")
-
-# --- PDF Generation / Download ---
-if submitted:
-    article_list = ", ".join(sorted(articles_set))
-    # Only include argument section if something was checked
-    full_argument = ""
-    if arguments:
-        full_argument = "\nThis grievance challenges the annual performance appraisal based on the following concerns:\n\n\n"
-        for a in arguments:
-            full_argument += f"{a}\n\n"
-
-    form_data = {
-        "Steward": steward_name,
-        "Employee": employee_name,
-        "Appraisal Year": appraisal_year,
-        "Current Rating": rating_received,
-        "Prior Year’s Rating": previous_rating,
-        "Summary of Grievance": issue_description,
-        "Requested Resolution": desired_outcome,
-        "Date Received": str(st.session_state["date_received"]),
-        "Articles of Violation": article_list
-    }
-
-    base_pdf = generate_pdf(form_data, full_argument)
-
-    merger = PdfMerger()
-    with open(base_pdf, "rb") as f:
-        merger.append(f)
-
-    for file in uploaded_files:
-        if file is not None:
-            filename = file.name
-            ext = os.path.splitext(filename)[1].lower()
-            try:
-                if ext == ".pdf":
-                    with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp:
-                        tmp.write(file.read())
-                        tmp.flush()
-                    with open(tmp.name, "rb") as f:
-                        PdfReader(f)
-                    with open(tmp.name, "rb") as f:
-                        merger.append(f)
-                else:
-                    converted_path = convert_to_pdf(file, filename)
-                    if converted_path:
-                        with open(converted_path, "rb") as f:
+    with fbd_col:
+        fbd = calculate_fbd(st.session_state["date_received"])
+        st.info(f"🗕️ File By Date (15 business days): {fbd}")
+    
+    # --- FORM UI ---
+    with st.form("grievance_form"):
+        steward_name = st.text_input("Steward’s Name", key="steward_name")
+        employee_name = st.text_input("Grievant’s Name", key="employee_name")
+        years_list = [str(y) for y in range(2023, datetime.date.today().year + 2)]
+        appraisal_year = st.selectbox("Appraisal Year", years_list, index=len(years_list)-1, key="appraisal_year")
+        ratings = [f"{x:.1f}" for x in [i * 0.1 for i in range(10, 51)]]
+        col1, col2 = st.columns(2)
+        with col1:
+            rating_received = st.selectbox("Current Rating", ratings, index=0, key="rating_received")
+        with col2:
+            previous_rating = st.selectbox("Prior Year’s Rating", ratings, index=0, key="previous_rating")
+    
+        issue_description = st.text_area("Summary of Grievance", key="issue_description")
+        desired_outcome = st.text_area("Requested Resolution", key="desired_outcome")
+    
+        uploaded_files = []
+        for i in range(MAX_UPLOADS):
+            uploaded_files.append(
+                st.file_uploader(
+                    f"Supporting Document {i+1}",
+                    type=["pdf", "docx", "txt", "jpg", "jpeg", "png"],
+                    key=f"file_uploader_{i}",
+                )
+            )
+    
+        st.subheader("Alleged Violations")
+        selected_reasons = []
+        articles_set = set()
+        arguments = []
+        for desc, info in checkbox_descriptions.items():
+            checked = st.checkbox(desc, key=f"checkbox_{desc}")
+            if checked:
+                selected_reasons.append(desc)
+                articles_set.update(info["articles"])
+                arguments.append(info["argument"])
+    
+        submitted = st.form_submit_button("Generate Grievance PDF")
+    
+    # --- PDF Generation / Download ---
+    if submitted:
+        article_list = ", ".join(sorted(articles_set))
+        # Only include argument section if something was checked
+        full_argument = ""
+        if arguments:
+            full_argument = "\nThis grievance challenges the annual performance appraisal based on the following concerns:\n\n\n"
+            for a in arguments:
+                full_argument += f"{a}\n\n"
+    
+        form_data = {
+            "Steward": steward_name,
+            "Employee": employee_name,
+            "Appraisal Year": appraisal_year,
+            "Current Rating": rating_received,
+            "Prior Year’s Rating": previous_rating,
+            "Summary of Grievance": issue_description,
+            "Requested Resolution": desired_outcome,
+            "Date Received": str(st.session_state["date_received"]),
+            "Articles of Violation": article_list
+        }
+    
+        base_pdf = generate_pdf(form_data, full_argument)
+    
+        merger = PdfMerger()
+        with open(base_pdf, "rb") as f:
+            merger.append(f)
+    
+        for file in uploaded_files:
+            if file is not None:
+                filename = file.name
+                ext = os.path.splitext(filename)[1].lower()
+                try:
+                    if ext == ".pdf":
+                        with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp:
+                            tmp.write(file.read())
+                            tmp.flush()
+                        with open(tmp.name, "rb") as f:
+                            PdfReader(f)
+                        with open(tmp.name, "rb") as f:
                             merger.append(f)
-            except Exception as e:
-                st.warning(f"⚠️ Skipped {filename} due to error: {e}")
-
-    output_name = f"{employee_name.replace(' ', '_')}_{appraisal_year}_Argument.pdf"
-    final_path = os.path.join(tempfile.gettempdir(), output_name)
-    merger.write(final_path)
-    merger.close()
-
-    st.session_state.final_packet_path = final_path
-    st.session_state.final_packet_name = output_name
-
-# --- Download button ---
-if "final_packet_path" in st.session_state and st.session_state.final_packet_path:
-    with open(st.session_state.final_packet_path, "rb") as f:
-        st.download_button("📅 Download Completed Grievance Packet", f, file_name=st.session_state.final_packet_name)
+                    else:
+                        converted_path = convert_to_pdf(file, filename)
+                        if converted_path:
+                            with open(converted_path, "rb") as f:
+                                merger.append(f)
+                except Exception as e:
+                    st.warning(f"⚠️ Skipped {filename} due to error: {e}")
+    
+        output_name = f"{employee_name.replace(' ', '_')}_{appraisal_year}_Argument.pdf"
+        final_path = os.path.join(tempfile.gettempdir(), output_name)
+        merger.write(final_path)
+        merger.close()
+    
+        st.session_state.final_packet_path = final_path
+        st.session_state.final_packet_name = output_name
+    
+    # --- Download button ---
+    if "final_packet_path" in st.session_state and st.session_state.final_packet_path:
+        with open(st.session_state.final_packet_path, "rb") as f:
+            st.download_button("📅 Download Completed Grievance Packet", f, file_name=st.session_state.final_packet_name)
