@@ -290,8 +290,8 @@ if grievance_type == "AWOL - Annual/Sick Leave":
         fbd = calculate_fbd(st.session_state["date_received"])
         st.info(f"🗕️ File By Date (15 business days): {fbd}")
         
-    grievant = st.text_input("Grievant's Name")
     steward = st.text_input("Steward's Name")
+    grievant = st.text_input("Grievant's Name")
     issue_description = st.text_area("Summary of Grievance", key="issue_description")
     desired_outcome = st.text_area("Requested Resolution", key="desired_outcome")
 
