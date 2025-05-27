@@ -18,7 +18,7 @@ st.subheader("📌 Select Grievance Type")
 
 grievance_type = st.radio(
     "Choose the type of grievance you'd like to file:",
-    ["Annual Appraisal", "AWOL - Annual/Sick Leave", "Telework (Coming Soon)"],
+    ["Annual Appraisal", "AWOL - Annual/Sick Leave", "Telework (Coming Soon)", "AWS (Soming Soon)", "Work Schedule/ Hours of Work (Coming Soon)"],
     index=0
 )
 
