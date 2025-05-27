@@ -284,11 +284,11 @@ if grievance_type == "AWOL - Annual/Sick Leave":
             "Date Received",
             value=datetime.date.today(),
             key="date_received",
-            help="Date the AWOL Notice was given to grievant."
+            help="Date the AWOL notice was given to grievant."
         )
     with fbd_col:
-    fbd = calculate_fbd(st.session_state["date_received"])
-    st.info(f"🗕️ File By Date (15 business days): {fbd}")
+        fbd = calculate_fbd(st.session_state["date_received"])
+        st.info(f"🗕️ File By Date (15 business days): {fbd}")
         
     grievant = st.text_input("Grievant's Name")
     steward = st.text_input("Steward's Name")
