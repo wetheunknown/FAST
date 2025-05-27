@@ -157,7 +157,7 @@ with date_col:
         "Date Received",
         value=datetime.date.today(),
         key="date_received",
-        help="Date you received the appraisal."
+        help="Date the appraisal was given to grievant."
     )
 with fbd_col:
     fbd = calculate_fbd(st.session_state["date_received"])
