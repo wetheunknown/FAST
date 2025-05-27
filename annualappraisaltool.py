@@ -299,13 +299,15 @@ if grievance_type == "AWOL - Annual/Sick Leave":
 
     # Define AWOL-related checkbox content
     awol_violations = {
-        "Performance elements were not clearly defined": {
-        "articles": ["Article 12 Section 3"],
-        "argument": "Performance elements were not clearly defined, violating Article 21, Section 2."
+        "Annual Leave denied but no statement of reasoning provided after requested by the employee.": {
+        "articles": ["Article 32 Section 1(A)(1)"],
+        "argument": "It is a violation of an employee's rights to deny annual leave without providing a statement of the reason(s) for the denial. Upon request, management should have provided"
+            " the reasoning for denying the requested annual leave as laid out by the NA.\n"
         },
-        "Employee was not given opportunity to improve": {
-            "articles": ["Article 12, Section 7"],
-            "argument": "The employee was not given the opportunity to improve, violating Article 12, Section 7."
+        "Issues with utilzing 15-min increments.": {
+            "articles": ["Article 32 Section 1(A)(2"],
+            "argument": "It is a violation of an employee's rights to charge or refuse to allow an employee to utilize their earned annual time in any increment outside of the allotted 15-minute"
+            " increments as laid out by the NA.\n"
         },
         "Rating is inconsistent with prior feedback": {
             "articles": ["Article 21, Section 4"],
