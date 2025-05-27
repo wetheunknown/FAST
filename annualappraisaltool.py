@@ -301,12 +301,12 @@ if grievance_type == "AWOL - Annual/Sick Leave":
     awol_checkbox_descriptions = {
         "Annual Leave denied but no statement of reasoning provided after requested by the employee.": {
         "articles": ["Article 32 Section 1(A)(1)"],
-        "argument": "It is a violation of an employee's rights to deny annual leave without providing a statement of the reason(s) for the denial. Upon request, management should have provided"
+        "argument": "\n     It is a violation of an employee's rights to deny annual leave without providing a statement of the reason(s) for the denial. Upon request, management should have provided"
             " the reasoning for denying the requested annual leave as laid out by the NA.\n\n"
         },
         "Issues with utilzing 15-min increments.": {
             "articles": ["Article 32 Section 1(A)(2"],
-            "argument": "It is a violation of an employee's rights to charge or refuse to allow an employee to utilize their earned annual time in any increment outside of the allotted 15-minute"
+            "argument": "\n     It is a violation of an employee's rights to charge or refuse to allow an employee to utilize their earned annual time in any increment outside of the allotted 15-minute"
             " increments as laid out by the NA.\n\n"
         },
         "Rating is inconsistent with prior feedback": {
