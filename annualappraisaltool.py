@@ -298,7 +298,7 @@ if grievance_type == "AWOL - Annual/Sick Leave":
     st.subheader("Alleged Violations")
 
     # Define AWOL-related checkbox content
-    awol_violations = {
+    awol_checkbox_descriptions = {
         "Annual Leave denied but no statement of reasoning provided after requested by the employee.": {
         "articles": ["Article 32 Section 1(A)(1)"],
         "argument": "It is a violation of an employee's rights to deny annual leave without providing a statement of the reason(s) for the denial. Upon request, management should have provided"
@@ -321,19 +321,15 @@ if grievance_type == "AWOL - Annual/Sick Leave":
     }
 
     selected_reasons = []
-    articles_set = set()
-    arguments = []
-    for desc, info in annual_checkbox_descriptions.items():
+    selected_articles = []
+    selected_arguments = []
+    
+    for desc, info in awol_checkbox_descriptions.items():
         checked = st.checkbox(desc, key=f"checkbox_{desc}")
         if checked:
             selected_reasons.append(desc)
-            articles_set.update(info["articles"])
-            arguments.append(info["argument"])
-
-    for label, (article, argument) in awol_violations.items():
-        if st.checkbox(label):
-            selected_articles.append(article)
-            selected_arguments.append(argument)
+            selected_articles.extend(info["articles"])
+            selected_arguments.append(info["argument"])
 
     if st.button("Generate AWOL Grievance PDF"):
         if not steward or not grievant:
