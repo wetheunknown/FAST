@@ -299,15 +299,23 @@ if grievance_type == "AWOL - Annual/Sick Leave":
 
     # Define AWOL-related checkbox content
     awol_violations = {
-        "Denied leave without written reason (Art 32 §1A1)": (
-            "Article 32 Section 1(A)(1)",
-            "It is a violation of an employee's rights to deny annual leave without providing a statement of the reason(s) for the denial..."
-        ),
-        "Improper increment denial (Art 32 §1A2)": (
-            "Article 32 Section 1(A)(2)",
-            "It is a violation... to refuse annual time in increments other than 15 minutes as laid out by the NA..."
-        ),
-        # Add all 43 violations from VBA here with descriptions and mapped arguments.
+        "Performance elements were not clearly defined": {
+        "articles": ["Article 12 Section 3"],
+        "argument": "Performance elements were not clearly defined, violating Article 21, Section 2."
+        },
+        "Employee was not given opportunity to improve": {
+            "articles": ["Article 12, Section 7"],
+            "argument": "The employee was not given the opportunity to improve, violating Article 12, Section 7."
+        },
+        "Rating is inconsistent with prior feedback": {
+            "articles": ["Article 21, Section 4"],
+            "argument": "The rating is inconsistent with prior feedback, violating Article 21, Section 4."
+        },
+        "Rating is inconsistent with peer comparisons": {
+            "articles": ["Article 21, Section 5"],
+            "argument": "The rating is inconsistent with peer comparisons, violating Article 21, Section 5."
+        }
+                # Add all 43 violations from VBA here with descriptions and mapped arguments.
     }
 
     selected_articles = []
