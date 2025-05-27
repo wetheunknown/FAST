@@ -158,7 +158,6 @@ def calculate_fbd(start_date):
     return current_date
 
 if grievance_type == "Annual Appraisal":
-    st.header("Annual Appraisal Intake")
     
     # --- Date and FBD input/display together ---
     st.header("Appraisal Grievance Intake")
