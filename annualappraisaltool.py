@@ -400,9 +400,6 @@ if grievance_type == "AWOL - Annual/Sick Leave":
             f" management is allotted an additional 2 workdays after the end of the pay period. By failing to do this according to the NA, management has caused undue and unjust harm to {grievant}\n"
         }
     }
-        
-    st.subheader("Sick Leave")
-
     sick_awol_checkbox_descriptions = {
         "####Use or Lose - Employer provided confirmation in writing to employee of Use or Lose after management canceled requested Use or Lose.": {
             "articles": ["Article 32 Section 1(B)"],
@@ -467,8 +464,9 @@ if grievance_type == "AWOL - Annual/Sick Leave":
             selected_reasons.append(desc)
             selected_articles.extend(info["articles"])
             selected_arguments.append(info["argument"])
-
-
+            
+    st.subheader("Alleged Violations:\nSick Leave")
+            
     for desc, info in sick_awol_checkbox_descriptions.items():
         checked = st.checkbox(desc, key=f"sick_awol_checkbox_{desc}")
         if checked:
