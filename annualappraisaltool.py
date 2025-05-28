@@ -295,7 +295,7 @@ if grievance_type == "AWOL - Annual/Sick Leave":
     issue_description = st.text_area("Summary of Grievance", key="issue_description")
     desired_outcome = st.text_area("Requested Resolution", key="desired_outcome")
 
-    st.subheader("Alleged Violations")
+    st.subheader("Alleged Violations:\nAnnual Leave")
 
     # Define AWOL-related checkbox content
     awol_checkbox_descriptions = {
