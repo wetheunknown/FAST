@@ -372,11 +372,34 @@ if grievance_type == "AWOL - Annual/Sick Leave":
         "Denied additional advanced annual leave over the 40 hours limitation due to:\n"
         "  • A serious health condition.\n"
         "  • Or to care for a family member.": {
-            "articles": ["Article 32 Section 1(A)(2"],
-            "argument": "     It is a violation of an employee's rights to charge or refuse to allow an employee to utilize their earned annual time in any increment outside of the allotted 15-minute"
-            " increments as laid out by the NA.\n"
+            "articles": ["Article 32 Section 6(B); Exhibit 33-1"],
+            "argument": "     The NA lists that an exception to the rule of a max of 40 hours of advance annual leave if the employee or a family member is faced with a serious health condition."
+            " Management should have approved the request for advanced annual leave based off the requirements listed in the NA.\n"
         },
-        "Use or Lose - Employer provided confirmation in writing to employee of Use or Lose after management canceled requested Use or Lose.": {
+        "The Agency failed to allow an employee to repay the balance due via earned annual leave or through a cash payment.": {
+            "articles": ["Article 32 Section 6(C)"],
+            "argument": "     It is a violation of an employee's rights to not allow an employee to repay the advanced annual any other way than described in the NA. Management should"
+            f" allow {grievant} to pay back the amount borrowed for the advanced annual either by utilization of earned annual hours or through a cash payment.\n"
+        },
+        "The employer did not make every reasonable effort to approve advanced annual leave consistent with workload and staffing needs.": {
+            "articles": ["Article 32 Section 6(D)"],
+            "argument": "     Management failed to uphold the NA because every reasonable effort should have been made to grant the employees advanced annual leave consistent with the workload"
+            " and staffing needs. By not following the NA on this, management created unjust harm and violated the employees' rights.\n"
+        },
+        "The employer granted advanced annual leave for one employee and denied another employee the right to use annual leave.": {
+        "articles": ["Article 32 Section 6(D)"],
+        "argument": "     Advanced annual is only to be approved after other employees' requests for annual leave have been considered. Failing to approve a request for annual leave for one"
+            " employee but approving advanced annual leave for another is a violation of the NA and the employees' rights.\n"
+        },
+        "The employer failed to notify an employee of an AWOL charge in writing, no later than:"
+        "  • The end of a pay period. \n"
+        "  • Or 2 workdays from the end of the pay period. - If the AWOL charge occured during the last 2 days of the pay period (Friday or Saturday.)": {
+            "articles": ["Article 32 Section 9"],
+            "argument": "     Management failed to uphold the NA by failing to properly notify the employee of the AWOL charges. Management should have notified the employee by the end"
+            " of the pay period. The exception to this is if the AWOL charges took place 2 days prior to the end of the pay period, either the week two Friday or Saturday of the pay period,"
+            f" management is allotted an additional 2 workdays after the end of the pay period. By failing to do this according to the NA, management has caused undue and unjust harm to {grievant}\n"
+        },
+        "####Use or Lose - Employer provided confirmation in writing to employee of Use or Lose after management canceled requested Use or Lose.": {
             "articles": ["Article 32 Section 1(B)"],
             "argument": "     Upon management canceling the Use or Lose Annual Leave, they should have provided in writing the confirmation of the restoration. It is a violation of the employees'"
             " rights if management failed to do this after canceling the leave on the employee.\n"
@@ -386,6 +409,44 @@ if grievance_type == "AWOL - Annual/Sick Leave":
             "argument": "     Management failed to follow the NA by failing to follow the EOD order on approval and denial of annual leave. An employee with a later EOD should have been given"
             " the requested leave over a newer EOD dated employee.\n"
         },
+        "Annual leave request not timely responded to by management.": {
+        "articles": ["Article 32 Section 1(D)"],
+        "argument": "     It is a violation of an employee's rights as laid out by the NA for management to take an excessive amount of time to respond to a leave request. Management is supposed"
+        " to make the denial or approval of a leave request in a timely manner to help facilitate an environment conducive with promoting a healthy work/life balance.\n"
+        },
+        "Employee's leave request was affected by another employee requesting time.": {
+            "articles": ["Article 32 Section 2"],
+            "argument": "     It is a violation of the employees' rights to allow for another employee requesting time off to affect another employee. Management should not change or"
+            " adjust any other employees leave request based off of other employees request per the NA.\n"
+        },
+        "Use or Lose - Employer did not provide confirmation in writing to employee of Use or Lose after management canceled requested Use or Lose.": {
+            "articles": ["Article 32 Section 1(B)"],
+            "argument": "     Upon management canceling the Use or Lose Annual Leave, they should have provided in writing the confirmation of the restoration. It is a violation of the employees'"
+            " rights if management failed to do this after canceling the leave on the employee.\n"
+        },
+        "Seasonal Employees - Placed in non-pay status for 10 days or less and was denied us of annual leave.": {
+            "articles": ["Article 32 Section 3(A)"],
+            "argument": "     It is inappropriate to not allow a seasonal employee in a non-pay status for less than 10 workdays to use their annual leave per the NA.\n"
+        },
+        "Seasonal Employees - Requested leave within the last 10 workdays of any fiscal year was denied based on anything except staffing and budgetary restrictions.": {
+        "articles": ["Article 32 Section 3(B)"],
+        "argument": "     Management could deny an annual leave request within the last 10 workdays of a fiscal year if it was related to staffing or budgetary restriction. Denying annual leave"
+            " during this time frame for anything other than those is a violation of the employees' rights as laid out in the NA. \n"
+        },
+        "Seasonal Employees - Seasonal Employees leave requests are not being handled like a regular employees leave request would be.": {
+            "articles": ["Article 32 Section 3(C)"],
+            "argument": "     It is a violation of a seasonal employee's rights to not have annual leave treated the same as a non-probationary employee. Management is to treat seasonal employees"
+            " annual leave requests the same as any other employee, even during peak season, per the NA.\n"
+        },
+        "The employee requested annual leave in advance for a religious holiday and it was not timely handled.": {
+            "articles": ["Article 32 Section 4"],
+            "argument": "     It is a violation of an employee's rights to not make every reasonable effort to approve requested annual leave for the purposes of a religious holiday as laid out in"
+            " the NA. If workload and staffing needs were not an issue, the leave for this religious holiday should have been approved by management.\n"
+        },
+        "An employee was denied the opportunity to utilize annual leave or LWOP for a death in the immediate family.": {
+            "articles": ["Article 32 Section 5"],
+            "argument": "     Management should have approved any annual leave request or provided LWOP for up to 5 days for the death of an immediate family member. By failing to do so, management"
+            " has failed to comply with the NA and has violated the employees' rights as laid out in the NA.\n"
 
                 # Add all 43 violations from VBA here with descriptions and mapped arguments.
     }
