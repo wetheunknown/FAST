@@ -462,7 +462,7 @@ if grievance_type == "AWOL - Annual/Sick Leave":
     selected_arguments = []
     
     for desc, info in awol_checkbox_descriptions.items():
-        checked = st.checkbox(desc, key=f"checkbox_{desc}")
+        checked = st.checkbox(desc, key=f"awol_checkbox_{desc}")
         if checked:
             selected_reasons.append(desc)
             selected_articles.extend(info["articles"])
@@ -470,7 +470,7 @@ if grievance_type == "AWOL - Annual/Sick Leave":
 
 
     for desc, info in sick_awol_checkbox_descriptions.items():
-        checked = st.checkbox(desc, key=f"checkbox_{desc}")
+        checked = st.checkbox(desc, key=f"sick_awol_checkbox_{desc}")
         if checked:
             selected_reasons.append(desc)
             selected_articles.extend(info["articles"])
