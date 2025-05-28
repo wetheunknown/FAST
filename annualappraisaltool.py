@@ -401,7 +401,7 @@ if grievance_type == "AWOL - Annual/Sick Leave":
         }
     }
         
-    st.subheader("Sick Leave")
+    st.header("Sick Leave")
 
     sick_awol_checkbox_descriptions = {
         "####Use or Lose - Employer provided confirmation in writing to employee of Use or Lose after management canceled requested Use or Lose.": {
