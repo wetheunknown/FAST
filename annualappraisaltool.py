@@ -318,7 +318,7 @@ if grievance_type == "AWOL - Annual/Sick Leave":
             "articles": ["Article 32 Section 1(C)"],
             "argument": "     Management failed to follow the NA by failing to follow the EOD order on approval and denial of annual leave. An employee with a later EOD should have been given"
             " the requested leave over a newer EOD dated employee.\n"
-        }
+        },
         "Annual leave request not timely responded to by management.": {
         "articles": ["Article 32 Section 1(D)"],
         "argument": "     It is a violation of an employee's rights as laid out by the NA for management to take an excessive amount of time to respond to a leave request. Management is supposed"
@@ -337,7 +337,7 @@ if grievance_type == "AWOL - Annual/Sick Leave":
         "Seasonal Employees - Placed in non-pay status for 10 days or less and was denied us of annual leave.": {
             "articles": ["Article 32 Section 3(A)"],
             "argument": "     It is inappropriate to not allow a seasonal employee in a non-pay status for less than 10 workdays to use their annual leave per the NA.\n"
-        }
+        },
         "Seasonal Employees - Requested leave within the last 10 workdays of any fiscal year was denied based on anything except staffing and budgetary restrictions.": {
         "articles": ["Article 32 Section 3(B)"],
         "argument": "     Management could deny an annual leave request within the last 10 workdays of a fiscal year if it was related to staffing or budgetary restriction. Denying annual leave"
@@ -357,7 +357,7 @@ if grievance_type == "AWOL - Annual/Sick Leave":
             "articles": ["Article 32 Section 5"],
             "argument": "     Management should have approved any annual leave request or provided LWOP for up to 5 days for the death of an immediate family member. By failing to do so, management"
             " has failed to comply with the NA and has violated the employees' rights as laid out in the NA.\n"
-        }
+        },
         "Employee was denied advanced annual and met the following conditions:\n - Has leass than 40 hours of advanced annual balance.\n - Completed 1st year of probationary time."
         "\n - Been in current appointment for more than 90 days.\n - Is eligible to earn annual leave.\n - Did not request more advanced leave than could be earned during the remainder "
         "of the leave year.\n - Is expected to return to work after having used the leave.": {
@@ -379,7 +379,7 @@ if grievance_type == "AWOL - Annual/Sick Leave":
             "articles": ["Article 32 Section 1(C)"],
             "argument": "     Management failed to follow the NA by failing to follow the EOD order on approval and denial of annual leave. An employee with a later EOD should have been given"
             " the requested leave over a newer EOD dated employee.\n"
-        }
+        },
 
                 # Add all 43 violations from VBA here with descriptions and mapped arguments.
     }
