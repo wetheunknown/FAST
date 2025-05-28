@@ -369,7 +369,9 @@ if grievance_type == "AWOL - Annual/Sick Leave":
         "argument": f"     {grievant} met all the qualifications to be granted advanced annual leave. According to the NA, the employer will grant advanced annual if all the qualifications listed in"
             " the NA have been met. Management should have approved this advanced annual leave request because the employee qualified for it.\n"
         },
-        "Denied additional advanced annual leave over the 40 hours limitation due to:\n - A serious health condition.\n - Or to care for a family member.": {
+        "Denied additional advanced annual leave over the 40 hours limitation due to:\n"
+        " • A serious health condition.\n"
+        " • Or to care for a family member.": {
             "articles": ["Article 32 Section 1(A)(2"],
             "argument": "     It is a violation of an employee's rights to charge or refuse to allow an employee to utilize their earned annual time in any increment outside of the allotted 15-minute"
             " increments as laid out by the NA.\n"
