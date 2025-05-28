@@ -358,9 +358,9 @@ if grievance_type == "AWOL - Annual/Sick Leave":
             "argument": "     Management should have approved any annual leave request or provided LWOP for up to 5 days for the death of an immediate family member. By failing to do so, management"
             " has failed to comply with the NA and has violated the employees' rights as laid out in the NA.\n"
         },
-        "Employee was denied advanced annual and met the following conditions:\n - Has leass than 40 hours of advanced annual balance.\n - Completed 1st year of probationary time."
-        "\n - Been in current appointment for more than 90 days.\n - Is eligible to earn annual leave.\n - Did not request more advanced leave than could be earned during the remainder "
-        "of the leave year.\n - Is expected to return to work after having used the leave.": {
+        "Employee was denied advanced annual and met the following conditions:\n * Has leass than 40 hours of advanced annual balance.\n * Completed 1st year of probationary time."
+        "\n * Been in current appointment for more than 90 days.\n * Is eligible to earn annual leave.\n * Did not request more advanced leave than could be earned during the remainder "
+        "of the leave year.\n * Is expected to return to work after having used the leave.": {
         "articles": ["Article 32 Section 6(A)"],
         "argument": f"     {grievant} met all the qualifications to be granted advanced annual leave. According to the NA, the employer will grant advanced annual if all the qualifications listed in"
             " the NA have been met. Management should have approved this advanced annual leave request because the employee qualified for it.\n"
