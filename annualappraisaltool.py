@@ -398,10 +398,12 @@ if grievance_type == "AWOL - Annual/Sick Leave":
             "argument": "     Management failed to uphold the NA by failing to properly notify the employee of the AWOL charges. Management should have notified the employee by the end"
             " of the pay period. The exception to this is if the AWOL charges took place 2 days prior to the end of the pay period, either the week two Friday or Saturday of the pay period,"
             f" management is allotted an additional 2 workdays after the end of the pay period. By failing to do this according to the NA, management has caused undue and unjust harm to {grievant}\n"
-        },
+        }
+    }
         
         st.subheader("Sick Leave")
-        
+
+    sick_awol_checkbox_descriptions = {
         "####Use or Lose - Employer provided confirmation in writing to employee of Use or Lose after management canceled requested Use or Lose.": {
             "articles": ["Article 32 Section 1(B)"],
             "argument": "     Upon management canceling the Use or Lose Annual Leave, they should have provided in writing the confirmation of the restoration. It is a violation of the employees'"
@@ -460,6 +462,14 @@ if grievance_type == "AWOL - Annual/Sick Leave":
     selected_arguments = []
     
     for desc, info in awol_checkbox_descriptions.items():
+        checked = st.checkbox(desc, key=f"checkbox_{desc}")
+        if checked:
+            selected_reasons.append(desc)
+            selected_articles.extend(info["articles"])
+            selected_arguments.append(info["argument"])
+
+
+    for desc, info in sick_awol_checkbox_descriptions.items():
         checked = st.checkbox(desc, key=f"checkbox_{desc}")
         if checked:
             selected_reasons.append(desc)
