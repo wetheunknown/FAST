@@ -305,18 +305,82 @@ if grievance_type == "AWOL - Annual/Sick Leave":
             " the reasoning for denying the requested annual leave as laid out by the NA.\n"
         },
         "Issues with utilzing 15-min increments.": {
+            "articles": ["Article 32 Section 1(A)(2)"],
+            "argument": "     It is a violation of an employee's rights to charge or refuse to allow an employee to utilize their earned annual time in any increment outside of the allotted 15-minute"
+            " increments as laid out by the NA.\n"
+        },
+        "Use or Lose - Employer provided confirmation in writing to employee of Use or Lose after management canceled requested Use or Lose.": {
+            "articles": ["Article 32 Section 1(B)"],
+            "argument": "     Upon management canceling the Use or Lose Annual Leave, they should have provided in writing the confirmation of the restoration. It is a violation of the employees'"
+            " rights if management failed to do this after canceling the leave on the employee.\n"
+        },
+        "Conflict in requests but EOD order was not utilized.": {
+            "articles": ["Article 32 Section 1(C)"],
+            "argument": "     Management failed to follow the NA by failing to follow the EOD order on approval and denial of annual leave. An employee with a later EOD should have been given"
+            " the requested leave over a newer EOD dated employee.\n"
+        }
+        "Annual leave request not timely responded to by management.": {
+        "articles": ["Article 32 Section 1(D)"],
+        "argument": "     It is a violation of an employee's rights as laid out by the NA for management to take an excessive amount of time to respond to a leave request. Management is supposed"
+        " to make the denial or approval of a leave request in a timely manner to help facilitate an environment conducive with promoting a healthy work/life balance.\n"
+        },
+        "Employee's leave request was affected by another employee requesting time.": {
+            "articles": ["Article 32 Section 2"],
+            "argument": "     It is a violation of the employees' rights to allow for another employee requesting time off to affect another employee. Management should not change or"
+            " adjust any other employees leave request based off of other employees request per the NA.\n"
+        },
+        "Use or Lose - Employer did not provide confirmation in writing to employee of Use or Lose after management canceled requested Use or Lose.": {
+            "articles": ["Article 32 Section 1(B)"],
+            "argument": "     Upon management canceling the Use or Lose Annual Leave, they should have provided in writing the confirmation of the restoration. It is a violation of the employees'"
+            " rights if management failed to do this after canceling the leave on the employee.\n"
+        },
+        "Seasonal Employees - Placed in non-pay status for 10 days or less and was denied us of annual leave.": {
+            "articles": ["Article 32 Section 3(A)"],
+            "argument": "     It is inappropriate to not allow a seasonal employee in a non-pay status for less than 10 workdays to use their annual leave per the NA.\n"
+        }
+        "Seasonal Employees - Requested leave within the last 10 workdays of any fiscal year was denied based on anything except staffing and budgetary restrictions.": {
+        "articles": ["Article 32 Section 3(B)"],
+        "argument": "     Management could deny an annual leave request within the last 10 workdays of a fiscal year if it was related to staffing or budgetary restriction. Denying annual leave"
+            " during this time frame for anything other than those is a violation of the employees' rights as laid out in the NA. \n"
+        },
+        "Seasonal Employees - Seasonal Employees leave requests are not being handled like a regular employees leave request would be.": {
+            "articles": ["Article 32 Section 3(C)"],
+            "argument": "     It is a violation of a seasonal employee's rights to not have annual leave treated the same as a non-probationary employee. Management is to treat seasonal employees"
+            " annual leave requests the same as any other employee, even during peak season, per the NA.\n"
+        },
+        "The employee requested annual leave in advance for a religious holiday and it was not timely handled.": {
+            "articles": ["Article 32 Section 4"],
+            "argument": "     It is a violation of an employee's rights to not make every reasonable effort to approve requested annual leave for the purposes of a religious holiday as laid out in"
+            " the NA. If workload and staffing needs were not an issue, the leave for this religious holiday should have been approved by management.\n"
+        },
+        "An employee was denied the opportunity to utilize annual leave or LWOP for a death in the immediate family.": {
+            "articles": ["Article 32 Section 5"],
+            "argument": "     Management should have approved any annual leave request or provided LWOP for up to 5 days for the death of an immediate family member. By failing to do so, management"
+            " has failed to comply with the NA and has violated the employees' rights as laid out in the NA.\n"
+        }
+        "Employee was denied advanced annual and met the following conditions:\n - Has leass than 40 hours of advanced annual balance.\n - Completed 1st year of probationary time."
+        "\n - Been in current appointment for more than 90 days.\n - Is eligible to earn annual leave.\n - Did not request more advanced leave than could be earned during the remainder "
+        "of the leave year.\n - Is expected to return to work after having used the leave.": {
+        "articles": ["Article 32 Section 6(A)"],
+        "argument": f"     {grievant} met all the qualifications to be granted advanced annual leave. According to the NA, the employer will grant advanced annual if all the qualifications listed in"
+            " the NA have been met. Management should have approved this advanced annual leave request because the employee qualified for it.\n"
+        },
+        "Denied additional advanced annual leave over the 40 hours limitation due to:\n - A serious health condition.\n - Or to care for a family member.": {
             "articles": ["Article 32 Section 1(A)(2"],
             "argument": "     It is a violation of an employee's rights to charge or refuse to allow an employee to utilize their earned annual time in any increment outside of the allotted 15-minute"
             " increments as laid out by the NA.\n"
         },
-        "Rating is inconsistent with prior feedback": {
-            "articles": ["Article 21, Section 4"],
-            "argument": "The rating is inconsistent with prior feedback, violating Article 21, Section 4."
+        #"Use or Lose - Employer provided confirmation in writing to employee of Use or Lose after management canceled requested Use or Lose.": {
+            "articles": ["Article 32 Section 1(B)"],
+            "argument": "     Upon management canceling the Use or Lose Annual Leave, they should have provided in writing the confirmation of the restoration. It is a violation of the employees'"
+            " rights if management failed to do this after canceling the leave on the employee.\n"
         },
-        "Rating is inconsistent with peer comparisons": {
-            "articles": ["Article 21, Section 5"],
-            "argument": "The rating is inconsistent with peer comparisons, violating Article 21, Section 5."
+        #"Conflict in requests but EOD order was not utilized.": {
+            "articles": ["Article 32 Section 1(C)"],
+            "argument": "     Management failed to follow the NA by failing to follow the EOD order on approval and denial of annual leave. An employee with a later EOD should have been given"
+            " the requested leave over a newer EOD dated employee.\n"
         }
+
                 # Add all 43 violations from VBA here with descriptions and mapped arguments.
     }
 
