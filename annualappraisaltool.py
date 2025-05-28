@@ -300,8 +300,8 @@ if grievance_type == "AWOL - Annual/Sick Leave":
     # Define AWOL-related checkbox content
     awol_checkbox_descriptions = {
         "Annual Leave denied but no statement of reasoning provided after requested by the employee.": {
-        "articles": ["Article 32 Section 1(A)(1)"],
-        "argument": "     It is a violation of an employee's rights to deny annual leave without providing a statement of the reason(s) for the denial. Upon request, management should have provided"
+            "articles": ["Article 32 Section 1(A)(1)"],
+            "argument": "     It is a violation of an employee's rights to deny annual leave without providing a statement of the reason(s) for the denial. Upon request, management should have provided"
             " the reasoning for denying the requested annual leave as laid out by the NA.\n"
         },
         "Issues with utilzing 15-min increments.": {
@@ -320,9 +320,9 @@ if grievance_type == "AWOL - Annual/Sick Leave":
             " the requested leave over a newer EOD dated employee.\n"
         },
         "Annual leave request not timely responded to by management.": {
-        "articles": ["Article 32 Section 1(D)"],
-        "argument": "     It is a violation of an employee's rights as laid out by the NA for management to take an excessive amount of time to respond to a leave request. Management is supposed"
-        " to make the denial or approval of a leave request in a timely manner to help facilitate an environment conducive with promoting a healthy work/life balance.\n"
+            "articles": ["Article 32 Section 1(D)"],
+            "argument": "     It is a violation of an employee's rights as laid out by the NA for management to take an excessive amount of time to respond to a leave request. Management is supposed"
+            " to make the denial or approval of a leave request in a timely manner to help facilitate an environment conducive with promoting a healthy work/life balance.\n"
         },
         "Employee's leave request was affected by another employee requesting time.": {
             "articles": ["Article 32 Section 2"],
@@ -339,8 +339,8 @@ if grievance_type == "AWOL - Annual/Sick Leave":
             "argument": "     It is inappropriate to not allow a seasonal employee in a non-pay status for less than 10 workdays to use their annual leave per the NA.\n"
         },
         "Seasonal Employees - Requested leave within the last 10 workdays of any fiscal year was denied based on anything except staffing and budgetary restrictions.": {
-        "articles": ["Article 32 Section 3(B)"],
-        "argument": "     Management could deny an annual leave request within the last 10 workdays of a fiscal year if it was related to staffing or budgetary restriction. Denying annual leave"
+            "articles": ["Article 32 Section 3(B)"],
+            "argument": "     Management could deny an annual leave request within the last 10 workdays of a fiscal year if it was related to staffing or budgetary restriction. Denying annual leave"
             " during this time frame for anything other than those is a violation of the employees' rights as laid out in the NA. \n"
         },
         "Seasonal Employees - Seasonal Employees leave requests are not being handled like a regular employees leave request would be.": {
@@ -365,9 +365,9 @@ if grievance_type == "AWOL - Annual/Sick Leave":
         "  • Is eligible to earn annual leave.\n"
         "  • Did not request more advanced leave than could be earned during the remainder of the leave year.\n"
         "  • Is expected to return to work after having used the leave.": {
-        "articles": ["Article 32 Section 6(A)"],
-        "argument": f"     {grievant} met all the qualifications to be granted advanced annual leave. According to the NA, the employer will grant advanced annual if all the qualifications listed in"
-            " the NA have been met. Management should have approved this advanced annual leave request because the employee qualified for it.\n"
+            "articles": ["Article 32 Section 6(A)"],
+            "argument": f"     {grievant} met all the qualifications to be granted advanced annual leave. According to the NA, the employer will grant advanced annual if all the qualifications listed in"
+                " the NA have been met. Management should have approved this advanced annual leave request because the employee qualified for it.\n"
         },
         "Denied additional advanced annual leave over the 40 hours limitation due to:\n"
         "  • A serious health condition.\n"
@@ -387,8 +387,8 @@ if grievance_type == "AWOL - Annual/Sick Leave":
             " and staffing needs. By not following the NA on this, management created unjust harm and violated the employees' rights.\n"
         },
         "The employer granted advanced annual leave for one employee and denied another employee the right to use annual leave.": {
-        "articles": ["Article 32 Section 6(D)"],
-        "argument": "     Advanced annual is only to be approved after other employees' requests for annual leave have been considered. Failing to approve a request for annual leave for one"
+            "articles": ["Article 32 Section 6(D)"],
+            "argument": "     Advanced annual is only to be approved after other employees' requests for annual leave have been considered. Failing to approve a request for annual leave for one"
             " employee but approving advanced annual leave for another is a violation of the NA and the employees' rights.\n"
         },
         "The employer failed to notify an employee of an AWOL charge in writing, no later than:"
@@ -401,39 +401,44 @@ if grievance_type == "AWOL - Annual/Sick Leave":
         }
     }
     sick_awol_checkbox_descriptions = {
-        "####Use or Lose - Employer provided confirmation in writing to employee of Use or Lose after management canceled requested Use or Lose.": {
-            "articles": ["Article 32 Section 1(B)"],
-            "argument": "     Upon management canceling the Use or Lose Annual Leave, they should have provided in writing the confirmation of the restoration. It is a violation of the employees'"
-            " rights if management failed to do this after canceling the leave on the employee.\n"
+        "The employer failed to allow the employee to accumulate leave according to statutes and regulations.": {
+            "articles": ["Article 34 Section 1"],
+            "argument": "     It is a violation of a federal employee to not allow the employee to earn annual leave according to the laws and regulations for earning annual leave. Management"
+            " should allow an individual to earn leave according to these laws and regulations that have been set in place for annual leave accrual.\n"
         },
-        "Conflict in requests but EOD order was not utilized.": {
-            "articles": ["Article 32 Section 1(C)"],
-            "argument": "     Management failed to follow the NA by failing to follow the EOD order on approval and denial of annual leave. An employee with a later EOD should have been given"
-            " the requested leave over a newer EOD dated employee.\n"
+        "The employer failed to allow the utilization of sick leave in 15-min increments.": {
+            "articles": ["Article 34 Section 1"],
+            "argument": "     According to the NA, sick leave may only be used in 15-minute increments. Any variation from allowing 15-minute increment requests for sick leave is a violation"
+            f" of {grievant}'s rights granted under the NA and laws and regulations regarding the use of sick leave. \n"
         },
-        "Annual leave request not timely responded to by management.": {
-        "articles": ["Article 32 Section 1(D)"],
-        "argument": "     It is a violation of an employee's rights as laid out by the NA for management to take an excessive amount of time to respond to a leave request. Management is supposed"
-        " to make the denial or approval of a leave request in a timely manner to help facilitate an environment conducive with promoting a healthy work/life balance.\n"
+        "Approval of sick leave did not comply with Exhibit 34-1 (NA).": {
+            "articles": ["Article 34 Section 2(A); Exhibit 34-1"],
+            "argument": "     Management failed to uphold the NA by following the guidance provided within the NA. The NA specifies the approval process and guidelines in Article 34 and Exhibit 34-1"
+            " located in the back of the NA. Failing to follow this guidance is a violation of the employee's rights.\n"
         },
-        "Employee's leave request was affected by another employee requesting time.": {
-            "articles": ["Article 32 Section 2"],
-            "argument": "     It is a violation of the employees' rights to allow for another employee requesting time off to affect another employee. Management should not change or"
-            " adjust any other employees leave request based off of other employees request per the NA.\n"
+        "Denied sick leave because the employee requested sick leave outside the 2-hour limit from their normal time to report but the degree of the illness prevented the employee"
+        " from meeting this requirement.": {
+            "articles": ["Article 34 Section 2(B)"],
+            "argument": "     According to the NA, an employee is meant to provide the sick leave request no later than 2 hours from the start of their normal time for reporting unless the degree"
+            " of illness prevents this time frame from being achievable. Management should be more understanding of individual circumstances and understand that this employee was not able to comply"
+            " with the 2-hour requirement of notification due to the degree of illness they were facing.\n"
         },
-        "Use or Lose - Employer did not provide confirmation in writing to employee of Use or Lose after management canceled requested Use or Lose.": {
-            "articles": ["Article 32 Section 1(B)"],
-            "argument": "     Upon management canceling the Use or Lose Annual Leave, they should have provided in writing the confirmation of the restoration. It is a violation of the employees'"
-            " rights if management failed to do this after canceling the leave on the employee.\n"
+        "Denied sick leave despite the employee following the sick leave procedure:\n"
+        "  • Current telephone number was included via email or voicemail.\n"
+        "  • Not under a sick leave restriction.": {
+            "articles": ["Article 34 Section 2(B)"],
+            "argument": f"     The NA states that an employee must follow certain procedures when requesting sick leave. {grievant} followed these guidelines as laid out in the NA, including leaving"
+            " a number to call them back at via a phone call, voicemail, or through an email. Management should not have denied leave based on the employees failure to follow procedures when the"
+            " employee did follow all of the correct procedures as laid out by the NA.\n"
         },
         "Seasonal Employees - Placed in non-pay status for 10 days or less and was denied us of annual leave.": {
             "articles": ["Article 32 Section 3(A)"],
             "argument": "     It is inappropriate to not allow a seasonal employee in a non-pay status for less than 10 workdays to use their annual leave per the NA.\n"
         },
         "Seasonal Employees - Requested leave within the last 10 workdays of any fiscal year was denied based on anything except staffing and budgetary restrictions.": {
-        "articles": ["Article 32 Section 3(B)"],
-        "argument": "     Management could deny an annual leave request within the last 10 workdays of a fiscal year if it was related to staffing or budgetary restriction. Denying annual leave"
-            " during this time frame for anything other than those is a violation of the employees' rights as laid out in the NA. \n"
+            "articles": ["Article 32 Section 3(B)"],
+            "argument": "     Management could deny an annual leave request within the last 10 workdays of a fiscal year if it was related to staffing or budgetary restriction. Denying annual leave"
+                " during this time frame for anything other than those is a violation of the employees' rights as laid out in the NA. \n"
         },
         "Seasonal Employees - Seasonal Employees leave requests are not being handled like a regular employees leave request would be.": {
             "articles": ["Article 32 Section 3(C)"],
