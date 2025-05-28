@@ -370,12 +370,12 @@ if grievance_type == "AWOL - Annual/Sick Leave":
             "argument": "     It is a violation of an employee's rights to charge or refuse to allow an employee to utilize their earned annual time in any increment outside of the allotted 15-minute"
             " increments as laid out by the NA.\n"
         },
-        #"Use or Lose - Employer provided confirmation in writing to employee of Use or Lose after management canceled requested Use or Lose.": {
+        "Use or Lose - Employer provided confirmation in writing to employee of Use or Lose after management canceled requested Use or Lose.": {
             "articles": ["Article 32 Section 1(B)"],
             "argument": "     Upon management canceling the Use or Lose Annual Leave, they should have provided in writing the confirmation of the restoration. It is a violation of the employees'"
             " rights if management failed to do this after canceling the leave on the employee.\n"
         },
-        #"Conflict in requests but EOD order was not utilized.": {
+        "Conflict in requests but EOD order was not utilized.": {
             "articles": ["Article 32 Section 1(C)"],
             "argument": "     Management failed to follow the NA by failing to follow the EOD order on approval and denial of annual leave. An employee with a later EOD should have been given"
             " the requested leave over a newer EOD dated employee.\n"
