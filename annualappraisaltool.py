@@ -450,6 +450,7 @@ if grievance_type == "AWOL - Annual/Sick Leave":
 
                 # Add all 43 violations from VBA here with descriptions and mapped arguments.
     }
+    }
 
     selected_reasons = []
     selected_articles = []
