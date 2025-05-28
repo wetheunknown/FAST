@@ -393,7 +393,6 @@ if grievance_type == "AWOL - Annual/Sick Leave":
     selected_arguments = []
     
     for desc, info in awol_checkbox_descriptions.items():
-        st.markdown(desc.replace("\n"))
         checked = st.checkbox(desc, key=f"checkbox_{desc}")
         if checked:
             selected_reasons.append(desc)
