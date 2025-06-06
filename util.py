@@ -9,7 +9,7 @@ from textwrap import wrap
 from PyPDF2 import PdfMerger, PdfReader
 from docx import Document as DocxDocument
 
-WRAP_WIDTH = 95
+WRAP_WIDTH = 120
 
 def draw_wrapped_section(c, title, text, x, y, width, height, line_height):
     c.setFont("Helvetica-Bold", 12)
