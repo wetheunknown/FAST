@@ -276,4 +276,4 @@ if grievance_type == "Annual Appraisal":
             st.download_button("📅 Download Completed Grievance Packet", f, file_name=st.session_state.final_packet_name)
 
 if grievance_type == "AWOL - Annual/Sick Leave":
-    render_awol_issues.render_awol()
+    render_awol()
