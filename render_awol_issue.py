@@ -3,7 +3,7 @@ import datetime
 import holidays
 import tempfile
 import os
-from util import draw_wrapped_section, generate_pdf, convert_to_pdf, calculate_fbd
+from util import wrap_text_to_width, draw_wrapped_section, generate_pdf, convert_to_pdf, calculate_fbd
 
 def render_awol():
     st.header("AWOL - Annual or Sick Leave Grievance Intake")
