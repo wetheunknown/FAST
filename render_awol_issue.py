@@ -1,3 +1,5 @@
+import streamlit as st
+
 def render_awol():
     st.header("AWOL - Annual or Sick Leave Grievance Intake")
 
