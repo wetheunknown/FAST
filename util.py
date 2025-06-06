@@ -7,7 +7,26 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
 from PyPDF2 import PdfMerger, PdfReader
 from docx import Document as DocxDocument
-from pdf_utils import wrap_text_to_width
+from reportlab.pdfbase.pdfmetrics import stringWidth
+
+def wrap_text_to_width(text, font_name, font_size, max_width):
+    """
+    Wrap a string so each line fits within max_width points.
+    """
+    words = text.split()
+    lines = []
+    current_line = ""
+    for word in words:
+        test_line = f"{current_line} {word}".strip()
+        if stringWidth(test_line, font_name, font_size) <= max_width:
+            current_line = test_line
+        else:
+            if current_line:
+                lines.append(current_line)
+            current_line = word
+    if current_line:
+        lines.append(current_line)
+    return lines
 
 def draw_wrapped_section(c, title, text, x, y, width, height, line_height):
     title_font = "Helvetica-Bold"
