@@ -9,6 +9,7 @@ from textwrap import wrap
 from PyPDF2 import PdfMerger, PdfReader
 from docx import Document as DocxDocument
 from render_awol_issue import render_awol
+from render_annual_issue import render_annual
 from util import draw_wrapped_section, generate_pdf, convert_to_pdf, calculate_fbd
 
 MAX_UPLOADS = 10
