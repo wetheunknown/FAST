@@ -8,7 +8,7 @@ from reportlab.lib.pagesizes import letter
 from textwrap import wrap
 from PyPDF2 import PdfMerger, PdfReader
 from docx import Document as DocxDocument
-import render_awol_issue
+from render_awol_issue
 
 WRAP_WIDTH = 95
 MAX_UPLOADS = 10
