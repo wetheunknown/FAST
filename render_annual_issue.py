@@ -18,7 +18,7 @@ def render_annual():
                 ' related to the job in question for each employee or position under the system." By not utilizing performance standards to provide an accurate evaluation, not only violates the employee’s rights'
                 " granted under the National Agreement, but also violates the laws and regulations intended to protect federal employees from harm. By failing to utilize the performance standards to the degree at"
                 " which they were intended to be used to evaluate an employee’s performance to provide an accurate evaluation of their work, management has failed to comply and created an unjust and unfair appraisal"
-                " for this grievant and management needs to reconsider the appraisal score given. \n"
+                " for this grievant and management needs to reconsider the appraisal score given."
             )
         },
         "Management was given specific distribution amounts per level of rating for employees.": {
@@ -34,24 +34,24 @@ def render_annual():
                 ' to, award determinations and promotion decisions.” By not following the guidance provided through the CFR, the Agency is not only violating the National Agreement, the IRM’s, but is also breaking the'
                 " law by forcing a set distribution list per level of rating. Management has violated the employee’s rights by failing to provide an accurate reflection upon their service over the last appraisal"
                 " period of a year and by utilization of a forced distribution of levels of rating. Management should only utilize the employee’s performance during the period of review and any variation from such"
-                " is violating the laws and regulations in place to prevent harm. \n"
+                " is violating the laws and regulations in place to prevent harm."
             )
         },
         "Performance elements were not clearly defined": {
             "articles": ["Article 12 Section 3"],
-            "argument": "Performance elements were not clearly defined, violating Article 21, Section 2. \n"
+            "argument": "Performance elements were not clearly defined, violating Article 21, Section 2."
         },
         "Employee was not given opportunity to improve": {
             "articles": ["Article 12, Section 7"],
-            "argument": "The employee was not given the opportunity to improve, violating Article 12, Section 7. \n"
+            "argument": "The employee was not given the opportunity to improve, violating Article 12, Section 7."
         },
         "Rating is inconsistent with prior feedback": {
             "articles": ["Article 21, Section 4"],
-            "argument": "The rating is inconsistent with prior feedback, violating Article 21, Section 4. \n"
+            "argument": "The rating is inconsistent with prior feedback, violating Article 21, Section 4."
         },
         "Rating is inconsistent with peer comparisons": {
             "articles": ["Article 21, Section 5"],
-            "argument": "The rating is inconsistent with peer comparisons, violating Article 21, Section 5. \n"
+            "argument": "The rating is inconsistent with peer comparisons, violating Article 21, Section 5."
         }
     }
     
