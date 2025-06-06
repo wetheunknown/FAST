@@ -327,7 +327,7 @@ def render_awol():
         if not steward or not grievant:
             st.warning("Please fill out all required fields.")
         else:
-            full_argument = "\n\n".join(selected_arguments)
+            full_argument = "\n\n".join(str(arg) for arf in selected_arguments)
             article_list = ", ".join(sorted(set(selected_articles)))
 
             form_data = {
