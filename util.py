@@ -34,6 +34,12 @@ def draw_wrapped_section(c, title, text, x, y, width, height, line_height):
     body_font = "Helvetica"
     body_size = 10
     usable_width = width - 2 * x
+    
+    for line in text.split('\n'):
+    if line.strip() == "":
+        y -= line_height * 1.5  # Or 2.0 for extra space
+        continue
+    # ... draw wrapped lines as above
 
     # Draw section title
     c.setFont(title_font, title_size)
@@ -43,18 +49,17 @@ def draw_wrapped_section(c, title, text, x, y, width, height, line_height):
     # Draw body text with proper wrapping
     c.setFont(body_font, body_size)
     for line in text.split('\n'):
-        wrapped_lines = wrap_text_to_width(line, body_font, body_size, usable_width)
-        for wrapped in wrapped_lines:
-            if y < 50:
-                c.showPage()
-                y = height - 50
-                # Reset fonts after page break
-                c.setFont(title_font, title_size)
-                c.drawString(x, y, title)
-                y -= line_height
-                c.setFont(body_font, body_size)
-            c.drawString(x, y, wrapped)
-            y -= line_height
+    if line.strip() == "":
+        # Draw a blank line for spacing
+        y -= line_height
+        continue
+    for wrapped in wrap_text_to_width(line, font_name, font_size, usable_width):
+        if y < 50:
+            c.showPage()
+            y = height - 50
+            c.setFont(font_name, font_size)
+        c.drawString(x, y, wrapped)
+        y -= line_height
     y -= line_height
     return y
 
