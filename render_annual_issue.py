@@ -3,6 +3,7 @@ import datetime
 import holidays
 import tempfile
 import os
+from PyPDF2 import PdfMerger
 from util import draw_wrapped_section, generate_pdf, convert_to_pdf, calculate_fbd
 
 def render_annual():
