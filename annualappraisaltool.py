@@ -11,7 +11,6 @@ from docx import Document as DocxDocument
 from render_awol_issue import render_awol
 from util import draw_wrapped_section, generate_pdf, convert_to_pdf, calculate_fbd
 
-WRAP_WIDTH = 95
 MAX_UPLOADS = 10
 
 st.title("Federal Advocacy Support Toolkit \n FAST - Provided by NTEU CH. 66")
