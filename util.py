@@ -5,7 +5,7 @@ import tempfile
 import os
 from io import BytesIO
 from reportlab.pdfgen import canvas
-from reportlab.lib.pagesizes import letter
+from reportlab.lib.pagesizes import LETTER
 from PyPDF2 import PdfMerger, PdfReader, PdfWriter
 from docx import Document as DocxDocument
 from reportlab.pdfbase.pdfmetrics import stringWidth
@@ -63,8 +63,8 @@ def draw_wrapped_section(c, title, text, x, y, width, height, line_height):
     
 def generate_pdf(data, argument):
     temp_file = tempfile.NamedTemporaryFile(delete=False, suffix=".pdf")
-    c = canvas.Canvas(temp_file.name, pagesize=letter)
-    width, height = letter
+    c = canvas.Canvas(temp_file.name, pagesize=LETTER)
+    width, height = LETTER
     x, y = 50, height - 50
     line_height = 16
 
@@ -86,8 +86,8 @@ def generate_pdf(data, argument):
 def convert_to_pdf(file, filename):
     temp_pdf_path = os.path.join(tempfile.gettempdir(), f"converted_{filename}.pdf")
     ext = os.path.splitext(filename)[1].lower()
-    c = canvas.Canvas(temp_pdf_path, pagesize=letter)
-    width, height = letter
+    c = canvas.Canvas(temp_pdf_path, pagesize=LETTER)
+    width, height = LETTER
     x, y = 50, height - 50
     line_height = 16
     body_font = "Helvetica"
