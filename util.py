@@ -161,35 +161,42 @@ def create_cover_sheet(form_data, grievance_type):
     width, height = LETTER
 
     # Title
-    c.setFont("Helvetica-Bold", 16)
-    c.drawCentredString(width / 2, height - 72, f"{grievance_type} Filing Form - NTEU")
+    c.setFont("Helvetica-Bold", 18)
+    c.drawCentredString(width / 2, height - 72, f"{grievance_type} Filing Cover Sheet")
 
+    # Case Number in upper right under title
+    c.setFont("Helvetica-Bold", 12)
+    case_number = form_data.get("Case ID", "N/A")
+    case_label = f"Case Number: {case_number}"
+    margin = 72  # 1 inch
+    c.drawRightString(width - margin, height - 90, case_label)
+
+    # Start form fields below
     c.setFont("Helvetica", 12)
-    y = height - 120
+    y = height - 130
     line_height = 24
-    label_x = 72
-    value_x = 200
-    value_max_width = width - value_x - 72  # 72pt right margin
+    label_x = margin
 
-    def wrap_text(text, font_name, font_size, max_width):
-        words = text.split()
-        if not words:
-            return [""]
+    # Helper for text wrapping values that are too long
+    def wrap_label_value(label, value, font_name, font_size, max_width):
+        from reportlab.pdfbase.pdfmetrics import stringWidth
+        prefix = f"{label}: "
         lines = []
-        current_line = words[0]
-        for word in words[1:]:
-            test_line = current_line + " " + word
-            if c.stringWidth(test_line, font_name, font_size) > max_width:
+        current_line = prefix
+        words = value.split()
+        for word in words:
+            test_line = current_line + (word if current_line == prefix else " " + word)
+            if stringWidth(test_line, font_name, font_size) > max_width:
                 lines.append(current_line)
-                current_line = word
+                current_line = " " * len(prefix) + word  # Indent subsequent lines
             else:
                 current_line = test_line
         lines.append(current_line)
         return lines
 
+    # Fields to display (excluding Case ID, already at top)
     fields = [
         ("Date of Filing", datetime.datetime.now().strftime("%Y-%m-%d")),
-        ("Case ID", form_data.get("Case ID", "N/A")),
         ("Department Manager", form_data.get("Department Manager", "")),
         ("Frontline Manager", form_data.get("Frontline Manager", "")),
         ("Position", form_data.get("Position", "")),
@@ -201,21 +208,17 @@ def create_cover_sheet(form_data, grievance_type):
         ("Desired Outcome", form_data.get("Desired Outcome", "")),
     ]
 
+    value_max_width = width - label_x - margin
+
     for label, value in fields:
-        c.drawString(label_x, y, f"{label}:")
-        y -= line_height
-        paragraphs = str(value).split('\n')
-        for para in paragraphs:
-            wrapped_lines = wrap_text(para, "Helvetica", 12, value_max_width)
-            for line in wrapped_lines:
-                if y < 50:
-                    c.showPage()
-                    y = height - 72
-                    c.setFont("Helvetica", 12)
-                    c.drawString(label_x, y, f"{label}:")
-                    y -= line_height
-                c.drawString(value_x, y, line)
-                y -= line_height
+        # Wrap label and value together, so it stays on one line unless too long
+        for line in wrap_label_value(label, str(value), "Helvetica", 12, value_max_width):
+            c.drawString(label_x, y, line)
+            y -= line_height
+            if y < margin + line_height:
+                c.showPage()
+                y = height - margin
+                c.setFont("Helvetica", 12)
 
     c.showPage()
     c.save()
