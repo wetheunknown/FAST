@@ -160,7 +160,7 @@ def create_cover_sheet(form_data, grievance_type):
 
     # Add fields
     fields = [
-        ("Date of Filing", datetime.now().strftime("%Y-%m-%d")),
+        ("Date of Filing", datetime.datetime.now().strftime("%Y-%m-%d")),
         ("Case ID", form_data.get("Case ID", "N/A")),
         ("Grievant", form_data.get("Grievant", "")),
         ("Steward", form_data.get("Steward", "")),
