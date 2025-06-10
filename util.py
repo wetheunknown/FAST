@@ -3,6 +3,7 @@ import datetime
 import holidays
 import tempfile
 import os
+from io import BytesIO
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
 from PyPDF2 import PdfMerger, PdfReader
@@ -144,3 +145,36 @@ def calculate_fbd(start_date):
         if current_date.weekday() < 5 and current_date not in us_holidays:
             business_days += 1
     return current_date
+
+def create_cover_sheet(form_data):
+    buffer = BytesIO()
+    c = canvas.Canvas(buffer, pagesize=LETTER)
+    width, height = LETTER
+
+    # Title
+    c.setFont("Helvetica-Bold", 18)
+    c.drawCentredString(width / 2, height - 72, "AWOL Grievance Filing Cover Sheet")
+
+    c.setFont("Helvetica", 12)
+    y = height - 120
+
+    # Add fields
+    fields = [
+        ("Date of Filing", datetime.now().strftime("%Y-%m-%d")),
+        ("Case ID", form_data.get("Case ID", "N/A")),
+        ("Grievant", form_data.get("Grievant", "")),
+        ("Steward", form_data.get("Steward", "")),
+        ("Issue Description", form_data.get("Issue Description", "")),
+        ("Articles of Violation", form_data.get("Articles of Violation", "")),
+        ("Desired Outcome", form_data.get("Desired Outcome", "")),
+    ]
+
+    for label, value in fields:
+        c.drawString(72, y, f"{label}:")
+        c.drawString(200, y, str(value))
+        y -= 24
+
+    c.showPage()
+    c.save()
+    buffer.seek(0)
+    return buffer
