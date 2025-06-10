@@ -345,6 +345,6 @@ def render_awol():
 
         st.download_button(
             "📄 Download AWOL Grievance PDF",
-            cover_sheet,
+            cover_sheet.getvalue(),  # <-- getvalue() returns bytes
             file_name=f"{grievant.replace(' ', '_')}_AWOL_Grievance.pdf"
         )
