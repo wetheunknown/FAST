@@ -327,7 +327,7 @@ def render_awol():
         else:
             full_argument = "\n\n".join(str(arg) for arg in selected_arguments)
             article_list = ", ".join(sorted(set(selected_articles)))
-
+    
             form_data = {
                 "Steward": steward,
                 "Grievant": grievant,
@@ -335,16 +335,14 @@ def render_awol():
                 "Desired Outcome": desired_outcome,
                 "Articles of Violation": article_list
             }
-        # If grievance_type is stored in session state
-        grievance_type = st.session_state.get("grievance_type", "AWOL Grievance")
-
-        cover_sheet = create_cover_sheet(form_data, grievance_type)
-        awol_pdf = generate_pdf(form_data, full_argument)  # This should return a BytesIO!
-
-        final_pdf_buffer = merge_pdfs(cover_sheet, awol_pdf)
-
-        st.download_button(
-            "📄 Download AWOL Grievance PDF",
-            cover_sheet.getvalue(),  # <-- getvalue() returns bytes
-            file_name=f"{grievant.replace(' ', '_')}_AWOL_Grievance.pdf"
-        )
+            grievance_type = st.session_state.get("grievance_type", "AWOL Grievance")
+    
+            cover_sheet = create_cover_sheet(form_data, grievance_type)
+            awol_pdf = generate_pdf(form_data, full_argument)  # Should return a BytesIO!
+            final_pdf_buffer = merge_pdfs(cover_sheet, awol_pdf)
+    
+            st.download_button(
+                "📄 Download AWOL Grievance PDF",
+                final_pdf_buffer.getvalue(),  # use getvalue() for bytes
+                file_name=f"{grievant.replace(' ', '_')}_AWOL_Grievance.pdf"
+            )
