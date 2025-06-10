@@ -335,7 +335,7 @@ def render_awol():
                 "Desired Outcome": desired_outcome,
                 "Articles of Violation": article_list
             }
-
+            cover_sheet = create_cover_sheet(form_data)
             awol_pdf = generate_pdf(form_data, full_argument)
 
             with open(awol_pdf, "rb") as f:
