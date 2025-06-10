@@ -62,18 +62,16 @@ def draw_wrapped_section(c, title, text, x, y, width, height, line_height):
     return y
     
 def generate_pdf(data, argument):
-    temp_file = tempfile.NamedTemporaryFile(delete=False, suffix=".pdf")
-    c = canvas.Canvas(temp_file.name, pagesize=LETTER)
+    buffer = BytesIO()
+    c = canvas.Canvas(buffer, pagesize=LETTER)
     width, height = LETTER
     x, y = 50, height - 50
     line_height = 16
 
-    # Header
     c.setFont("Helvetica-Bold", 16)
     c.drawString(x, y, "📄 Grievance Summary")
     y -= line_height * 2
 
-    # Draw each section
     for key, value in data.items():
         y = draw_wrapped_section(c, f"{key}:", str(value), x, y, width, height, line_height)
 
@@ -81,8 +79,9 @@ def generate_pdf(data, argument):
         y = draw_wrapped_section(c, "Argument:", argument, x, y, width, height, line_height)
 
     c.save()
-    return temp_file.name
-
+    buffer.seek(0)
+    return buffer
+    
 def convert_to_pdf(file, filename):
     temp_pdf_path = os.path.join(tempfile.gettempdir(), f"converted_{filename}.pdf")
     ext = os.path.splitext(filename)[1].lower()
@@ -108,6 +107,7 @@ def convert_to_pdf(file, filename):
                     c.drawString(x, y, wrapped)
                     y -= line_height
         elif ext == ".docx":
+            from docx import Document as DocxDocument
             with tempfile.NamedTemporaryFile(delete=False, suffix=".docx") as tmp:
                 tmp.write(file.read())
                 tmp_path = tmp.name
@@ -131,11 +131,15 @@ def convert_to_pdf(file, filename):
             return None
 
         c.save()
-        return temp_pdf_path
+        # Return as BytesIO for consistency
+        with open(temp_pdf_path, "rb") as pdf_file:
+            buffer = BytesIO(pdf_file.read())
+        buffer.seek(0)
+        return buffer
     except Exception as e:
         st.warning(f"⚠️ Failed to convert {filename}: {e}")
         return None
-
+        
 def calculate_fbd(start_date):
     us_holidays = holidays.US()
     current_date = start_date
@@ -151,14 +155,12 @@ def create_cover_sheet(form_data, grievance_type):
     c = canvas.Canvas(buffer, pagesize=LETTER)
     width, height = LETTER
 
-    # Title
     c.setFont("Helvetica-Bold", 18)
     c.drawCentredString(width / 2, height - 72, f"{grievance_type} Filing Cover Sheet")
 
     c.setFont("Helvetica", 12)
     y = height - 120
 
-    # Add fields
     fields = [
         ("Date of Filing", datetime.datetime.now().strftime("%Y-%m-%d")),
         ("Case ID", form_data.get("Case ID", "N/A")),
@@ -186,9 +188,7 @@ def merge_pdfs(cover_buffer, main_buffer):
     main_reader = PdfReader(main_buffer)
     writer = PdfWriter()
 
-    # Add cover page first
     writer.add_page(cover_reader.pages[0])
-    # Add all other pages
     for page in main_reader.pages:
         writer.add_page(page)
 
@@ -196,3 +196,4 @@ def merge_pdfs(cover_buffer, main_buffer):
     writer.write(output_buffer)
     output_buffer.seek(0)
     return output_buffer
+    
