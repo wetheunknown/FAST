@@ -153,7 +153,7 @@ def create_cover_sheet(form_data):
 
     # Title
     c.setFont("Helvetica-Bold", 18)
-    c.drawCentredString(width / 2, height - 72, "AWOL Grievance Filing Cover Sheet")
+    c.drawCentredString(width / 2, height - 72, f"{st.session_state.grievance_type} Filing Cover Sheet")
 
     c.setFont("Helvetica", 12)
     y = height - 120
