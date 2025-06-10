@@ -21,7 +21,7 @@ def render_awol():
         
     case_id = st.text_input("Case Number")
     dept_man = st.text_input("Department Manager")
-    flmanager = st.text_input(Frontline Manager")
+    flmanager = st.text_input("Frontline Manager")
     position = st.text_input("Title/Position")
     workarea = st.text_input("Work Area/ Operation")
     steward = st.text_input("Steward's Name")
@@ -338,7 +338,12 @@ def render_awol():
                 "Grievant": grievant,
                 "Issue Description": issue_description,
                 "Desired Outcome": desired_outcome,
-                "Articles of Violation": article_list
+                "Articles of Violation": article_list,
+                "Case ID": case_id,
+                "Department Manager": dept_man,
+                "Frontline Manager": flmanager,
+                "Position": position,
+                "Operation": workarea
             }
             grievance_type = st.session_state.get("grievance_type", "AWOL Grievance")
     
