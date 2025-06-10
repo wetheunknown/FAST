@@ -56,6 +56,11 @@ def render_annual():
     }
     
     # --- Date and FBD input/display together ---
+
+    if "date_received" not in st.session_state:
+        st.session_state["date_received"] = datetime.date.today()
+        fbd = calculate_fbd(st.session_state["date_received"])
+    
     st.header("Appraisal Grievance Intake")
     date_col, fbd_col = st.columns([1, 1])
     with date_col:
@@ -69,9 +74,7 @@ def render_annual():
         fbd = calculate_fbd(st.session_state[date_received])
         st.info(f"🗕️ File By Date (15 business days): {fbd}")
 
-    if "date_received" not in st.session_state:
-        st.session_state["date_received"] = datetime.date.today()
-        fbd = calculate_fbd(st.session_state["date_received"])
+
     
     # --- FORM UI ---
     with st.form("grievance_form"):
