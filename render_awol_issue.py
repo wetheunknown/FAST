@@ -19,6 +19,11 @@ def render_awol():
         fbd = calculate_fbd(st.session_state["date_received"])
         st.info(f"🗕️ File By Date (15 business days): {fbd}")
         
+    case_id = st.text_input("Case Number")
+    dept_man = st.text_input("Department Manager")
+    flmanager = st.text_input(Frontline Manager")
+    position = st.text_input("Title/Position")
+    workarea = st.text_input("Work Area/ Operation")
     steward = st.text_input("Steward's Name")
     grievant = st.text_input("Grievant's Name")
     issue_description = st.text_area("Summary of Grievance", key="issue_description")
