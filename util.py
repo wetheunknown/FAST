@@ -151,16 +151,26 @@ def calculate_fbd(start_date):
     return current_date
 
 def create_cover_sheet(form_data, grievance_type):
+    from io import BytesIO
+    from reportlab.pdfgen import canvas
+    from reportlab.lib.pagesizes import LETTER
+    import datetime
+
     buffer = BytesIO()
     c = canvas.Canvas(buffer, pagesize=LETTER)
     width, height = LETTER
 
+    # Title
     c.setFont("Helvetica-Bold", 18)
     c.drawCentredString(width / 2, height - 72, f"{grievance_type} Filing Cover Sheet")
 
     c.setFont("Helvetica", 12)
     y = height - 120
+    line_height = 24
+    label_x = 72
+    value_x = 200
 
+    # Add fields
     fields = [
         ("Date of Filing", datetime.datetime.now().strftime("%Y-%m-%d")),
         ("Case ID", form_data.get("Case ID", "N/A")),
@@ -171,10 +181,31 @@ def create_cover_sheet(form_data, grievance_type):
         ("Desired Outcome", form_data.get("Desired Outcome", "")),
     ]
 
+    # Simple text wrap for values that are too long
+    def wrap_text(text, font_name, font_size, max_width):
+        lines = []
+        if not text:
+            return [""]
+        words = text.split()
+        current_line = words[0]
+        for word in words[1:]:
+            test_line = current_line + " " + word
+            if c.stringWidth(test_line, font_name, font_size) > max_width:
+                lines.append(current_line)
+                current_line = word
+            else:
+                current_line = test_line
+        lines.append(current_line)
+        return lines
+
+    value_max_width = width - value_x - 72  # 72pt margin on right
+
     for label, value in fields:
-        c.drawString(72, y, f"{label}:")
-        c.drawString(200, y, str(value))
-        y -= 24
+        c.drawString(label_x, y, f"{label}:")
+        wrapped_lines = wrap_text(str(value), "Helvetica", 12, value_max_width)
+        for i, line in enumerate(wrapped_lines):
+            c.drawString(value_x, y - i * line_height, line)
+        y -= line_height * max(1, len(wrapped_lines))
 
     c.showPage()
     c.save()
@@ -196,4 +227,3 @@ def merge_pdfs(cover_buffer, main_buffer):
     writer.write(output_buffer)
     output_buffer.seek(0)
     return output_buffer
-    
