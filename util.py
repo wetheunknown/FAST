@@ -6,7 +6,7 @@ import os
 from io import BytesIO
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
-from PyPDF2 import PdfMerger, PdfReader
+from PyPDF2 import PdfMerger, PdfReader, PdfWriter
 from docx import Document as DocxDocument
 from reportlab.pdfbase.pdfmetrics import stringWidth
 
@@ -146,14 +146,14 @@ def calculate_fbd(start_date):
             business_days += 1
     return current_date
 
-def create_cover_sheet(form_data):
+def create_cover_sheet(form_data, grievance_type):
     buffer = BytesIO()
     c = canvas.Canvas(buffer, pagesize=LETTER)
     width, height = LETTER
 
     # Title
     c.setFont("Helvetica-Bold", 18)
-    c.drawCentredString(width / 2, height - 72, f"{st.session_state.grievance_type} Filing Cover Sheet")
+    c.drawCentredString(width / 2, height - 72, f"{grievance_type} Filing Cover Sheet")
 
     c.setFont("Helvetica", 12)
     y = height - 120
@@ -178,3 +178,21 @@ def create_cover_sheet(form_data):
     c.save()
     buffer.seek(0)
     return buffer
+
+def merge_pdfs(cover_buffer, main_buffer):
+    cover_buffer.seek(0)
+    main_buffer.seek(0)
+    cover_reader = PdfReader(cover_buffer)
+    main_reader = PdfReader(main_buffer)
+    writer = PdfWriter()
+
+    # Add cover page first
+    writer.add_page(cover_reader.pages[0])
+    # Add all other pages
+    for page in main_reader.pages:
+        writer.add_page(page)
+
+    output_buffer = BytesIO()
+    writer.write(output_buffer)
+    output_buffer.seek(0)
+    return output_buffer
