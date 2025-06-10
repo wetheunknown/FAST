@@ -151,11 +151,6 @@ def calculate_fbd(start_date):
     return current_date
 
 def create_cover_sheet(form_data, grievance_type):
-    from io import BytesIO
-    from reportlab.pdfgen import canvas
-    from reportlab.lib.pagesizes import LETTER
-    import datetime
-
     buffer = BytesIO()
     c = canvas.Canvas(buffer, pagesize=LETTER)
     width, height = LETTER
@@ -169,24 +164,14 @@ def create_cover_sheet(form_data, grievance_type):
     line_height = 24
     label_x = 72
     value_x = 200
+    value_max_width = width - value_x - 72  # 72pt right margin
 
-    # Add fields
-    fields = [
-        ("Date of Filing", datetime.datetime.now().strftime("%Y-%m-%d")),
-        ("Case ID", form_data.get("Case ID", "N/A")),
-        ("Grievant", form_data.get("Grievant", "")),
-        ("Steward", form_data.get("Steward", "")),
-        ("Issue Description", form_data.get("Issue Description", "")),
-        ("Articles of Violation", form_data.get("Articles of Violation", "")),
-        ("Desired Outcome", form_data.get("Desired Outcome", "")),
-    ]
-
-    # Simple text wrap for values that are too long
+    # Helper for text wrapping using stringWidth
     def wrap_text(text, font_name, font_size, max_width):
-        lines = []
-        if not text:
-            return [""]
         words = text.split()
+        if not words:
+            return [""]
+        lines = []
         current_line = words[0]
         for word in words[1:]:
             test_line = current_line + " " + word
@@ -198,7 +183,15 @@ def create_cover_sheet(form_data, grievance_type):
         lines.append(current_line)
         return lines
 
-    value_max_width = width - value_x - 72  # 72pt margin on right
+    fields = [
+        ("Date of Filing", datetime.datetime.now().strftime("%Y-%m-%d")),
+        ("Case ID", form_data.get("Case ID", "N/A")),
+        ("Grievant", form_data.get("Grievant", "")),
+        ("Steward", form_data.get("Steward", "")),
+        ("Issue Description", form_data.get("Issue Description", "")),
+        ("Articles of Violation", form_data.get("Articles of Violation", "")),
+        ("Desired Outcome", form_data.get("Desired Outcome", "")),
+    ]
 
     for label, value in fields:
         c.drawString(label_x, y, f"{label}:")
