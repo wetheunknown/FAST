@@ -181,7 +181,7 @@ def render_awol():
         "Denied leave because employee did not timely provide documentation within 15 days after the date requested but employee did not provide documentation within this time frame.": {
             "articles": ["Article 34 Section 3(D)"],
             "argument": f"Management denied {grievant}'s sick leave request because documentation was not turned in timely. According to the NA, the employee is allowed up to 15-days after the date"
-                         " the employer requested documentation. Requiring any variation from this guidance laid out by the NA is a violation of the employee's rights granted under the NA. \n"
+            " the employer requested documentation. Requiring any variation from this guidance laid out by the NA is a violation of the employee's rights granted under the NA. \n"
         },
         "Circumstances of the requested leave prevented the employee from meeting the 15-day deadline and the Agency did not allow for the employee , up to 30 days, after"
         " the requested leave due to circumstances.": {
