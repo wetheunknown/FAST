@@ -171,7 +171,6 @@ def create_cover_sheet(form_data, grievance_type):
     value_x = 200
     value_max_width = width - value_x - 72  # 72pt right margin
 
-    # Helper for text wrapping using stringWidth (handles one paragraph)
     def wrap_text(text, font_name, font_size, max_width):
         words = text.split()
         if not words:
@@ -204,23 +203,19 @@ def create_cover_sheet(form_data, grievance_type):
 
     for label, value in fields:
         c.drawString(label_x, y, f"{label}:")
-        # Support multi-line values (e.g. with newline characters)
+        y -= line_height
         paragraphs = str(value).split('\n')
-        total_lines = 0
-        all_lines = []
         for para in paragraphs:
             wrapped_lines = wrap_text(para, "Helvetica", 12, value_max_width)
-            all_lines.extend(wrapped_lines)
-        for i, line in enumerate(all_lines):
-            # Handle page break (keep at least 2 lines for aesthetics)
-            if y - i * line_height < 50:
-                c.showPage()
-                y = height - 120
-                c.setFont("Helvetica", 12)
-                c.drawString(label_x, y, f"{label}:")
-                i = 0
-            c.drawString(value_x, y - i * line_height, line)
-        y -= line_height * max(1, len(all_lines))
+            for line in wrapped_lines:
+                if y < 50:
+                    c.showPage()
+                    y = height - 72
+                    c.setFont("Helvetica", 12)
+                    c.drawString(label_x, y, f"{label}:")
+                    y -= line_height
+                c.drawString(value_x, y, line)
+                y -= line_height
 
     c.showPage()
     c.save()
