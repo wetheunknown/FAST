@@ -66,8 +66,12 @@ def render_annual():
             help="Date the appraisal was given to grievant."
         )
     with fbd_col:
-        fbd = calculate_fbd(st.session_state["date_received"])
+        fbd = calculate_fbd(st.session_state[date_received])
         st.info(f"🗕️ File By Date (15 business days): {fbd}")
+
+    if "date_received" not in st.session_state:
+        st.session_state["date_received"] = datetime.date.today()
+        fbd = calculate_fbd(st.session_state["date_received"])
     
     # --- FORM UI ---
     with st.form("grievance_form"):
