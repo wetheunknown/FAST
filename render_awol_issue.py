@@ -337,6 +337,9 @@ def render_awol():
             }
             cover_sheet = create_cover_sheet(form_data)
             awol_pdf = generate_pdf(form_data, full_argument)
+            final_pdf = ""
+            
+            merge_pdfs(cover_sheet, awol_pdf, final_pdf)
 
-            with open(awol_pdf, "rb") as f:
+            with open(final_pdf, "rb") as f:
                 st.download_button("📄 Download AWOL Grievance PDF", f, file_name=f"{grievant.replace(' ', '_')}_AWOL_Grievance.pdf")
