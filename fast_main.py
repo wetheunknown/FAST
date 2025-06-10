@@ -18,7 +18,10 @@ st.title("Federal Advocacy Support Toolkit \n FAST - Provided by NTEU CH. 66")
 
 st.subheader("📌 Select Grievance Type")
 
-grievance_type = st.radio(
+if grievance_type not in st.session_state:
+    st.session_state.grievance_type = "Annual Appraisal"
+
+st.session_state.grievance_type = st.radio(
     "Choose the type of grievance you'd like to file:",
     ["Annual Appraisal", "AWOL - Annual/Sick Leave", "Telework (Coming Soon)", "AWS (Soming Soon)", "Work Schedule/ Hours of Work (Coming Soon)"],
     index=0
