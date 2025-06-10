@@ -162,7 +162,7 @@ def create_cover_sheet(form_data, grievance_type):
 
     # Title
     c.setFont("Helvetica-Bold", 18)
-    c.drawCentredString(width / 2, height - 72, f"{grievance_type} Filing Cover Sheet")
+    c.drawCentredString(width / 2, height - 72, f"{grievance_type} Filing Form - NTEU")
 
     # Case Number in upper right under title
     c.setFont("Helvetica-Bold", 12)
