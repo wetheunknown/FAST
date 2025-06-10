@@ -191,6 +191,10 @@ def create_cover_sheet(form_data, grievance_type):
     fields = [
         ("Date of Filing", datetime.datetime.now().strftime("%Y-%m-%d")),
         ("Case ID", form_data.get("Case ID", "N/A")),
+        ("Department Manager", form_data.get("dept_man", "N/A")),
+        ("Frontline Manager", form_data.get("flmanager", "N/A")),
+        ("Position", form_data.get("position", "N/A")),
+        ("Operation", form_data.get("workarea", "N/A")),
         ("Grievant", form_data.get("Grievant", "")),
         ("Steward", form_data.get("Steward", "")),
         ("Issue Description", form_data.get("Issue Description", "")),
