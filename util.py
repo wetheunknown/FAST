@@ -151,6 +151,11 @@ def calculate_fbd(start_date):
     return current_date
 
 def create_cover_sheet(form_data, grievance_type):
+    from io import BytesIO
+    from reportlab.pdfgen import canvas
+    from reportlab.lib.pagesizes import LETTER
+    import datetime
+
     buffer = BytesIO()
     c = canvas.Canvas(buffer, pagesize=LETTER)
     width, height = LETTER
@@ -166,7 +171,7 @@ def create_cover_sheet(form_data, grievance_type):
     value_x = 200
     value_max_width = width - value_x - 72  # 72pt right margin
 
-    # Helper for text wrapping using stringWidth
+    # Helper for text wrapping using stringWidth (handles one paragraph)
     def wrap_text(text, font_name, font_size, max_width):
         words = text.split()
         if not words:
@@ -195,10 +200,23 @@ def create_cover_sheet(form_data, grievance_type):
 
     for label, value in fields:
         c.drawString(label_x, y, f"{label}:")
-        wrapped_lines = wrap_text(str(value), "Helvetica", 12, value_max_width)
-        for i, line in enumerate(wrapped_lines):
+        # Support multi-line values (e.g. with newline characters)
+        paragraphs = str(value).split('\n')
+        total_lines = 0
+        all_lines = []
+        for para in paragraphs:
+            wrapped_lines = wrap_text(para, "Helvetica", 12, value_max_width)
+            all_lines.extend(wrapped_lines)
+        for i, line in enumerate(all_lines):
+            # Handle page break (keep at least 2 lines for aesthetics)
+            if y - i * line_height < 50:
+                c.showPage()
+                y = height - 120
+                c.setFont("Helvetica", 12)
+                c.drawString(label_x, y, f"{label}:")
+                i = 0
             c.drawString(value_x, y - i * line_height, line)
-        y -= line_height * max(1, len(wrapped_lines))
+        y -= line_height * max(1, len(all_lines))
 
     c.showPage()
     c.save()
