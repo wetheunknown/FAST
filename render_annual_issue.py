@@ -141,7 +141,7 @@ def render_annual():
         }
 
         # Only the fields you want in the main PDF, in order
-        pdf_fields = [
+        pdf_fields = {
             "Step",
             "Grievant",
             "Appraisal Year",
@@ -152,7 +152,7 @@ def render_annual():
             "Date Received",
             "Articles of Violation",
             "Steward"
-        ]
+        }
         pdf_data = {k: form_data[k] for k in pdf_fields if k in form_data}
 
         grievance_type = st.session_state.get("grievance_type", "Annual Appraisal")
