@@ -62,6 +62,10 @@ def draw_wrapped_section(c, title, text, x, y, width, height, line_height):
     return y
     
 def generate_pdf(data, argument):
+    from io import BytesIO
+    from reportlab.pdfgen import canvas
+    from reportlab.lib.pagesizes import LETTER
+
     buffer = BytesIO()
     c = canvas.Canvas(buffer, pagesize=LETTER)
     width, height = LETTER
@@ -72,9 +76,10 @@ def generate_pdf(data, argument):
     c.drawString(x, y, "📄 Grievance Summary")
     y -= line_height * 2
 
-    exclude_keys = {"Department Manager", "Frontline Manager", "Position", "Operation"}
+    # Normalize the exclude_keys to lower case and strip spaces
+    exclude_keys = {"department manager", "frontline manager", "position", "operation"}
     for key, value in data.items():
-        if key not in exclude_keys:
+        if key.strip().lower() not in exclude_keys:
             y = draw_wrapped_section(c, f"{key}:", str(value), x, y, width, height, line_height)
 
     if argument:
