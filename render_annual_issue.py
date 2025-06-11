@@ -85,6 +85,11 @@ def render_annual():
         with col2:
             previous_rating = st.selectbox("Prior Year’s Rating", ratings, index=0, key="previous_rating")
 
+        case_id = st.text_input("Case Number")
+        workarea = st.text_input("Work Area/ Operation")
+        dept_man = st.text_input("Department Manager")
+        flmanager = st.text_input("Frontline Manager")
+        position = st.text_input("Title/Position")
         issue_description = st.text_area("Summary of Grievance", key="issue_description")
         desired_outcome = st.text_area("Requested Resolution", key="desired_outcome")
 
