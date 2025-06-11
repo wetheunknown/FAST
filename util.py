@@ -72,8 +72,10 @@ def generate_pdf(data, argument):
     c.drawString(x, y, "📄 Grievance Summary")
     y -= line_height * 2
 
+    exclude_keys = {"Department Manager", "Frontline Manager", "Position", "Operation"}
     for key, value in data.items():
-        y = draw_wrapped_section(c, f"{key}:", str(value), x, y, width, height, line_height)
+        if key not in exclude_keys:
+            y = draw_wrapped_section(c, f"{key}:", str(value), x, y, width, height, line_height)
 
     if argument:
         y = draw_wrapped_section(c, "Argument:", argument, x, y, width, height, line_height)
