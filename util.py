@@ -226,7 +226,7 @@ def create_cover_sheet(form_data, grievance_type):
     img_y = 36
     c.drawImage(img_path, img_x, img_y, width=img_width, height=img_height, mask='auto')
 
-    c.showPage()
+    # DO NOT call c.showPage() here!
     c.save()
     buffer.seek(0)
     return buffer
