@@ -203,8 +203,8 @@ def create_cover_sheet(form_data, grievance_type):
 
     # Fields to display (excluding Case ID, already at top)
     fields = [
-        ("Step", form_data.get("Step", "")),
         ("Date of Filing", datetime.datetime.now().strftime("%Y-%m-%d")),
+        ("Step", form_data.get("Step", "")),
         ("Department Manager", form_data.get("Department Manager", "")),
         ("Frontline Manager", form_data.get("Frontline Manager", "")),
         ("Position", form_data.get("Position", "")),
