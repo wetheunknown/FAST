@@ -56,17 +56,15 @@ def render_annual():
     }
     
     # --- Date and FBD input/display together ---
-
     if "date_received" not in st.session_state:
         st.session_state["date_received"] = datetime.date.today()
-        fbd = calculate_fbd(st.session_state["date_received"])
-    
+
     st.header("Appraisal Grievance Intake")
     date_col, fbd_col = st.columns([1, 1])
     with date_col:
         date_received = st.date_input(
             "Date Received",
-            value=datetime.date.today(),
+            value=st.session_state["date_received"],
             key="date_received",
             help="Date the appraisal was given to grievant."
         )
@@ -74,12 +72,10 @@ def render_annual():
         fbd = calculate_fbd(st.session_state["date_received"])
         st.info(f"🗕️ File By Date (15 business days): {fbd}")
 
-
-    
     # --- FORM UI ---
     with st.form("grievance_form"):
-        steward_name = st.text_input("Steward’s Name", key="steward_name")
-        employee_name = st.text_input("Grievant’s Name", key="employee_name")
+        steward = st.text_input("Steward’s Name", key="steward")
+        grievant = st.text_input("Grievant’s Name", key="grievant")
         years_list = [str(y) for y in range(2023, datetime.date.today().year + 2)]
         appraisal_year = st.selectbox("Appraisal Year", years_list, index=len(years_list)-1, key="appraisal_year")
         ratings = [f"{x:.1f}" for x in [i * 0.1 for i in range(10, 51)]]
@@ -88,10 +84,10 @@ def render_annual():
             rating_received = st.selectbox("Current Rating", ratings, index=0, key="rating_received")
         with col2:
             previous_rating = st.selectbox("Prior Year’s Rating", ratings, index=0, key="previous_rating")
-    
+
         issue_description = st.text_area("Summary of Grievance", key="issue_description")
         desired_outcome = st.text_area("Requested Resolution", key="desired_outcome")
-    
+
         uploaded_files = []
         MAX_UPLOADS = 10
         for i in range(MAX_UPLOADS):
@@ -102,48 +98,67 @@ def render_annual():
                     key=f"file_uploader_{i}",
                 )
             )
-    
+
         st.subheader("Alleged Violations")
-        selected_reasons = []
         articles_set = set()
         arguments = []
         for desc, info in annual_checkbox_descriptions.items():
             checked = st.checkbox(desc, key=f"checkbox_{desc}")
             if checked:
-                selected_reasons.append(desc)
                 articles_set.update(info["articles"])
                 arguments.append(info["argument"])
-    
+
         submitted = st.form_submit_button("Generate Grievance PDF")
-    
+
     # --- PDF Generation / Download ---
     if submitted:
         article_list = ", ".join(sorted(articles_set))
-        # Only include argument section if something was checked
         full_argument = ""
         if arguments:
             full_argument = "\nThis grievance challenges the annual performance appraisal based on the following concerns:\n\n\n"
             for a in arguments:
                 full_argument += f"{a}\n\n"
-    
+
+        filing_step = "Step Two - Annual Appraisal Grievance"
+
+        # All fields for the cover sheet (in order)
         form_data = {
-            "Steward": steward_name,
-            "Employee": employee_name,
+            "Step": filing_step,
+            "Grievant": grievant,
             "Appraisal Year": appraisal_year,
             "Current Rating": rating_received,
             "Prior Year’s Rating": previous_rating,
             "Summary of Grievance": issue_description,
             "Requested Resolution": desired_outcome,
             "Date Received": str(st.session_state["date_received"]),
-            "Articles of Violation": article_list
+            "Articles of Violation": article_list,
+            "Steward": steward
         }
-    
-        base_pdf = generate_pdf(form_data, full_argument)
-    
+
+        # Only the fields you want in the main PDF, in order
+        pdf_fields = [
+            "Step",
+            "Grievant",
+            "Appraisal Year",
+            "Current Rating",
+            "Prior Year’s Rating",
+            "Summary of Grievance",
+            "Requested Resolution",
+            "Date Received",
+            "Articles of Violation",
+            "Steward"
+        ]
+        pdf_data = {k: form_data[k] for k in pdf_fields if k in form_data}
+
+        grievance_type = st.session_state.get("grievance_type", "Annual Appraisal")
+        cover_sheet_buffer = create_cover_sheet(form_data, grievance_type)  # Returns BytesIO
+        base_pdf_buffer = generate_pdf(pdf_data, full_argument)            # Returns BytesIO
+
+        # --- Merge PDFs: cover sheet first ---
         merger = PdfMerger()
-        with open(base_pdf, "rb") as f:
-            merger.append(f)
-    
+        merger.append(cover_sheet_buffer)
+        merger.append(base_pdf_buffer)
+
         for file in uploaded_files:
             if file is not None:
                 filename = file.name
@@ -154,8 +169,6 @@ def render_annual():
                             tmp.write(file.read())
                             tmp.flush()
                         with open(tmp.name, "rb") as f:
-                            PdfReader(f)
-                        with open(tmp.name, "rb") as f:
                             merger.append(f)
                     else:
                         converted_path = convert_to_pdf(file, filename)
@@ -164,15 +177,16 @@ def render_annual():
                                 merger.append(f)
                 except Exception as e:
                     st.warning(f"⚠️ Skipped {filename} due to error: {e}")
-    
-        output_name = f"{employee_name.replace(' ', '_')}_{appraisal_year}_Argument.pdf"
+
+        output_name = f"{grievant.replace(' ', '_')}_{appraisal_year}_Argument.pdf"
         final_path = os.path.join(tempfile.gettempdir(), output_name)
-        merger.write(final_path)
+        with open(final_path, "wb") as f:
+            merger.write(f)
         merger.close()
-    
+
         st.session_state.final_packet_path = final_path
         st.session_state.final_packet_name = output_name
-    
+
     # --- Download button ---
     if "final_packet_path" in st.session_state and st.session_state.final_packet_path:
         with open(st.session_state.final_packet_path, "rb") as f:
