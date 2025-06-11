@@ -333,7 +333,7 @@ def render_awol():
             full_argument = "\n\n".join(str(arg) for arg in selected_arguments)
             article_list = ", ".join(sorted(set(selected_articles)))
             
-            filing_step = str("Step Two - Streamlined Grievance\n\n")
+            filing_step = str("Step Two - Streamlined Grievance")
             
             form_data = {
                 "Step": filing_step,
