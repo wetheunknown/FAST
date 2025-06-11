@@ -220,6 +220,12 @@ def create_cover_sheet(form_data, grievance_type):
                 y = height - margin
                 c.setFont("Helvetica", 12)
 
+    img_path = "path/to/your/image.png"
+    img_width, img_height = 120, 40
+    img_x = (width - img_width) / 2
+    img_y = 36
+    c.drawImage(img_path, img_x, img_y, width=img_width, height=img_height, mask='auto')
+
     c.showPage()
     c.save()
     buffer.seek(0)
