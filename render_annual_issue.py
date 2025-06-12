@@ -160,6 +160,9 @@ def render_annual():
         base_pdf_buffer = generate_pdf(pdf_data, full_argument)            # Returns BytesIO
 
         # --- Merge PDFs: cover sheet first ---
+        cover_sheet_buffer.seek(0)
+        base_pdf_buffer.seek(0)
+
         merger = PdfMerger()
         merger.append(cover_sheet_buffer)
         merger.append(base_pdf_buffer)
