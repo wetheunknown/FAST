@@ -90,8 +90,8 @@ def render_annual():
         dept_man = st.text_input("Department Manager")
         flmanager = st.text_input("Frontline Manager")
         position = st.text_input("Title/Position")
-        issue_description = str(st.text_area("Summary of Grievance", key="issue_description"))
-        desired_outcome = str(st.text_area("Requested Resolution", key="desired_outcome"))
+        issue_description = st.text_area("Summary of Grievance", key="issue_description")
+        desired_outcome = st.text_area("Requested Resolution", key="desired_outcome")
 
         uploaded_files = []
         MAX_UPLOADS = 10
@@ -124,7 +124,7 @@ def render_annual():
             for a in arguments:
                 full_argument += f"{a}\n\n"
 
-        filing_step = "Step Two - Annual Appraisal Grievance"
+        filing_step = "Step Two - Streamlined Grievance"
 
         # All fields for the cover sheet (in order)
         form_data = {
@@ -138,7 +138,6 @@ def render_annual():
             "Date Received": str(st.session_state["date_received"]),
             "Articles of Violation": article_list,
             "Steward": steward,
-            "Case ID": case_id,
             "Department Manager": dept_man,
             "Frontline Manager": flmanager,
             "Position": position,
