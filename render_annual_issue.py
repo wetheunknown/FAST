@@ -100,7 +100,7 @@ def render_annual():
                 st.file_uploader(
                     "Supporting Document {i+1}",
                     type=["pdf", "docx", "txt", "jpg", "jpeg", "png"],
-                    key=f"file_uploader_{i}",
+                    key="file_uploader_{i}",
                 )
             )
 
