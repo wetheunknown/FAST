@@ -137,7 +137,12 @@ def render_annual():
             "Requested Resolution": desired_outcome,
             "Date Received": str(st.session_state["date_received"]),
             "Articles of Violation": article_list,
-            "Steward": steward
+            "Steward": steward,
+            "Case ID": case_id,
+            "Department Manager": dept_man,
+            "Frontline Manager": flmanager,
+            "Position": position,
+            "Operation": workarea
         }
 
         # Only the fields you want in the main PDF, in order
