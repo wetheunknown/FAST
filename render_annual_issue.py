@@ -90,8 +90,8 @@ def render_annual():
         dept_man = st.text_input("Department Manager")
         flmanager = st.text_input("Frontline Manager")
         position = st.text_input("Title/Position")
-        issue_description = st.text_area("Summary of Grievance", key="issue_description")
-        desired_outcome = st.text_area("Requested Resolution", key="desired_outcome")
+        issue_description = st.text_area("Summary of Grievance", "")
+        desired_outcome = st.text_area("Requested Resolution", "")
 
         uploaded_files = []
         MAX_UPLOADS = 10
