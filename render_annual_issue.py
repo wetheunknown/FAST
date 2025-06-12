@@ -184,7 +184,7 @@ def render_annual():
                 except Exception as e:
                     st.warning(f"⚠️ Skipped {filename} due to error: {e}")
 
-        output_name = f"{grievant.replace(' ', '_')}_{appraisal_year}_Argument.pdf"
+        output_name = f"{grievant.replace(' ', '_')}_{appraisal_year}_Annual_Argument.pdf"
         final_path = os.path.join(tempfile.gettempdir(), output_name)
         with open(final_path, "wb") as f:
             merger.write(f)
