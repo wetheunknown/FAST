@@ -74,8 +74,8 @@ def render_annual():
 
     # --- FORM UI ---
     with st.form("grievance_form"):
-        steward = st.text_input("Steward’s Name", key="steward")
-        grievant = st.text_input("Grievant’s Name", key="grievant")
+        steward = st.text_input("Steward’s Name", key="Steward")
+        grievant = st.text_input("Grievant’s Name", key="Grievant")
         years_list = [str(y) for y in range(2023, datetime.date.today().year + 2)]
         appraisal_year = st.selectbox("Appraisal Year", years_list, index=len(years_list)-1, key="appraisal_year")
         ratings = [f"{x:.1f}" for x in [i * 0.1 for i in range(10, 51)]]
