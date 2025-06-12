@@ -138,6 +138,7 @@ def render_annual():
             "Date Received": str(st.session_state["date_received"]),
             "Articles of Violation": article_list,
             "Steward": steward,
+            "Case ID": case_id,
             "Department Manager": dept_man,
             "Frontline Manager": flmanager,
             "Position": position,
