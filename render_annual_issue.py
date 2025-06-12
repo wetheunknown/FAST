@@ -90,8 +90,8 @@ def render_annual():
         dept_man = st.text_input("Department Manager")
         flmanager = st.text_input("Frontline Manager")
         position = st.text_input("Title/Position")
-        issue_description = st.text_area("Summary of Grievance")
-        desired_outcome = st.text_area("Requested Resolution")
+        issue_description = st.text_area("Issue Description", key="issue_description")
+        desired_outcome = st.text_area("Desired Outcome", key="desired_outcome")
 
         uploaded_files = []
         MAX_UPLOADS = 10
@@ -133,8 +133,8 @@ def render_annual():
             "Appraisal Year": appraisal_year,
             "Current Rating": rating_received,
             "Prior Year’s Rating": previous_rating,
-            "Summary of Grievance": issue_description,
-            "Requested Resolution": desired_outcome,
+            "Issue Description": issue_description,
+            "Desired Outcome": desired_outcome,
             "Date Received": str(st.session_state["date_received"]),
             "Articles of Violation": article_list,
             "Steward": steward,
