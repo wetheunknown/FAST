@@ -142,16 +142,12 @@ def render_annual():
 
         # Only the fields you want in the main PDF, in order
         pdf_fields = {
-            "Step",
-            "Grievant",
-            "Appraisal Year",
-            "Current Rating",
-            "Prior Year’s Rating",
-            "Summary of Grievance",
-            "Requested Resolution",
-            "Date Received",
-            "Articles of Violation",
-            "Steward"
+            "Grievant": grievant,
+            "Steward": steward,
+            "Appraisal Year": appraisal_year,
+            "Current Rating": rating_received,
+            "Prior Year’s Rating": previous_rating,
+            "Articles of Violation": article_list,
         }
         pdf_data = {k: form_data[k] for k in pdf_fields if k in form_data}
 
