@@ -5,8 +5,8 @@ import tempfile
 import os
 from util import wrap_text_to_width, draw_wrapped_section, generate_pdf, convert_to_pdf, calculate_fbd, create_cover_sheet, merge_pdfs
 
-def render_awol():
-    st.header("AWOL - Annual or Sick Leave Grievance Intake")
+def render_template():
+    st.header("Test Template")
     date_col, fbd_col = st.columns([1, 1])
     with date_col:
         date_received = st.date_input(
