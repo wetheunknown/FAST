@@ -180,9 +180,14 @@ def render_annual():
                             merger.append(f)
                     else:
                         converted_path = convert_to_pdf(file, filename)
-                        if converted_path:
+                        if isinstance(converted_path, BytesIO):
+                            converted_path.seek(0)
+                            merger.append(converted_path)
+                        elif isinstance(converted_path, str):
                             with open(converted_path, "rb") as f:
                                 merger.append(f)
+                        else:
+                            st.warning(f"Unsupported file type returned by convert_to_pdf for {filename}")
                 except Exception as e:
                     st.warning(f"⚠️ Skipped {filename} due to error: {e}")
 
