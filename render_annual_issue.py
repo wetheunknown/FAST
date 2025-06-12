@@ -126,6 +126,9 @@ def render_annual():
 
         filing_step = "Step Two - Streamlined Grievance"
 
+        print("issue_description:", issue_description)
+        print("desired_outcome:", desired_outcome)
+        
         # All fields for the cover sheet (in order)
         form_data = {
             "Step": filing_step,
