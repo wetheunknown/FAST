@@ -29,3 +29,6 @@ if grievance_type == "Annual Appraisal":
 
 if grievance_type == "AWOL - Annual/Sick Leave":
     render_awol()
+
+if grievence_type == "Test Template":
+    render_template()
