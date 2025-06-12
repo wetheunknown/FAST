@@ -98,7 +98,7 @@ def render_annual():
         for i in range(MAX_UPLOADS):
             uploaded_files.append(
                 st.file_uploader(
-                    f"Supporting Document {i+1}",
+                    "Supporting Document {i+1}",
                     type=["pdf", "docx", "txt", "jpg", "jpeg", "png"],
                     key=f"file_uploader_{i}",
                 )
