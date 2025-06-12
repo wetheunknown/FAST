@@ -364,7 +364,7 @@ def render_template():
             final_pdf_buffer = merge_pdfs(cover_sheet, awol_pdf)
     
             st.download_button(
-                "📄 Download AWOL Grievance PDF",
+                "📄 Download test Grievance PDF",
                 final_pdf_buffer.getvalue(),  # use getvalue() for bytes
                 file_name=f"{grievant.replace(' ', '_')}_AWOL_Grievance.pdf"
             )
