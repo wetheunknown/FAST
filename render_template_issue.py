@@ -358,7 +358,7 @@ def render_template():
                 "Articles of Violation": article_list
             }
             
-            grievance_type = st.session_state.get("grievance_type", "AWOL Grievance")
+            grievance_type = st.session_state.get("grievance_type", "Test Grievance")
     
             cover_sheet = create_cover_sheet(form_data, grievance_type)
             awol_pdf = generate_pdf(pdf_data, full_argument)  # Should return a BytesIO!
@@ -367,5 +367,5 @@ def render_template():
             st.download_button(
                 "📄 Download test Grievance PDF",
                 final_pdf_buffer.getvalue(),  # use getvalue() for bytes
-                file_name=f"{grievant.replace(' ', '_')}_AWOL_Grievance.pdf"
+                file_name=f"{grievant.replace(' ', '_')}_test_Grievance.pdf"
             )
