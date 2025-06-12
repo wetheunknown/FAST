@@ -155,7 +155,7 @@ def render_annual():
         }
         pdf_data = {k: form_data[k] for k in pdf_fields if k in form_data}
 
-        grievance_type = st.session_state.get("grievance_type", "Annual Appraisal")
+        # --- grievance_type = st.session_state.get("grievance_type", "Annual Appraisal") ---
         cover_sheet_buffer = create_cover_sheet(form_data, grievance_type)  # Returns BytesIO
         base_pdf_buffer = generate_pdf(pdf_data, full_argument)            # Returns BytesIO
 
