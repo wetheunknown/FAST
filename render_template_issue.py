@@ -32,7 +32,6 @@ def render_template():
     desired_outcome = st.text_area("Requested Resolution", key="desired_outcome")
 
      st.subheader("Alleged Violations:\nAnnual Leave")
-
     # Define AWOL-related checkbox content
     awol_checkbox_descriptions = {
         "Annual Leave denied but no statement of reasoning provided after requested by the employee.": {
