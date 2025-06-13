@@ -63,11 +63,6 @@ def render_awol():
             "argument": "     It is a violation of the employees' rights to allow for another employee requesting time off to affect another employee. Management should not change or"
             " adjust any other employees leave request based off of other employees request per the NA.\n"
         },
-        "Use or Lose - Employer did not provide confirmation in writing to employee of Use or Lose after management canceled requested Use or Lose.": {
-            "articles": ["Article 32 Section 1(B)"],
-            "argument": "     Upon management canceling the Use or Lose Annual Leave, they should have provided in writing the confirmation of the restoration. It is a violation of the employees'"
-            " rights if management failed to do this after canceling the leave on the employee.\n"
-        },
         "Seasonal Employees - Placed in non-pay status for 10 days or less and was denied us of annual leave.": {
             "articles": ["Article 32 Section 3(A)"],
             "argument": "     It is inappropriate to not allow a seasonal employee in a non-pay status for less than 10 workdays to use their annual leave per the NA.\n"
@@ -171,13 +166,18 @@ def render_awol():
             f" less unless under a sick leave restriction. {grievant} is not under a sick leave restriction and should not have had their self-certification for the reason for needing the time off not"
             " considered by management. This is a violation of the NA as well as a clear violation of the employee's rights granted by the NA, laws, and regulations. \n"
         },
+        "The employer required medical documentation for less than 3 consecutive workdays.": {
+            "articles": ["Article 34 Section 3(B)"],
+            "argument": "     The NA outlines that management is supposed to take an employee's self certification as to the reason for needing sick leave for absences of three consecutive workdays or less unless under a sick leave restriction."
+            f" {grievant} is not under a sick leave restriction and should not have been mandated by management to provide additional documentation to back up their request for sick leave.  \n")
+        },
         "Denied based on issues with the medical documentation. Must include: \n"
         "  • Statement employee is under the care of a health professional.\n"
         "  • Statement that the employee was incapacitated.\n"
         "      * DOES NOT HAVE TO USE THE WORD ""INCAPACITATED"" \n"
         "  • Include the duration of incapacitation. \n"
         "  • Sign or stamp of signature by Health Care Provider.": {
-            "articles": ["Article 34 Section 3(B)"],
+            "articles": ["Article 34 Section 3(C)"],
             "argument": "     According to the NA, medical certificates are required to contain a statement that the employee is under the care of a health care provider, state the employee was incapacitated"
             " for duty, expected duration, and a signature or stamped signature from the health care provider. The word incapacitated is referring to a state of an individual and is used in the NA as a way"
             " of describing the nature of the inability to perform their job. The word incapacitated is not a requirement to be included with the statement. Requiring this or anything else outside of the"
