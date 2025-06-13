@@ -8,7 +8,7 @@ from PyPDF2 import PdfMerger
 from util import wrap_text_to_width, draw_wrapped_section, generate_pdf, convert_to_pdf, calculate_fbd, create_cover_sheet, merge_pdfs
 
 def render_template():
-    st.header("Test Template")
+    st.header("Template")
     date_col, fbd_col = st.columns([1, 1])
     with date_col:
         date_received = st.date_input(
@@ -368,5 +368,5 @@ def render_template():
             st.download_button(
                 "📄 Download test Grievance PDF",
                 final_pdf_buffer.getvalue(),  # use getvalue() for bytes
-                file_name=f"{grievant.replace(' ', '_')}_test_Grievance.pdf"
+                file_name=f"{grievant.replace(' ', '_')}_awol_Grievance.pdf"
             )
