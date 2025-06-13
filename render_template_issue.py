@@ -34,13 +34,13 @@ def render_template():
     uploaded_files = []
     MAX_UPLOADS = 10
     for i in range(MAX_UPLOADS):
-       uploaded_files.append(
-                st.file_uploader(
-                    f"Supporting Document {i+1}",
-                    type=["pdf", "docx", "txt", "jpg", "jpeg", "png"],
-                    key=f"file_uploader_{i}",
-                )
+        uploaded_files.append(
+            st.file_uploader(
+                f"Supporting Document {i+1}",
+                type=["pdf", "docx", "txt", "jpg", "jpeg", "png"],
+                key=f"file_uploader_{i}",
             )
+        )
 
     st.subheader("Alleged Violations:\nAnnual Leave")
 
