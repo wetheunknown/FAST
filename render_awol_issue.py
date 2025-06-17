@@ -35,8 +35,14 @@ def render_awol():
     awol_checkbox_descriptions = {
         "Annual Leave denied but no statement of reasoning provided after requested by the employee.": {
             "articles": ["Article 32 Section 1(A)(1)"],
-            "argument": "     It is a violation of an employee's rights to deny annual leave without providing a statement of the reason(s) for the denial. Upon request, management should have provided"
-            " the reasoning for denying the requested annual leave as laid out by the NA.\n"
+            "argument": "     It is a violation of the negotiated rights under the National Agreement (NA) to deny an employee’s request for annual leave without providing a clear and timely explanation"
+            " for the denial. The NA outlines that, while management retains the right to approve or disapprove leave, such decisions must not be arbitrary or capricious and must be based on legitimate"
+            " operational needs. When a leave request is denied, the employee has the right to understand the basis for that decision. /n/n     Failure to provide the reason(s) for denial upon request"
+            " undermines transparency and accountability and prevents the employee from exercising their right to challenge the denial through appropriate channels, such as the grievance process. This"
+            " lack of justification also hampers the union’s ability to determine whether the denial was consistent with past practices, equitable treatment, and the principles of fair and reasonable"
+            " application of leave policies. /n/n     In this case, management did not offer a statement of reasons for denying the annual leave, even after being requested to do so. This omission"
+            " constitutes a violation of the NA, which implicitly and through past interpretive guidance, expects management to act in good faith and provide supporting rationale for decisions that impact"
+            " bargaining unit employees’ rights. \n"
         },
         "Issues with utilzing 15-min increments.": {
             "articles": ["Article 32 Section 1(A)(2)"],
