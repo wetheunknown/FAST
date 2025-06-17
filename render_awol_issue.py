@@ -35,34 +35,54 @@ def render_awol():
     awol_checkbox_descriptions = {
         "Annual Leave denied but no statement of reasoning provided after requested by the employee.": {
             "articles": ["Article 32 Section 1(A)(1)"],
-            "argument": "     It is a violation of the negotiated rights under the National Agreement (NA) to deny an employee’s request for annual leave without providing a clear and timely explanation"
+            "argument": "It is a violation of the negotiated rights under the National Agreement (NA) to deny an employee’s request for annual leave without providing a clear and timely explanation"
             " for the denial. The NA outlines that, while management retains the right to approve or disapprove leave, such decisions must not be arbitrary or capricious and must be based on legitimate"
-            " operational needs. When a leave request is denied, the employee has the right to understand the basis for that decision. \n\n     Failure to provide the reason(s) for denial upon request"
+            " operational needs. When a leave request is denied, the employee has the right to understand the basis for that decision. \n\n Failure to provide the reason(s) for denial upon request"
             " undermines transparency and accountability and prevents the employee from exercising their right to challenge the denial through appropriate channels, such as the grievance process. This"
             " lack of justification also hampers the union’s ability to determine whether the denial was consistent with past practices, equitable treatment, and the principles of fair and reasonable"
-            " application of leave policies. \n\n     In this case, management did not offer a statement of reasons for denying the annual leave, even after being requested to do so. This omission"
+            " application of leave policies. \n\n In this case, management did not offer a statement of reasons for denying the annual leave, even after being requested to do so. This omission"
             " constitutes a violation of the NA, which implicitly and through past interpretive guidance, expects management to act in good faith and provide supporting rationale for decisions that impact"
-            " bargaining unit employees’ rights. \n"
+            " bargaining unit employees’ rights. \n\n"
         },
         "Issues with utilzing 15-min increments.": {
             "articles": ["Article 32 Section 1(A)(2)"],
-            "argument": "     It is a violation of an employee's rights to charge or refuse to allow an employee to utilize their earned annual time in any increment outside of the allotted 15-minute"
-            " increments as laid out by the NA.\n"
+            "argument": "It is a violation of an employee’s rights under the National Agreement (NA) to restrict or deny the use of earned annual leave in increments other than those expressly outlined in"
+            " the contract. The NA clearly provides that employees may request and use annual leave in 15-minute increments, and any attempt by management to enforce a different standard—such as requiring"
+            " leave to be taken in larger blocks is inconsistent with the negotiated language. \n\n Employees earn annual leave as a benefit of federal service, and once accrued, they have the right to use"
+            " that leave subject to approval consistent with operational needs—not arbitrary restrictions on increment size. Denying or charging leave in increments larger than 15 minutes without a valid"
+            " contractual basis violates the principles of fairness, consistency, and negotiated rights. \n\n In this case, management's decision to either refuse an employee’s request for annual leave in"
+            " a 15-minute increment or to charge the employee leave in a greater amount than requested exceeds their authority under the NA. Such action not only infringes on the employee’s rights but also"
+            " establishes a concerning precedent that undermines contractually guaranteed flexibilities afforded to bargaining unit employees. \n\n"
         },
         "Use or Lose - Employer provided confirmation in writing to employee of Use or Lose after management canceled requested Use or Lose.": {
             "articles": ["Article 32 Section 1(B)"],
-            "argument": "     Upon management canceling the Use or Lose Annual Leave, they should have provided in writing the confirmation of the restoration. It is a violation of the employees'"
-            " rights if management failed to do this after canceling the leave on the employee.\n"
+            "argument": "When management cancels previously approved use-or-lose annual leave, they are obligated under the National Agreement and applicable government-wide regulations to provide the"
+            " employee with written confirmation of the leave restoration. This requirement ensures that the employee is not unfairly penalized for circumstances beyond their control and preserves their"
+            " right to use that leave at a later date without it being forfeited. \n\n Failure by management to issue timely written documentation confirming the restoration of the canceled leave constitutes"
+            " a violation of the employee’s rights. The restoration process is not automatic and depends on the existence of a formal record showing that the leave was scheduled in advance, was canceled due"
+            " to agency necessity, and is now authorized for restoration. Without this written confirmation, the employee may lose valuable earned leave, despite having followed all procedural requirements."
+            "\n\n In this case, management canceled the employee’s scheduled use-or-lose leave but failed to provide written notification or documentation of restoration. This oversight not only violates"
+            " procedural obligations but also deprives the employee of their ability to recover and use the leave in the future. Such an action undermines the intent of both the National Agreement and Office"
+            " of Personnel Management (OPM) regulations, which are designed to protect employees from unjust forfeiture of their earned benefits. \n\n"
         },
         "Conflict in requests but EOD order was not utilized.": {
             "articles": ["Article 32 Section 1(C)"],
-            "argument": "     Management failed to follow the NA by failing to follow the EOD order on approval and denial of annual leave. An employee with a later EOD should have been given"
-            " the requested leave over a newer EOD dated employee.\n"
+            "argument": "Management violated the National Agreement by failing to adhere to the established Enter-On-Duty (EOD) date order when approving and denying annual leave requests. The NA provides"
+            " that when two or more employees within a work unit request overlapping periods of leave and operational needs prevent approving all requests, priority must be given based on the employees’ EOD"
+            " dates, with the employee having the earlier EOD date receiving preference. \n\n In this case, the employee who was denied leave had an earlier EOD date than another employee whose overlapping"
+            " leave request was approved. By approving the more junior employee’s request over that of the more senior employee, management failed to apply the required order of consideration, thereby violating"
+            " the negotiated leave approval process outlined in the NA. This not only undermines the fairness and consistency of leave administration but also diminishes employee trust in the equitable"
+            " application of contract provisions. \n\n"
         },
         "Annual leave request not timely responded to by management.": {
             "articles": ["Article 32 Section 1(D)"],
-            "argument": "     It is a violation of an employee's rights as laid out by the NA for management to take an excessive amount of time to respond to a leave request. Management is supposed"
-            " to make the denial or approval of a leave request in a timely manner to help facilitate an environment conducive with promoting a healthy work/life balance.\n"
+            "argument": "It is a violation of the employee’s rights under the National Agreement (NA) for management to take an excessive or unreasonable amount of time to respond to a leave request."
+            " The NA obligates management to act promptly and reasonably when reviewing and responding to such requests, recognizing that timely responses are essential for employees to plan their personal and"
+            " family obligations effectively. \n\n Delays in leave approval or denial decisions can create uncertainty, cause undue stress, and disrupt personal responsibilities, ultimately undermining morale"
+            " and the employee’s ability to maintain a healthy work-life balance—an outcome the NA expressly seeks to prevent. The intent of the negotiated provisions surrounding leave administration is to"
+            " foster fairness, consistency, and respect for employees’ personal time, which cannot occur when decisions are left pending for prolonged periods. \n\n In this case, management failed to issue"
+            " a timely response to the leave request, thereby denying the employee the opportunity to make necessary arrangements. Such inaction is inconsistent with the principles laid out in the NA and"
+            " should be addressed to ensure that employees’ rights and well-being are protected moving forward.\n\n"
         },
         "Employee's leave request was affected by another employee requesting time.": {
             "articles": ["Article 32 Section 2"],
