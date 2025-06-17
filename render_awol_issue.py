@@ -169,7 +169,7 @@ def render_awol():
         "The employer required medical documentation for less than 3 consecutive workdays.": {
             "articles": ["Article 34 Section 3(B)"],
             "argument": "     The NA outlines that management is supposed to take an employee's self certification as to the reason for needing sick leave for absences of three consecutive workdays or less unless under a sick leave restriction."
-            f" {grievant} is not under a sick leave restriction and should not have been mandated by management to provide additional documentation to back up their request for sick leave.  \n")
+            f" {grievant} is not under a sick leave restriction and should not have been mandated by management to provide additional documentation to back up their request for sick leave.  \n"
         },
         "Denied based on issues with the medical documentation. Must include: \n"
         "  • Statement employee is under the care of a health professional.\n"
