@@ -35,24 +35,24 @@ def render_awol():
     awol_checkbox_descriptions = {
         "Annual Leave denied but no statement of reasoning provided after requested by the employee.": {
             "articles": ["Article 32 Section 1(A)(1)"],
-            "argument": "It is a violation of the negotiated rights under the National Agreement (NA) to deny an employee’s request for annual leave without providing a clear and timely explanation"
-            " for the denial. The NA outlines that, while management retains the right to approve or disapprove leave, such decisions must not be arbitrary or capricious and must be based on legitimate"
+            "argument": "It is a violation of the negotiated rights under the National Agreement to deny an employee’s request for annual leave without providing a clear and timely explanation"
+            " for the denial. The National Agreement outlines that, while management retains the right to approve or disapprove leave, such decisions must not be arbitrary or capricious and must be based on legitimate"
             " operational needs. When a leave request is denied, the employee has the right to understand the basis for that decision. \n\n Failure to provide the reason(s) for denial upon request"
             " undermines transparency and accountability and prevents the employee from exercising their right to challenge the denial through appropriate channels, such as the grievance process. This"
             " lack of justification also hampers the union’s ability to determine whether the denial was consistent with past practices, equitable treatment, and the principles of fair and reasonable"
             " application of leave policies. \n\n In this case, management did not offer a statement of reasons for denying the annual leave, even after being requested to do so. This omission"
-            " constitutes a violation of the NA, which implicitly and through past interpretive guidance, expects management to act in good faith and provide supporting rationale for decisions that impact"
+            " constitutes a violation of the National Agreement, which implicitly and through past interpretive guidance, expects management to act in good faith and provide supporting rationale for decisions that impact"
             " bargaining unit employees’ rights. \n\n"
         },
         "Issues with utilzing 15-min increments.": {
             "articles": ["Article 32 Section 1(A)(2)"],
-            "argument": "It is a violation of an employee’s rights under the National Agreement (NA) to restrict or deny the use of earned annual leave in increments other than those expressly outlined in"
-            " the contract. The NA clearly provides that employees may request and use annual leave in 15-minute increments, and any attempt by management to enforce a different standard—such as requiring"
+            "argument": "It is a violation of an employee’s rights under the National Agreement to restrict or deny the use of earned annual leave in increments other than those expressly outlined in"
+            " the contract. The National Agreement clearly provides that employees may request and use annual leave in 15-minute increments, and any attempt by management to enforce a different standard—such as requiring"
             " leave to be taken in larger blocks is inconsistent with the negotiated language. \n\n Employees earn annual leave as a benefit of federal service, and once accrued, they have the right to use"
             " that leave subject to approval consistent with operational needs—not arbitrary restrictions on increment size. Denying or charging leave in increments larger than 15 minutes without a valid"
             " contractual basis violates the principles of fairness, consistency, and negotiated rights. \n\n In this case, management's decision to either refuse an employee’s request for annual leave in"
-            " a 15-minute increment or to charge the employee leave in a greater amount than requested exceeds their authority under the NA. Such action not only infringes on the employee’s rights but also"
-            " establishes a concerning precedent that undermines contractually guaranteed flexibilities afforded to bargaining unit employees. \n\n"
+            " a 15-minute increment or to charge the employee leave in a greater amount than requested exceeds their authority under the National Agreement. Such action not only infringes on the employee’s rights but also"
+            " establishes a concerning precedent that undermines contractually guaranteed flexibilities afforded to bargaining unit employees. \n"
         },
         "Use or Lose - Employer provided confirmation in writing to employee of Use or Lose after management canceled requested Use or Lose.": {
             "articles": ["Article 32 Section 1(B)"],
@@ -63,50 +63,71 @@ def render_awol():
             " to agency necessity, and is now authorized for restoration. Without this written confirmation, the employee may lose valuable earned leave, despite having followed all procedural requirements."
             "\n\n In this case, management canceled the employee’s scheduled use-or-lose leave but failed to provide written notification or documentation of restoration. This oversight not only violates"
             " procedural obligations but also deprives the employee of their ability to recover and use the leave in the future. Such an action undermines the intent of both the National Agreement and Office"
-            " of Personnel Management (OPM) regulations, which are designed to protect employees from unjust forfeiture of their earned benefits. \n\n"
+            " of Personnel Management (OPM) regulations, which are designed to protect employees from unjust forfeiture of their earned benefits. \n"
         },
         "Conflict in requests but EOD order was not utilized.": {
             "articles": ["Article 32 Section 1(C)"],
-            "argument": "Management violated the National Agreement by failing to adhere to the established Enter-On-Duty (EOD) date order when approving and denying annual leave requests. The NA provides"
+            "argument": "Management violated the National Agreement by failing to adhere to the established Enter-On-Duty (EOD) date order when approving and denying annual leave requests. The National Agreement provides"
             " that when two or more employees within a work unit request overlapping periods of leave and operational needs prevent approving all requests, priority must be given based on the employees’ EOD"
             " dates, with the employee having the earlier EOD date receiving preference. \n\n In this case, the employee who was denied leave had an earlier EOD date than another employee whose overlapping"
             " leave request was approved. By approving the more junior employee’s request over that of the more senior employee, management failed to apply the required order of consideration, thereby violating"
-            " the negotiated leave approval process outlined in the NA. This not only undermines the fairness and consistency of leave administration but also diminishes employee trust in the equitable"
-            " application of contract provisions. \n\n"
+            " the negotiated leave approval process outlined in the National Agreement. This not only undermines the fairness and consistency of leave administration but also diminishes employee trust in the equitable"
+            " application of contract provisions. \n"
         },
         "Annual leave request not timely responded to by management.": {
             "articles": ["Article 32 Section 1(D)"],
-            "argument": "It is a violation of the employee’s rights under the National Agreement (NA) for management to take an excessive or unreasonable amount of time to respond to a leave request."
-            " The NA obligates management to act promptly and reasonably when reviewing and responding to such requests, recognizing that timely responses are essential for employees to plan their personal and"
+            "argument": "It is a violation of the employee’s rights under the National Agreement for management to take an excessive or unreasonable amount of time to respond to a leave request."
+            " The National Agreement obligates management to act promptly and reasonably when reviewing and responding to such requests, recognizing that timely responses are essential for employees to plan their personal and"
             " family obligations effectively. \n\n Delays in leave approval or denial decisions can create uncertainty, cause undue stress, and disrupt personal responsibilities, ultimately undermining morale"
-            " and the employee’s ability to maintain a healthy work-life balance—an outcome the NA expressly seeks to prevent. The intent of the negotiated provisions surrounding leave administration is to"
+            " and the employee’s ability to maintain a healthy work-life balance—an outcome the National Agreement expressly seeks to prevent. The intent of the negotiated provisions surrounding leave administration is to"
             " foster fairness, consistency, and respect for employees’ personal time, which cannot occur when decisions are left pending for prolonged periods. \n\n In this case, management failed to issue"
-            " a timely response to the leave request, thereby denying the employee the opportunity to make necessary arrangements. Such inaction is inconsistent with the principles laid out in the NA and"
-            " should be addressed to ensure that employees’ rights and well-being are protected moving forward.\n\n"
+            " a timely response to the leave request, thereby denying the employee the opportunity to make necessary arrangements. Such inaction is inconsistent with the principles laid out in the National Agreement and"
+            " should be addressed to ensure that employees’ rights and well-being are protected moving forward.\n"
         },
         "Employee's leave request was affected by another employee requesting time.": {
             "articles": ["Article 32 Section 2"],
-            "argument": "     It is a violation of the employees' rights to allow for another employee requesting time off to affect another employee. Management should not change or"
-            " adjust any other employees leave request based off of other employees request per the NA.\n"
+            "argument": "It is a violation of the employee’s rights under the National Agreement for management to alter, deny, or adjust one employee’s leave request based solely on the leave request of"
+            " another employee. The National Agreement provides that all leave requests must be considered individually and fairly, and that decisions must be based on legitimate operational needs—not on"
+            " favoritism, convenience, or preference tied to another employee’s request. \n\n Allowing one employee’s leave request to directly impact the approval of another’s—particularly when both"
+            " employees are otherwise eligible and have followed the correct procedures—undermines the principles of equitable treatment and transparency laid out in the contract. Each employee’s request"
+            " should be evaluated on its own merits, and in cases of scheduling conflicts, contractual provisions as outlined in the National Agreement, must be followed. \n\n In this case, management"
+            " improperly adjusted or denied the employee’s leave request in response to another employee’s request, without applying the appropriate negotiated criteria. This action represents a failure to"
+            " administer leave fairly and consistently and constitutes a breach of the employee’s contractual rights. \n"
         },
         "Seasonal Employees - Placed in non-pay status for 10 days or less and was denied us of annual leave.": {
             "articles": ["Article 32 Section 3(A)"],
-            "argument": "     It is inappropriate to not allow a seasonal employee in a non-pay status for less than 10 workdays to use their annual leave per the NA.\n"
+            "argument": "Management violated the National Agreement by inappropriately denying a seasonal employee the use of their earned annual leave while in a non-pay status for fewer than 10 workdays."
+            " The National Agreement does not contain any provision that permits the blanket denial of annual leave for seasonal employees solely based on a short-term non-pay status. Seasonal employees"
+            " are entitled to the same leave rights as other bargaining unit employees, and earned leave cannot be withheld without a valid and contractually supported reason. \n\n By refusing to allow the"
+            " employee to use their annual leave during this brief non-pay period, management failed to uphold the contractual standards for equitable and consistent leave administration. This action denied"
+            " the employee access to a benefit they had earned and were entitled to use, constituting a direct violation of the National Agreement. Such conduct not only disregards the negotiated rights of"
+            " seasonal employees, but also sets a harmful precedent that undermines the fair treatment of all employees under the agreement. \n"
         },
         "Seasonal Employees - Requested leave within the last 10 workdays of any fiscal year was denied based on anything except staffing and budgetary restrictions.": {
             "articles": ["Article 32 Section 3(B)"],
-            "argument": "     Management could deny an annual leave request within the last 10 workdays of a fiscal year if it was related to staffing or budgetary restriction. Denying annual leave"
-            " during this time frame for anything other than those is a violation of the employees' rights as laid out in the NA. \n"
+            "argument": "Management violated the National Agreement by denying the employee’s request for annual leave during the final 10 workdays of the fiscal year for reasons unrelated to staffing or"
+            " budgetary restrictions. The National Agreement provides that while management may deny annual leave during this specific time period, such denials must be based solely on legitimate staffing"
+            " needs or financial constraints. Any other reason for denial during this timeframe is not contractually supported and constitutes a violation of the employee’s rights. \n\n In this case,"
+            " management denied the leave request without citing staffing shortages or budgetary limitations, thereby exceeding the authority granted under the National Agreement. This action improperly"
+            " restricted the employee’s ability to use their earned leave and disregarded the limited and specific circumstances under which such a denial is permitted. By doing so, management not only"
+            " failed to follow the negotiated process but also undermined the principle of fair and transparent leave administration guaranteed to all bargaining unit employees.  \n"
         },
         "Seasonal Employees - Seasonal Employees leave requests are not being handled like a regular employees leave request would be.": {
             "articles": ["Article 32 Section 3(C)"],
-            "argument": "     It is a violation of a seasonal employee's rights to not have annual leave treated the same as a non-probationary employee. Management is to treat seasonal employees"
-            " annual leave requests the same as any other employee, even during peak season, per the NA.\n"
+            "argument": "Management violated the National Agreement by failing to treat a seasonal employee’s annual leave request with the same consideration afforded to non-probationary employees. The"
+            " National Agreement explicitly requires that seasonal employees be granted the same rights and benefits related to leave as any other bargaining unit employee, including during peak season"
+            " operations. \n\n By denying or deprioritizing the seasonal employee’s leave request solely based on their employment category, management disregarded the employee’s earned entitlements and"
+            " engaged in discriminatory leave administration. The National Agreement does not permit management to impose additional restrictions on seasonal employees beyond what is applied to permanent"
+            " staff. All employees, regardless of seasonal status, have the right to fair, equitable, and contractually consistent treatment when requesting annual leave. \n\n In this case, management’s"
+            " decision to treat the seasonal employee’s request differently violated those protections and reflects an improper and unequal application of the negotiated agreement. \n"
         },
         "The employee requested annual leave in advance for a religious holiday and it was not timely handled.": {
             "articles": ["Article 32 Section 4"],
-            "argument": "     It is a violation of an employee's rights to not make every reasonable effort to approve requested annual leave for the purposes of a religious holiday as laid out in"
-            " the NA. If workload and staffing needs were not an issue, the leave for this religious holiday should have been approved by management.\n"
+            "argument": "Management violated the National Agreement by failing to make every reasonable effort to approve the employee’s request for annual leave to observe a religious holiday. The National"
+            " Agreement explicitly requires that management give full and fair consideration to leave requests for religious observances and make every reasonable effort to accommodate such requests, especially"
+            " when operational needs allow for it. \n\n In this case, there were no demonstrated issues with workload or staffing that would have justified denying the leave. Despite this, management refused"
+            " to approve the request, disregarding the employee’s religious rights and the contractual obligation to support religious accommodation whenever feasible. This constitutes a direct violation of the"
+            " employee’s rights under the National Agreement and reflects a failure to uphold the Agency’s commitment to respecting diversity, inclusion, and equal treatment in the workplace. \n"
         },
         "An employee was denied the opportunity to utilize annual leave or LWOP for a death in the immediate family.": {
             "articles": ["Article 32 Section 5"],
