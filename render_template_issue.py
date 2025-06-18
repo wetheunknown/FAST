@@ -409,12 +409,12 @@ def render_template():
                     st.warning(f"⚠️ Skipped {filename} due to error: {e}")
 
         output_name = f"{grievant.replace(' ', '_')}_{appraisal_year}_Argument.pdf"
-        final_path = os.path.join(tempfile.gettempdir(), output_name)
-        with open(final_path, "wb") as f:
+        final_pdf_buffer = os.path.join(tempfile.gettempdir(), output_name)
+        with open(final_pdf_buffer, "wb") as f:
             merger.write(f)
         merger.close()
 
-        st.session_state.final_packet_path = final_path
+        st.session_state.final_packet_path = final_pdf_buffer
         st.session_state.final_packet_name = output_name
   
             st.download_button(
