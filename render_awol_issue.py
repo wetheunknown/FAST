@@ -283,8 +283,8 @@ def render_awol():
         "  • Sign or stamp of signature by Health Care Provider.": {
             "articles": ["Article 34 Section 3(C)"],
             "argument": "Management violated the National Agreement by imposing documentation requirements for a medical certificate that exceeded what is contractually allowed. Article 34 of the National"
-            " Agreement outlines the specific elements that a medical certificate must include when required: \n A statement that the employee is under the care of a health care provider, \n"
-            " Confirmation that the employee was incapacitated for duty, \n The expected duration of the incapacitation, and \n A signature or stamped signature from the health care provider. \n"
+            " Agreement outlines the specific elements that a medical certificate must include when required: \n\n A statement that the employee is under the care of a health care provider, \n"
+            " Confirmation that the employee was incapacitated for duty, \n The expected duration of the incapacitation, and \n A signature or stamped signature from the health care provider. \n\n"
             ' While the term "incapacitated” is used in the Agreement to describe the employee’s inability to perform their duties, the use of the specific word “incapacitated” within the written medical'
             "certificate is not required. The intent of the provision is to ensure that a health care provider affirms the employee’s inability to work—not to require rigid phrasing or unnecessary legalese."
             " Therefore, management’s insistence on the literal inclusion of the word “incapacitated” or any other language not explicitly required by the National Agreement constitutes an unauthorized"
