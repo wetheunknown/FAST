@@ -294,8 +294,13 @@ def render_awol():
         },
         "Denied leave because employee did not timely provide documentation within 15 days after the date requested but employee did not provide documentation within this time frame.": {
             "articles": ["Article 34 Section 3(D)"],
-            "argument": str(f"     Management denied {grievant}'s sick leave request because documentation was not turned in timely. According to the NA, the employee is allowed up to 15-days after the date"
-            " the employer requested documentation. Requiring any variation from this guidance laid out by the NA is a violation of the employee's rights granted under the NA. \n")
+            "argument": "Management violated the National Agreement by denying the grievant’s sick leave request solely because the supporting documentation was not submitted immediately, despite the fact"
+            " that the employee was still within the allowable timeframe to provide it. According to the National Agreement, employees are granted up to 15 calendar days from the date management requests"
+            " documentation to submit a medical certificate or other supporting records. This provision ensures that employees have a fair and reasonable amount of time to obtain necessary paperwork, especially"
+            " when dealing with health care providers and recovery from illness. \n\n In this case, the grievant had not exceeded the 15-day timeframe, meaning management’s denial was premature and unjustified."
+            " Requiring documentation earlier than the contractually agreed period—or penalizing an employee for not submitting it before that period ends—is a direct violation of the employee’s contractual"
+            " rights. It disregards the negotiated protections in the National Agreement and imposes arbitrary burdens not supported by law or agreement. \n\n By denying sick leave under these conditions,"
+            " management acted outside the bounds of its authority and failed to comply with the processes and timelines specifically designed to protect employees during periods of illness. \n"
         },
         "Circumstances of the requested leave prevented the employee from meeting the 15-day deadline and the Agency did not allow for the employee , up to 30 days, after"
         " the requested leave due to circumstances.": {
