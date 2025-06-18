@@ -417,8 +417,8 @@ def render_template():
         st.session_state.final_packet_path = final_pdf_buffer
         st.session_state.final_packet_name = output_name
   
-            st.download_button(
-                "📄 Download test Grievance PDF",
-                final_pdf_buffer.getvalue(),  # use getvalue() for bytes
-                file_name=f"{grievant.replace(' ', '_')}_awol_Grievance.pdf"
-            )
+        st.download_button(
+            "📄 Download test Grievance PDF",
+            final_pdf_buffer.getvalue(),  # use getvalue() for bytes
+            file_name=f"{grievant.replace(' ', '_')}_awol_Grievance.pdf"
+        )
