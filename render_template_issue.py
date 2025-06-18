@@ -372,7 +372,7 @@ def render_template():
             
             grievance_type = st.session_state.get("grievance_type", "Awol Grievance")
     
-            cover_sheet = create_cover_sheet(form_data, grievance_type)
+            cover_sheet_buffer = create_cover_sheet(form_data, grievance_type)
             awol_pdf = generate_pdf(pdf_data, full_argument)  # Should return a BytesIO!
             final_pdf_buffer = merge_pdfs(cover_sheet, awol_pdf)
 
