@@ -375,7 +375,48 @@ def render_template():
             cover_sheet = create_cover_sheet(form_data, grievance_type)
             awol_pdf = generate_pdf(pdf_data, full_argument)  # Should return a BytesIO!
             final_pdf_buffer = merge_pdfs(cover_sheet, awol_pdf)
-    
+
+        # --- Merge PDFs: cover sheet first ---
+        cover_sheet_buffer.seek(0)
+        base_pdf_buffer.seek(0)
+
+        merger = PdfMerger()
+        merger.append(cover_sheet_buffer)
+        merger.append(base_pdf_buffer)
+
+        for file in uploaded_files:
+            if file is not None:
+                filename = file.name
+                ext = os.path.splitext(filename)[1].lower()
+                try:
+                    if ext == ".pdf":
+                        with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp:
+                            tmp.write(file.read())
+                            tmp.flush()
+                        with open(tmp.name, "rb") as f:
+                            merger.append(f)
+                    else:
+                        converted_path = convert_to_pdf(file, filename)
+                        if isinstance(converted_path, BytesIO):
+                            converted_path.seek(0)
+                            merger.append(converted_path)
+                        elif isinstance(converted_path, str):
+                            with open(converted_path, "rb") as f:
+                                merger.append(f)
+                        else:
+                            st.warning(f"Unsupported file type returned by convert_to_pdf for {filename}")
+                except Exception as e:
+                    st.warning(f"⚠️ Skipped {filename} due to error: {e}")
+
+        output_name = f"{grievant.replace(' ', '_')}_{appraisal_year}_Argument.pdf"
+        final_path = os.path.join(tempfile.gettempdir(), output_name)
+        with open(final_path, "wb") as f:
+            merger.write(f)
+        merger.close()
+
+        st.session_state.final_packet_path = final_path
+        st.session_state.final_packet_name = output_name
+  
             st.download_button(
                 "📄 Download test Grievance PDF",
                 final_pdf_buffer.getvalue(),  # use getvalue() for bytes
