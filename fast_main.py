@@ -11,6 +11,7 @@ from docx import Document as DocxDocument
 from render_awol_issue import render_awol
 from render_annual_issue import render_annual
 from render_template_issue import render_template
+from render_test import render_test
 from util import wrap_text_to_width,draw_wrapped_section, generate_pdf, convert_to_pdf, calculate_fbd
 
 MAX_UPLOADS = 10
