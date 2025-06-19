@@ -34,3 +34,6 @@ if grievance_type == "AWOL - Annual/Sick Leave":
 
 if grievance_type == "Test Template":
     render_template()
+    
+if grievance_type == "Test Template":
+    render_test()
