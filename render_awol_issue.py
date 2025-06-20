@@ -483,7 +483,7 @@ def render_awol():
             " by choosing to submit such information only to a designated medical authority when more detailed documentation is requested. \n\n In this case, the grievant was willing to comply with the request"
             " for additional medical documentation but exercised their contractual right to do so through the appropriate channel—by asking that a medical professional be designated to receive the"
             " documentation. Management's failure or refusal to provide such a designee forced the employee into an unfair position: either share private medical details with non-medical personnel in violation"
-            ' of their privacy rights, or risk denial of leave due to “non-compliance.” \n\n This refusal represents a clear violation of the employee's rights under the National Agreement, and undermines'
+            "( of their privacy rights, or risk denial of leave due to “non-compliance.” \n\n This refusal represents a clear violation of the employee's rights under the National Agreement, and undermines)"
             " important protections designed to balance the agency's need for information with the employee's right to confidentiality and dignity. \n"
         },
         "Management failed to treat the employee's medical information as confidential and released information to parties that did not need to know this information.": {
