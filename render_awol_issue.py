@@ -287,7 +287,7 @@ def render_awol():
             " Confirmation that the employee was incapacitated for duty, \n The expected duration of the incapacitation, and \n A signature or stamped signature from the health care provider. \n\n"
             ' While the term "incapacitated” is used in the Agreement to describe the employee’s inability to perform their duties, the use of the specific word “incapacitated” within the written medical'
             "certificate is not required. The intent of the provision is to ensure that a health care provider affirms the employee’s inability to work—not to require rigid phrasing or unnecessary legalese."
-            " Therefore, management’s insistence on the literal inclusion of the word “incapacitated” or any other language not explicitly required by the National Agreement constitutes an unauthorized"
+            ' Therefore, management’s insistence on the literal inclusion of the word “incapacitated” or any other language not explicitly required by the National Agreement constitutes an unauthorized'
             " change to negotiated procedures. \n\n By requiring documentation beyond what is prescribed, management not only violated the terms of the Agreement but also abused its authority by attempting"
             " to impose higher standards than those mutually agreed upon. This overreach infringes on the rights of the employee and undermines the protections negotiated by NTEU to ensure consistency,"
             " clarity, and fairness in leave documentation requirements. \n"
@@ -305,8 +305,13 @@ def render_awol():
         "Circumstances of the requested leave prevented the employee from meeting the 15-day deadline and the Agency did not allow for the employee , up to 30 days, after"
         " the requested leave due to circumstances.": {
             "articles": ["Article 34 Section 3(D)"],
-            "argument": "     According to the NA, an employee is supposed to be allowed up to 30-days after the date of request made by the employer for medical certification if it is not practicable"
-            " to get it sooner. Management should not be requiring this paperwork prior to this deadline and by doing so have violated the empolyee's rights. \n"
+            "argument": "Management violated the National Agreement by requiring the grievant to submit medical certification earlier than what is contractually permitted. Article 34 of the National Agreement"
+            " allows an employee up to 30 calendar days from the date of management’s request to provide medical documentation, if it is not practicable to obtain it sooner. This provision accounts for"
+            " situations where obtaining records from health care providers may take time due to scheduling, administrative delays, or the employee’s medical condition. \n\n In this case, the grievant"
+            " communicated that it was not practicable to obtain the certification immediately, and therefore should have been granted the full 30-day period allowed under the National Agreement. Management’s"
+            " insistence on earlier submission—prior to the expiration of the permitted timeframe—constitutes a clear violation of the employee’s contractual rights and demonstrates a failure to adhere to"
+            " agreed-upon procedures. \n\n By imposing an unreasonable and unauthorized deadline, management ignored the flexibility negotiated into the Agreement, creating undue pressure on the employee"
+            " and undermining the integrity of the contractual protections in place.  \n"
         },
         "Employer required an employee to provide medical documentation because of:\n"
         "  • A specific work day or work time. \n"
@@ -314,55 +319,96 @@ def render_awol():
         "  • Black out day \n"
         "  • Critical day": {
             "articles": ["Article 34 Section 3(E)"],
-            "argument": "     The NA clearly specifies that management will not require medical documenation based on a specific workday or specific work time. Examples of this would be high volume"
-            " days, blackout days, or critical days. Management should not have requested medical documentation for the absence and the employee should not have been denied for not providing the medical"
-            " certificate.\n"
+            "argument": '(Management violated the National Agreement by requiring medical documentation solely because the employee’s absence fell on a specific workday deemed by management to be a “critical,”)'
+            ' “blackout,” or “high volume” day. Article 34, Section 6 of the National Agreement explicitly prohibits management from requiring a medical certificate based solely on the day or time of the absence.'
+            " The Agreement was intentionally written this way to prevent arbitrary or retaliatory enforcement of sick leave documentation policies and to preserve fair and consistent treatment for all"
+            " employees. \n\n In this case, the grievant’s absence occurred during one of these so-called critical or high-demand periods, and management used that as the only basis to request a medical"
+            " certificate. This action directly contradicts the language of the National Agreement and reflects an improper application of authority. Furthermore, when the grievant did not provide documentation"
+            "that was never rightfully required, management proceeded to deny the sick leave, compounding the violation. \n\n By disregarding the clear contractual language and basing its decision on timing rather"
+            " than legitimate justification—such as a pattern of abuse or a formal sick leave restriction—management violated the employee’s rights and failed to comply with the negotiated procedures under the"
+            " National Agreement. \n"
         },
         "The employer placed the employee on a sick leave restriction but failed to provide oral counsel to the employer prior to implementation to allow the employee an opportunity to not"
         " be placed on one.": {
             "articles": ["Article 34 Section 4(A)(1)"],
-            "argument": "     The NA lays out the procedures for management on issuing a sick leave restriction to an employee. It is a violation of the employee's rights to not have been given an"
-            " oral counseling prior to the issuance of a sick leave restriction. Management should allow for this oral counsel prior to the issuance of a sick leave restriction to allow the employee"
-            " an opportunity to correct the behavior. \n"
+            "argument": "Management violated the National Agreement by issuing a sick leave restriction to the grievant without first providing an oral counseling, as required by the negotiated procedures."
+            " The National Agreement clearly outlines that an employee must receive an oral counseling before any formal sick leave restriction is imposed. This step is critical because it gives the employee"
+            " a fair opportunity to understand management's concerns and correct any perceived misuse or attendance issues before being subjected to disciplinary-like restrictions. \n\n In this case, management"
+            " failed to provide the required oral counseling and moved directly to a restriction, thereby denying the employee the chance to respond, explain, or adjust their leave usage. This bypassing of due"
+            " process is a direct violation of the grievant’s rights under the National Agreement and undermines the good faith obligations that both parties are expected to uphold. \n\n By skipping the"
+            " required counseling step, management acted outside the bounds of the contract and imposed a restriction prematurely and improperly, making the action both procedurally and contractually invalid. \n"
         },
         "Employee has been placed on a sick leave restriction that has exceeded the maximum limitation of allowed time for a sick leave restriction.": {
             "articles": ["Article 34 Section 4(A)(3)"],
-            "argument": "     The maximum amount of time that an employee can be placed under a sick leave restriction at a time is clearly defined in the NA. The maximum amount of time is 6-months."
-            " Going beyond the allowed 6-months time on a sick leave restriction is a violation of the employee's rights as laid out by the NA.\n"
+            "argument": "Management violated the National Agreement by placing the grievant under a sick leave restriction for a period that exceeded the maximum allowed duration. The National Agreement"
+            " clearly establishes that a sick leave restriction may be imposed for a period of no more than six months at a time. This limit ensures that restrictions are reviewed periodically and remain"
+            " justified based on current circumstances, rather than being imposed indefinitely without reevaluation. \n\n In this case, the grievant remained under a sick leave restriction beyond the six-month"
+            " limit, without any formal reassessment, reevaluation, or reissuance as required by the Agreement. This failure to adhere to the contractual time limitation constitutes a clear violation of the"
+            " employee’s rights and bypasses the safeguards intended to prevent abuse of authority and protect employees from ongoing, unjustified oversight. \n\n By keeping the restriction in place beyond"
+            " the authorized period, management failed to follow the negotiated procedures and denied the employee fair treatment under the terms of the National Agreement. \n"
         },
         "The employee was placed on a sick leave restriction that utilized the employee's usage of approved annual leave and/or leave under FMLA as reasoning rather than absences due to illnesses.": {
             "articles": ["Article 34 Section 4(A)(4)"],
-            "argument": "     A sick leave restriction is supposed to only take into account for the absences that an employee has had for illnesses. Utilizing annual leave or FMLA leave in the sick"
-            " leave restriction is a violation of the employee's rights as laid out by the NA. \n"
+            "argument": "Management violated the National Agreement by considering leave types outside of sick leave—such as annual leave and FMLA leave—when determining whether to place the grievant under a"
+            " sick leave restriction. The National Agreement is clear that sick leave restrictions may only be based on the employee’s use and patterns of sick leave, not on other categories of approved leave."
+            "\n\n Annual leave is earned and used at the discretion of the employee with supervisor approval, and FMLA leave is a federally protected entitlement under law. Including either of these leave types"
+            " as justification for a sick leave restriction not only violates the provisions of the National Agreement but also misrepresents the employee’s actual use of sick leave, resulting in an unfair and"
+            " inaccurate evaluation of their attendance. \n\n By factoring in leave categories that should have no bearing on a sick leave determination, management overstepped its authority, ignored"
+            " contractual protections, and unlawfully subjected the employee to an unjustified restriction. This is a direct violation of the grievant’s rights as outlined in the National Agreement and"
+            " undermines the integrity of the procedures intended to ensure fair treatment.  \n"
         },
         "Employee was denied the usage of annual leave or sick leave based on a sick leave restriction.": {
             "articles": ["Article 34 Section 4(A)(4)"],
-            "argument": "     A sick leave restriction does not prevent the usage of annual leave or FMLA leave per the NA. Denying the use of any leave other than sick leave based on the sick"
-            " leave restriction is a violation of the employee's rights as laid out in the NA. \n"
+            "argument": "Management violated the National Agreement by using a sick leave restriction as grounds to deny the grievant’s request for annual leave or FMLA leave. The National Agreement is clear"
+            " that a sick leave restriction only applies to the use of sick leave and does not limit or restrict an employee’s access to other types of leave, such as earned annual leave or leave protected"
+            " under the Family and Medical Leave Act (FMLA). \n\n Annual leave is a benefit earned by the employee and must be granted in accordance with the procedures and limitations outlined in the"
+            " National Agreement. FMLA leave, governed by federal law, provides employees the right to take leave for qualifying medical or family-related reasons, regardless of any internal leave restriction."
+            " Attempting to apply a sick leave restriction as a blanket limitation on other categories of leave constitutes a misuse of managerial authority and a clear breach of the negotiated agreement."
+            " \n\n By denying the grievant access to leave they were entitled to based on an unrelated restriction, management violated the employee’s rights, failed to comply with the National Agreement,"
+            " and potentially ran afoul of FMLA protections as well. This action is contractually invalid and procedurally unjust.  \n"
         },
         "Employee was forced to provide medical documentation for being released from duty due to illness and did not have a sick leave restriction in place.": {
             "articles": ["Article 34 Section 4(B)"],
-            "argument": "     It is inappropriate for management to to request additional documentation from an employee who left early from their scheduled TOD and was not on a sick leave"
-            " restriction. The self-certification from the employee for this partial day should have been substatiating evidence for the approval of sick leave and would not have warranted management"
-            " the rights to ask for additional documentation. By doing so, management has failed to comply with the NA and have violated the rights of the employee.\n"
+            "argument": "Management violated the National Agreement by requesting additional medical documentation from the grievant, who left work early due to illness but was not under a sick leave"
+            " restriction. The National Agreement clearly states that for absences of three consecutive workdays or less, an employee’s self-certification is sufficient to support the approval of sick"
+            " leave—unless the employee is on a current sick leave restriction. This protection applies equally to partial-day absences, including when an employee departs early from their scheduled tour"
+            " of duty. \n\n In this case, the grievant provided a valid self-certification for the partial day of sick leave, which should have been accepted as adequate and contractually sufficient evidence."
+            " Management’s decision to demand additional documentation—despite the absence being under the threshold and the employee not being under restriction—was arbitrary, unnecessary, and a direct"
+            " violation of the rights guaranteed under the National Agreement. \n\n By ignoring the agreed-upon procedures and imposing requirements beyond those allowed by the contract, management acted"
+            " improperly and failed to honor the employee's negotiated protections. \n"
         },
         "Employee has provided to the Agency proof of a chronic condition, is not on a sick leave restriction, and is still being required to furnish medical documentation for the time off for"
         " the chronic condition. \n"
         "  • A chronic condition does not necessarily mean that it requires medical treatment.": {
             "articles": ["Article 34 Section 4(C)"],
-            "argument": "     The NA clearly states that when an employee has a chronic condition that requires continuing absences to occur and is not on a sick leave restriction that management will"
-            f" not continually require medical documentation to be furnished. By making {grievant} continually furnish medical certifications for these absences, it is a violation of their rights as"
-            " laid out by the NA, applicable laws, and regulations. \n"
+            "argument": "Management violated the National Agreement by repeatedly requiring the grievant to furnish medical documentation for absences that were related to a known chronic medical condition,"
+            " despite the employee not being under a sick leave restriction. The National Agreement clearly states that when an employee has a chronic condition that necessitates recurring absences, and there"
+            " is no active sick leave restriction in place, management shall not require continual medical certification for each occurrence. \n\n The purpose of this provision is to protect employees who are"
+            " managing legitimate, ongoing health issues from unnecessary and burdensome documentation requests. In this case, the grievant had already established the existence of a chronic condition with"
+            " appropriate documentation, fulfilling their obligation under the National Agreement. By continuing to demand new medical certifications for each absence related to this condition, management acted"
+            " contrary to the contractual agreement and imposed undue stress and administrative burden on the employee. \n\n This behavior constitutes a clear violation of the employee’s rights under the"
+            " National Agreement and may also conflict with applicable federal laws and regulations that protect individuals managing chronic health conditions, including the Rehabilitation Act and FMLA"
+            " provisions, depending on the specifics of the case. \n"
         },
         "The employer denied the use of annual leave in lieu of sick and no just cause was present to support the decision.": {
             "articles": ["Article 34 Section 5(A)"],
-            "argument": f"     When {grievant} requested the use of annual leave in lieu of utilizing sick leave, management should have granted them this or provided them with the reasoning"
-            " to justify the denial. By failing to do this, management has violated the NA and this employee's rights. \n"
+            "argument": "When the grievant requested to use annual leave in lieu of sick leave, management failed to comply with the National Agreement by neither approving the request nor providing a valid"
+            " reason for the denial. The National Agreement allows employees to request annual leave instead of sick leave, and while management retains discretion to approve or deny such requests, that"
+            " discretion is not unlimited or arbitrary. Any denial must be based on legitimate business reasons and should be communicated clearly to the employee upon request. \n\n In this case, the grievant"
+            " made a reasonable and contractually permitted request to use their earned annual leave rather than sick leave. Management’s failure to honor this request—or to provide a valid justification for"
+            " denying it—violates the principles of fairness and transparency outlined in the National Agreement. Moreover, this denial deprived the employee of the flexibility to manage their leave balances in"
+            " a way that best suited their needs, without any documented operational necessity to support the denial. \n\n This constitutes a violation of the employee’s contractual rights, and management’s"
+            " silence or refusal to explain the decision further underscores their failure to uphold the obligations set forth in the National Agreement. \n"
         },
         "Employee was on annual leave and became sick but was denied the ability to switch the annual leave to sick leave. Employee must have notified manager on the first day of illness.": {
             "articles": ["Article 34 Section 5(B)"],
-            "argument": "     Denying an employee the opportunity to switch their annual leave to sick leave after the employee complied with the outlined requirements to do so in the NA is a violation"
-            " of the employee's rights. Management should allow an individual who requested annual leave and got sick during that time to switch their time from annual leave to sick leave.\n"
+            "argument": "Management violated the National Agreement by denying the grievant the opportunity to substitute sick leave for previously approved annual leave, despite the employee meeting all the"
+            " outlined requirements in the National Agreement for making such a request. The National Agreement expressly provides employees the right to request a substitution of sick leave for annual leave"
+            " if they become ill during scheduled annual leave, provided they follow the appropriate procedures and submit any required documentation. \n\n In this case, the grievant became ill during their"
+            " period of approved annual leave and promptly complied with all procedural requirements necessary to convert the leave type—including timely notification and, if applicable, medical documentation."
+            " By refusing to honor the request, management not only disregarded the employee’s rights under the National Agreement but also penalized the employee for an unforeseen medical issue during their"
+            " earned time off. \n\n This denial resulted in an unjust forfeiture of sick leave that the employee was entitled to use, and it contradicts the intent and protections negotiated into the"
+            " National Agreement. Management’s failure to approve the conversion of leave—despite the employee’s compliance—represents a clear contractual violation and an unreasonable exercise of discretion. \n"
         },
         "Denied advanced sick leave. Employee met the following conditions: \n"
         "  • Employee is eligible to earn sick leave. \n"
@@ -376,47 +422,80 @@ def render_awol():
         "       • To attend a funeral of a family member. \n"
         "  • Employee is not on a sick leave restriction. \n": {
             "articles": ["Article 34 Section 6(A)"],
-            "argument": "     The NA is very clear on when advanced sick leave will be given to an employee. The requirements to be given advanced sick leave is that the employee is eligible to earn"
-            " sick leave, requested time does not exceed 30 workdays, no reason to believe the employee would not return to work, the employee has provided acceptable medical documentation for the need"
-            " of advanced sick leave, employee is facing a qualifying event, and the employee is not under a sick leave restriction. A qualifying event is listed as adopting a chile, the employee"
-            " or family member has a serious health condition, make arangements necessitated by a death of a family member or to attend a funeral of a family member. Denying the request when all of these"
-            " have been met is a violation of the employee's rights.\n"
+            "argument": "Management violated the National Agreement by denying the grievant’s request for advanced sick leave, even though the employee met all the outlined conditions required for approval"
+            " under the National Agreement. The Agreement clearly specifies the circumstances in which advanced sick leave shall be granted, provided the following conditions are satisfied: \n\n - The employee"
+            " is eligible to earn sick leave; \n - The request does not exceed 30 workdays; \n - There is no indication the employee will not return to duty; \n - The employee has provided acceptable medical"
+            " documentation supporting the need for the leave; \n - The employee is facing a qualifying event, such as the employee or a family member having a serious health condition, adopting a child,"
+            " or making arrangements for or attending the funeral of a family member; and \n - The employee is not under a sick leave restriction. \n\n In the grievant’s case, all of these criteria were fully"
+            " met. The medical documentation submitted was acceptable, the qualifying condition was clearly established, and no indication was given that the employee would not return to duty. Furthermore,"
+            " the employee was not under any restrictions that would preclude consideration for advanced sick leave. \n\n By failing to approve the request under these conditions, management not only violated"
+            " the explicit terms of the National Agreement but also deprived the employee of a contractually guaranteed benefit during a time of critical need. This denial was not only unjustified but also"
+            " contrary to the principles of fairness and due process that the Agreement is designed to uphold. \n"
         },
         "Denied an employee advanced sick leave because they are probationary.": {
             "articles": ["Article 34 Section 6(B)"],
-            "argument": "     The NA states that when an employee is on probation, that it may deny advanced sick leave. Denying a probationary employee the opportunity for advanced sick leave must be"
-            " justifiable beyond just being probationary. By denying a probationary employee just based on the facts that they are probationary, is a violation of the NA and the employee's rights. \n"
+            "argument": "Management violated the National Agreement by denying the grievant’s request for advanced sick leave solely on the basis of their probationary status. While the National Agreement does"
+            ' state that management may deny advanced sick leave to a probationary employee, this language does not grant automatic or unconditional authority to do so. The use of the term “may” indicates that'
+            " each request must be evaluated on its individual merits, and any denial must be justified by legitimate and documented concerns beyond probationary status alone. \n\n In this case, the grievant"
+            " satisfied all other criteria for approval of advanced sick leave under the National Agreement, including providing acceptable medical documentation and facing a qualifying event. By denying the"
+            " request solely because the employee was probationary, and without demonstrating any additional justification—such as poor performance, attendance concerns, or uncertainty regarding return to"
+            " duty—management failed to exercise proper discretion and instead relied on an overly broad and unsupported application of policy. \n\n This blanket denial approach contradicts the intent and"
+            " protections outlined in the National Agreement and constitutes a violation of the employee’s contractual rights. Denials must be based on specific facts and not arbitrary categories such as"
+            " employment status alone. \n"
         },
         "Denied advanced sick leave because of intended purposes. \n"
         "  • Advanced sick leave is not usable for only routine medical visits or minor illness": {
             "articles": ["Article 34 Section 6(C)"],
-            "argument": "     A request for advanced sick leave should not be denied because of the intended purposes unless the request was made for routine medical visits or minor illness."
-            " By management denying the request for advanced leave when the employee did not request the leave for a routine medical visit or a minor illness, management has violated the employee's"
-            " right as given by the NA.\n"
+            "argument": "Management violated the National Agreement by denying the grievant’s request for advanced sick leave despite the request being made for a qualifying reason, not for a routine medical"
+            " visit or minor illness. The National Agreement clearly states that advanced sick leave may be denied for non-serious conditions such as minor illnesses or routine check-ups. However, when an"
+            " employee submits a request supported by acceptable medical documentation for a serious health condition—either for themselves or a qualifying family member—the request must be fairly evaluated in"
+            " accordance with the criteria outlined in the National Agreement. \n\n In this case, the grievant submitted a request for advanced sick leave related to a legitimate, non-routine medical situation."
+            " The nature of the request met the National Agreement’s qualifying conditions, and the employee was not under any sick leave restriction nor were there concerns regarding their return to duty."
+            " By denying the request without justification and despite the fact that it did not fall under the limited exceptions (i.e., routine visits or minor ailments), management acted in direct"
+            " contradiction to the intent of the National Agreement. \n\n Such a denial represents a clear violation of the employee’s rights, as it disregards both the contractual language and the purpose of"
+            " the advanced sick leave provision—to ensure employees have access to paid leave in times of serious need. \n"
         },
         "The Agency failed to allow the employee to pay back the advanced sick leave balance due via earned sick leave or through a cash payment.": {
             "articles": ["Article 34 Section 6(D)"],
-            "argument": "     It is a violation of an employee's rights to not allow an employee to repay the advanced sick leave any other way than described in the NA. Management should"
-            f" allow {grievant} to pay back the amount borrowed for the advanced sick leave either by utilization of earned sick leave hours or through a cash payment. \n"
+            "argument": "Management violated the National Agreement by failing to follow the required procedures for the repayment of advanced sick leave. The National Agreement clearly outlines that when an"
+            " employee has been granted advanced sick leave, any repayment must occur through one of the two authorized methods: \n\n - Through the accrual of future earned sick leave until the full balance"
+            " is restored; or \n - Through a cash payment to repay the amount owed. \n\n In this case, the grievant was prepared and willing to repay the advanced sick leave in accordance with one of the"
+            " methods authorized by the National Agreement. However, management either denied the employee that opportunity or imposed alternate repayment terms not supported by the Agreement. This action"
+            " constitutes a direct violation of the employee’s rights and a failure to uphold contractual obligations. \n\n By disregarding the specific repayment provisions outlined in the National Agreement,"
+            " management created unnecessary confusion and potential financial harm for the employee, and failed to exercise good faith in administering leave policies.  \n"
         },
         "Management required medical information details about the nature of the individuals underlying medical condition to the employer.": {
             "articles": ["Article 34 Section 7(A)"],
-            "argument": "     It is inappropriate and a violation of an employees' rights to have management request additional details about a medical condition that the employee has. The NA"
-            " outlines the process needed to follow if additional medical information is required for the purposes of sick leave. This process should be followed by management to stay compliant with the NA.\n"
+            "argument": "Management violated the National Agreement by inappropriately requesting additional details regarding the grievant’s medical condition, despite the employee already providing the"
+            " necessary documentation required under the National Agreement. The National Agreement clearly outlines a specific process that must be followed when management believes additional medical"
+            " information is needed to support a sick leave request. \n\n This process includes a formal determination of insufficiency, followed by a written explanation of what additional information is"
+            " required and why. It also includes protections to ensure that employee privacy and dignity are respected, and that only medically necessary information is requested. These safeguards are in place"
+            " to prevent overreach and to ensure consistent, fair treatment across all employees. \n\n In this case, management bypassed or failed to adhere to that process and instead made an inappropriate"
+            " request for more detailed personal medical information—a clear violation of both the spirit and the letter of the National Agreement. This intrusion into the employee’s private medical matters"
+            " without procedural justification erodes trust, violates contractual protections, and undermines the employee’s rights under the Agreement. \n"
         },
         "Employer refused to provide a medical professional for the employee to turn required medical information over to after the employee requested. When specific medical information is required"
         ", including the diagnosis or prognosis of a medical condition, as part of an employee's request for sick leave, the employee may choose to provide that information only to a medical"
         " professional designated by the employer.": {
             "articles": ["Article 34 Section 7(A)"],
-            "argument": "     When specific medical information is required, including the diagnosis or prognosis of a medical condition, as part of an employee's request for sick leave, the EE may"
-            " choose to provide that information only to a medical professional designated by the employer. It is a violation of the employee's rights for management to refuse to comply by providing"
-            " a medical professional for the employee to handover documentation about their medical information. \n"
+            "argument": "Management violated the National Agreement by refusing to comply with the employee’s right to submit sensitive medical information—such as a diagnosis or prognosis—directly to a"
+            " medical professional designated by the employer, rather than to management personnel. The National Agreement explicitly allows employees to protect the confidentiality of their medical condition"
+            " by choosing to submit such information only to a designated medical authority when more detailed documentation is requested. \n\n In this case, the grievant was willing to comply with the request"
+            " for additional medical documentation but exercised their contractual right to do so through the appropriate channel—by asking that a medical professional be designated to receive the"
+            " documentation. Management's failure or refusal to provide such a designee forced the employee into an unfair position: either share private medical details with non-medical personnel in violation"
+            ' of their privacy rights, or risk denial of leave due to “non-compliance.” \n\n This refusal represents a clear violation of the employee's rights under the National Agreement, and undermines'
+            " important protections designed to balance the agency's need for information with the employee's right to confidentiality and dignity. \n"
         },
         "Management failed to treat the employee's medical information as confidential and released information to parties that did not need to know this information.": {
             "articles": ["Article 34 Section 7(B)"],
-            "argument": "     Management failed to comply with the NA, laws, and regulations surrounding the protection of federal worker's and the privacy of medical information. By management"
-            " sharing {grievant}'s medical information with parties that did not need this information, management violated the employee's right to privacy as well as the rights granted under the NA."
-            " Management should not allow this violation to continue and should take all neccessary precautions to protect the employee from undue harm from this violation of the employee's privacy.\n"
+            "argument": "Management violated the National Agreement, as well as federal laws and regulations, by disclosing the grievant’s medical information to individuals who had no legitimate need to know."
+            " The National Agreement clearly outlines that employee medical information is to be treated as strictly confidential and must only be shared with authorized personnel who require the information for"
+            " legitimate administrative purposes. This standard aligns with broader legal requirements under the Privacy Act of 1974 and Office of Personnel Management (OPM) guidance concerning federal employee"
+            " medical privacy. \n\n In this case, the grievant’s sensitive medical information was improperly shared with parties who were not involved in the leave approval process or otherwise had no"
+            " business or legal need to access such information. This reckless handling of confidential medical details constitutes a serious breach of the employee’s right to privacy, and directly violates not"
+            " only the National Agreement but also well-established federal privacy protections. \n\n Such a disclosure can cause irreparable harm, embarrassment, and mistrust within the workplace. Management"
+            " must take immediate corrective action to prevent further harm to the employee and ensure all medical information is handled in strict compliance with the National Agreement and applicable federal"
+            " privacy standards going forward. \n"
         },
     }
 
