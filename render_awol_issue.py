@@ -319,7 +319,7 @@ def render_awol():
         "  • Black out day \n"
         "  • Critical day": {
             "articles": ["Article 34 Section 3(E)"],
-            "argument": '(Management violated the National Agreement by requiring medical documentation solely because the employee’s absence fell on a specific workday deemed by management to be a “critical,”)'
+            "argument": 'Management violated the National Agreement by requiring medical documentation solely because the employee’s absence fell on a specific workday deemed by management to be a “critical,”'
             ' “blackout,” or “high volume” day. Article 34, Section 6 of the National Agreement explicitly prohibits management from requiring a medical certificate based solely on the day or time of the absence.'
             " The Agreement was intentionally written this way to prevent arbitrary or retaliatory enforcement of sick leave documentation policies and to preserve fair and consistent treatment for all"
             " employees. \n\n In this case, the grievant’s absence occurred during one of these so-called critical or high-demand periods, and management used that as the only basis to request a medical"
