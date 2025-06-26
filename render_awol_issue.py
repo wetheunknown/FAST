@@ -33,13 +33,6 @@ def render_awol():
 
     st.subheader("Alleged Violations:\nAnnual Leave")
 
-    uploaded_file = st.file_uploader(
-        "Attach supporting document(s) (optional):",
-        type=["pdf", "jpg", "jpeg", "png", "docx", "doc"],
-        key="supporting_docs",
-        help="Upload any supporting documents for the grievance (PDF, image, or DOC)."
-    )
-
     # Define AWOL-related checkbox content
     awol_checkbox_descriptions = {
         "Annual Leave denied but no statement of reasoning provided after requested by the employee.": {
@@ -370,6 +363,13 @@ def render_awol():
     
             cover_sheet = create_cover_sheet(form_data, grievance_type)
             awol_pdf = generate_pdf(pdf_data, full_argument)  # Should return a BytesIO!
+
+    uploaded_file = st.file_uploader(
+        "Attach supporting document(s) (optional):",
+        type=["pdf", "jpg", "jpeg", "png", "docx", "doc"],
+        key="supporting_docs",
+        help="Upload any supporting documents for the grievance (PDF, image, or DOC)."
+    )
             
         if uploaded_file is not None and uploaded_file.type == "application/pdf":
             # Read uploaded PDF as BytesIO
