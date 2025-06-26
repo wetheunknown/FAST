@@ -4,6 +4,7 @@ import holidays
 import tempfile
 import os
 from io import BytesIO
+from PyPDF2 import PdfReader
 from util import wrap_text_to_width, draw_wrapped_section, generate_pdf, convert_to_pdf, calculate_fbd, create_cover_sheet, merge_pdfs
 
 def render_awol():
@@ -31,6 +32,13 @@ def render_awol():
     desired_outcome = st.text_area("Requested Resolution", key="desired_outcome")
 
     st.subheader("Alleged Violations:\nAnnual Leave")
+
+    uploaded_file = st.file_uploader(
+        "Attach supporting document(s) (optional):",
+        type=["pdf", "jpg", "jpeg", "png", "docx", "doc"],
+        key="supporting_docs",
+        help="Upload any supporting documents for the grievance (PDF, image, or DOC)."
+    )
 
     # Define AWOL-related checkbox content
     awol_checkbox_descriptions = {
@@ -362,7 +370,12 @@ def render_awol():
     
             cover_sheet = create_cover_sheet(form_data, grievance_type)
             awol_pdf = generate_pdf(pdf_data, full_argument)  # Should return a BytesIO!
-            final_pdf_buffer = merge_pdfs(cover_sheet, awol_pdf)
+            
+        if uploaded_file is not None and uploaded_file.type == "application/pdf":
+            # Read uploaded PDF as BytesIO
+            uploaded_pdf = BytesIO(file_bytes)
+            # Add to your merge_pdfs function as needed
+            final_pdf_buffer = merge_pdfs(cover_sheet, awol_pdf, uploaded_pdf)
     
             st.download_button(
                 "📄 Download AWOL Grievance PDF",
