@@ -378,7 +378,7 @@ def render_awol():
         help="Upload any supporting documents for the grievance (PDF, image, or DOC)."
     )
             
-        st.download_button(
+    st.download_button(
                 "📄 Download AWOL Grievance PDF",
                 final_pdf_buffer.getvalue(),  # use getvalue() for bytes
                 file_name=f"{grievant.replace(' ', '_')}_AWOL_Grievance.pdf"
