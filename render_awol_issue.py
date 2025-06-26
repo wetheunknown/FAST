@@ -362,7 +362,7 @@ def render_awol():
             grievance_type = st.session_state.get("grievance_type", "AWOL Grievance")
     
             cover_sheet = create_cover_sheet(form_data, grievance_type)
-            awol_pdf = generate_pdf(pdf_data, full_argument, uploaded_file)  # Should return a BytesIO!
+            awol_pdf = generate_pdf(pdf_data, full_argument, uploaded_pdf)  # Should return a BytesIO!
 
         # --- Merge PDFs: cover sheet first ---
         cover_sheet_buffer.seek(0)
