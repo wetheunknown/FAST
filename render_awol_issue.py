@@ -371,7 +371,7 @@ def render_awol():
         help="Upload any supporting documents for the grievance (PDF, image, or DOC)."
     )
             
-        if uploaded_file is not None and uploaded_file.type == "application/pdf":
+    if uploaded_file is not None and uploaded_file.type == "application/pdf":
             # Read uploaded PDF as BytesIO
             uploaded_pdf = BytesIO(file_bytes)
             # Add to your merge_pdfs function as needed
