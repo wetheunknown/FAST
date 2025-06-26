@@ -362,7 +362,7 @@ def render_awol():
             grievance_type = st.session_state.get("grievance_type", "AWOL Grievance")
     
             cover_sheet = create_cover_sheet(form_data, grievance_type)
-            awol_pdf = generate_pdf(pdf_data, full_argument)  # Should return a BytesIO!
+            awol_pdf = generate_pdf(pdf_data, full_argument, uploaded_pdf)  # Should return a BytesIO!
 
     uploaded_file = st.file_uploader(
         "Attach supporting document(s) (optional):",
