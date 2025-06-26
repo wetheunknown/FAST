@@ -373,9 +373,9 @@ def render_awol():
 
     if uploaded_file is not None and uploaded_file.type == "application/pdf":
             # Read uploaded PDF as BytesIO
-            uploaded_pdf = BytesIO(file_bytes)
+            uploaded_file = BytesIO(file_bytes)
             # Add to your merge_pdfs function as needed
-            final_pdf_buffer = merge_pdfs(cover_sheet, awol_pdf, uploaded_pdf)
+            final_pdf_buffer = merge_pdfs(cover_sheet, awol_pdf, uploaded_file)
     
     st.download_button(
                 "📄 Download AWOL Grievance PDF",
