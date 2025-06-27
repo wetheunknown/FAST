@@ -532,61 +532,61 @@ def render_awol():
             selected_arguments.append(info["argument"])
 
     if st.button("Generate AWOL Grievance PDF"):
-    if not steward or not grievant:
-        st.warning("Please fill out all required fields.")
-    else:
-        full_argument = "\n\n".join(str(arg) for arg in selected_arguments)
-        article_list = ", ".join(sorted(set(selected_articles)))
-
-        filing_step = "Step Two - Streamlined Grievance"
-        form_data = {
-            "Step": filing_step,
-            "Steward": steward,
-            "Grievant": grievant,
-            "Issue Description": issue_description,
-            "Desired Outcome": desired_outcome,
-            "Articles of Violation": article_list,
-            "Case ID": case_id,
-            "Department Manager": dept_man,
-            "Frontline Manager": flmanager,
-            "Position": position,
-            "Operation": workarea
-        }
-        pdf_data = {
-            "Steward": steward,
-            "Grievant": grievant,
-            "Issue Description": issue_description,
-            "Desired Outcome": desired_outcome,
-            "Articles of Violation": article_list
-        }
-
-        grievance_type = st.session_state.get("grievance_type", "AWOL Grievance")
-        cover_sheet_buffer = create_cover_sheet(form_data, grievance_type)  # Returns BytesIO
-        base_pdf_buffer = generate_pdf(pdf_data, full_argument)            # Returns BytesIO
-
-        # Merge PDFs and attachments into one buffer
-        merger = PdfMerger()
-        merger.append(cover_sheet_buffer)
-        merger.append(base_pdf_buffer)
-
-        for file in uploaded_files:
-            if file is not None:
-                filename = file.name
-                ext = os.path.splitext(filename)[1].lower()
-                try:
-                    if ext == ".pdf":
-                        with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp:
-                            tmp.write(file.read())
-                            tmp.flush()
-                        with open(tmp.name, "rb") as f:
-                            merger.append(f)
-                    else:
-                        converted_path = convert_to_pdf(file, filename)
-                        if converted_path:
-                            with open(converted_path, "rb") as f:
+        if not steward or not grievant:
+            st.warning("Please fill out all required fields.")
+        else:
+            full_argument = "\n\n".join(str(arg) for arg in selected_arguments)
+            article_list = ", ".join(sorted(set(selected_articles)))
+    
+            filing_step = "Step Two - Streamlined Grievance"
+            form_data = {
+                "Step": filing_step,
+                "Steward": steward,
+                "Grievant": grievant,
+                "Issue Description": issue_description,
+                "Desired Outcome": desired_outcome,
+                "Articles of Violation": article_list,
+                "Case ID": case_id,
+                "Department Manager": dept_man,
+                "Frontline Manager": flmanager,
+                "Position": position,
+                "Operation": workarea
+            }
+            pdf_data = {
+                "Steward": steward,
+                "Grievant": grievant,
+                "Issue Description": issue_description,
+                "Desired Outcome": desired_outcome,
+                "Articles of Violation": article_list
+            }
+    
+            grievance_type = st.session_state.get("grievance_type", "AWOL Grievance")
+            cover_sheet_buffer = create_cover_sheet(form_data, grievance_type)  # Returns BytesIO
+            base_pdf_buffer = generate_pdf(pdf_data, full_argument)            # Returns BytesIO
+    
+            # Merge PDFs and attachments into one buffer
+            merger = PdfMerger()
+            merger.append(cover_sheet_buffer)
+            merger.append(base_pdf_buffer)
+    
+            for file in uploaded_files:
+                if file is not None:
+                    filename = file.name
+                    ext = os.path.splitext(filename)[1].lower()
+                    try:
+                        if ext == ".pdf":
+                            with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp:
+                                tmp.write(file.read())
+                                tmp.flush()
+                            with open(tmp.name, "rb") as f:
                                 merger.append(f)
-                except Exception as e:
-                    st.warning(f"⚠️ Skipped {filename} due to error: {e}")
+                        else:
+                            converted_path = convert_to_pdf(file, filename)
+                            if converted_path:
+                                with open(converted_path, "rb") as f:
+                                    merger.append(f)
+                    except Exception as e:
+                        st.warning(f"⚠️ Skipped {filename} due to error: {e}")
 
         # Write merged PDF to a BytesIO buffer for download
         merged_buffer = BytesIO()
