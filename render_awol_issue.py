@@ -30,15 +30,15 @@ def render_awol():
     desired_outcome = st.text_area("Requested Resolution", key="desired_outcome")
     
     uploaded_files = []
-        MAX_UPLOADS = 10
-        for i in range(MAX_UPLOADS):
-            uploaded_files.append(
-                st.file_uploader(
-                    f"Supporting Document {i+1}",
-                    type=["pdf", "docx", "txt", "jpg", "jpeg", "png"],
-                    key=f"file_uploader_{i}",
-                )
+    MAX_UPLOADS = 10
+    for i in range(MAX_UPLOADS):
+        uploaded_files.append(
+            st.file_uploader(
+                f"Supporting Document {i+1}",
+                type=["pdf", "docx", "txt", "jpg", "jpeg", "png"],
+                key=f"file_uploader_{i}",
             )
+        )
     
     st.subheader("Alleged Violations:\nAnnual Leave")
 
