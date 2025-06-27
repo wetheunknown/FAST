@@ -589,8 +589,12 @@ def render_awol():
                         else:
                             converted_path = convert_to_pdf(file, filename)
                             if converted_path:
-                                with open(converted_path, "rb") as f:
-                                    merger.append(f)
+                                if isinstance(converted_path, BytesIO):
+                                    converted_path.seek(0)
+                                    merger.append(converted_path)
+                                else:
+                                    with open(converted_path, "rb") as f:
+                                        merger.append(f)
                     except Exception as e:
                         st.warning(f"⚠️ Skipped {filename} due to error: {e}")
     
