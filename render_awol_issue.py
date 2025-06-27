@@ -533,6 +533,8 @@ def render_awol():
             selected_arguments.append(info["argument"])
 
     if st.button("Generate AWOL Grievance PDF"):
+        st.session_state.final_packet_path = None
+        st.session_state.final_packet_name = None
         if not steward or not grievant:
             st.warning("Please fill out all required fields.")
         else:
