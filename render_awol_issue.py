@@ -562,23 +562,23 @@ def render_awol():
             }
 
             for file in uploaded_files:
-            if file is not None:
-                filename = file.name
-                ext = os.path.splitext(filename)[1].lower()
-                try:
-                    if ext == ".pdf":
-                        with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp:
-                            tmp.write(file.read())
-                            tmp.flush()
-                        with open(tmp.name, "rb") as f:
-                            merger.append(f)
-                    else:
-                        converted_path = convert_to_pdf(file, filename)
-                        if converted_path:
-                            with open(converted_path, "rb") as f:
+                if file is not None:
+                    filename = file.name
+                    ext = os.path.splitext(filename)[1].lower()
+                    try:
+                        if ext == ".pdf":
+                            with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp:
+                                tmp.write(file.read())
+                                tmp.flush()
+                            with open(tmp.name, "rb") as f:
                                 merger.append(f)
-                except Exception as e:
-                    st.warning(f"⚠️ Skipped {filename} due to error: {e}")
+                        else:
+                            converted_path = convert_to_pdf(file, filename)
+                            if converted_path:
+                                with open(converted_path, "rb") as f:
+                                    merger.append(f)
+                    except Exception as e:
+                        st.warning(f"⚠️ Skipped {filename} due to error: {e}")
             
             grievance_type = st.session_state.get("grievance_type", "AWOL Grievance")
     
