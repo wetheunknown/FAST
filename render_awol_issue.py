@@ -521,7 +521,7 @@ def render_awol():
             selected_articles.extend(info["articles"])
             selected_arguments.append(info["argument"])
             
-    st.subheader("\nSick Leave")
+    st.subheader("Alleged Violations:\nSick Leave")
             
     for desc, info in sick_awol_checkbox_descriptions.items():
         checked = st.checkbox(desc, key=f"sick_awol_checkbox_{desc}")
