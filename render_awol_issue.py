@@ -600,7 +600,9 @@ def render_awol():
                                         merger.append(f)
                     except Exception as e:
                         st.warning(f"⚠️ Skipped {filename} due to error: {e}")
-    
+                        
+            output_name = f"{grievant.replace(' ', '_')}_AWOL_Grievance.pdf"
+            final_path = os.path.join(tempfile.gettempdir(), output_name)
             st.session_state.final_packet_path = final_path
             st.session_state.final_packet_name = output_name
     
