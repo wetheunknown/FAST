@@ -535,12 +535,46 @@ def render_awol():
         if not steward or not grievant:
             st.warning("Please fill out all required fields.")
         else:
-            # ... your form_data and pdf_data construction ...
-            cover_sheet_buffer = create_cover_sheet(form_data, grievance_type)
-            base_pdf_buffer = generate_pdf(pdf_data, full_argument)
+            # Collect all arguments and articles
+            full_argument = "\n\n".join(str(arg) for arg in selected_arguments)
+            article_list = ", ".join(sorted(set(selected_articles)))
+            filing_step = "Step Two - Streamlined Grievance"
+    
+            # All fields for the cover sheet
+            form_data = {
+                "Step": filing_step,
+                "Steward": steward,
+                "Grievant": grievant,
+                "Issue Description": issue_description,
+                "Desired Outcome": desired_outcome,
+                "Articles of Violation": article_list,
+                "Case ID": case_id,
+                "Department Manager": dept_man,
+                "Frontline Manager": flmanager,
+                "Position": position,
+                "Operation": workarea,
+                # Add other fields as needed
+            }
+    
+            # Only the fields you want in the main PDF
+            pdf_fields = [
+                "Steward",
+                "Grievant",
+                "Issue Description",
+                "Desired Outcome",
+                "Articles of Violation"
+            ]
+            pdf_data = {k: form_data[k] for k in pdf_fields if k in form_data}
+    
+            grievance_type = st.session_state.get("grievance_type", "AWOL Grievance")
+            cover_sheet_buffer = create_cover_sheet(form_data, grievance_type)  # Returns BytesIO
+            base_pdf_buffer = generate_pdf(pdf_data, full_argument)            # Returns BytesIO
+    
+            # --- Merge PDFs: cover sheet first ---
             merger = PdfMerger()
             merger.append(cover_sheet_buffer)
             merger.append(base_pdf_buffer)
+    
             for file in uploaded_files:
                 if file is not None:
                     filename = file.name
@@ -565,10 +599,15 @@ def render_awol():
             with open(final_path, "wb") as f:
                 merger.write(f)
             merger.close()
+    
             st.session_state.final_packet_path = final_path
             st.session_state.final_packet_name = output_name
-
-# --- Download button ---
-if "final_packet_path" in st.session_state and st.session_state.final_packet_path:
-    with open(st.session_state.final_packet_path, "rb") as f:
-        st.download_button("📄 Download AWOL Grievance PDF", f, file_name=st.session_state.final_packet_name)
+    
+    # --- Download button ---
+    if "final_packet_path" in st.session_state and st.session_state.final_packet_path:
+        with open(st.session_state.final_packet_path, "rb") as f:
+            st.download_button(
+                "📄 Download AWOL Grievance PDF",
+                f,
+                file_name=st.session_state.final_packet_name
+            )
