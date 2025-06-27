@@ -562,6 +562,14 @@ def render_awol():
                 "Articles of Violation": article_list
             }
 
+            merger = PdfMerger()
+            merger.append(cover_sheet_buffer)
+            merger.append(base_pdf_buffer)
+            
+            grievance_type = st.session_state.get("grievance_type", "AWOL Grievance")
+            cover_sheet_buffer = create_cover_sheet(form_data, grievance_type)  # Returns BytesIO
+            base_pdf_buffer = generate_pdf(pdf_data, full_argument)            # Returns BytesIO
+
             for file in uploaded_files:
                 if file is not None:
                     filename = file.name
@@ -580,8 +588,6 @@ def render_awol():
                                     merger.append(f)
                     except Exception as e:
                         st.warning(f"⚠️ Skipped {filename} due to error: {e}")
-            
-            grievance_type = st.session_state.get("grievance_type", "AWOL Grievance")
     
             cover_sheet = create_cover_sheet(form_data, grievance_type)
             awol_pdf = generate_pdf(pdf_data, full_argument)  # Should return a BytesIO!
