@@ -533,7 +533,7 @@ def render_awol():
             selected_arguments.append(info["argument"])
 
     if st.button("Generate AWOL Grievance PDF"):
-        st.session_state.final_packet_path = None
+        st.session_state.final_packet_buffer = None
         st.session_state.final_packet_name = None
         if not steward or not grievant:
             st.warning("Please fill out all required fields.")
@@ -600,17 +600,24 @@ def render_awol():
                                         merger.append(f)
                     except Exception as e:
                         st.warning(f"⚠️ Skipped {filename} due to error: {e}")
-                        
-            output_name = f"{grievant.replace(' ', '_')}_AWOL_Grievance.pdf"
-            final_path = os.path.join(tempfile.gettempdir(), output_name)
-            st.session_state.final_packet_path = final_path
-            st.session_state.final_packet_name = output_name
+    
+            # Write merged PDF to a BytesIO buffer for download
+            merged_buffer = BytesIO()
+            merger.write(merged_buffer)
+            merger.close()
+            merged_buffer.seek(0)
+    
+            st.session_state.final_packet_buffer = merged_buffer
+            st.session_state.final_packet_name = f"{grievant.replace(' ', '_')}_AWOL_Grievance.pdf"
     
     # --- Download button ---
-    if "final_packet_path" in st.session_state and st.session_state.final_packet_path:
-        with open(st.session_state.final_packet_path, "rb") as f:
-            st.download_button(
-                "📄 Download AWOL Grievance PDF",
-                f,
-                file_name=st.session_state.final_packet_name
-            )
+    if (
+        "final_packet_buffer" in st.session_state
+        and st.session_state.final_packet_buffer is not None
+        and st.session_state.final_packet_name
+    ):
+        st.download_button(
+            "📄 Download AWOL Grievance PDF",
+            st.session_state.final_packet_buffer.getvalue(),
+            file_name=st.session_state.final_packet_name
+        )
