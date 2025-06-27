@@ -28,7 +28,18 @@ def render_awol():
     position = st.text_input("Title/Position")
     issue_description = st.text_area("Summary of Grievance", key="issue_description")
     desired_outcome = st.text_area("Requested Resolution", key="desired_outcome")
-
+    
+    uploaded_files = []
+        MAX_UPLOADS = 10
+        for i in range(MAX_UPLOADS):
+            uploaded_files.append(
+                st.file_uploader(
+                    f"Supporting Document {i+1}",
+                    type=["pdf", "docx", "txt", "jpg", "jpeg", "png"],
+                    key=f"file_uploader_{i}",
+                )
+            )
+    
     st.subheader("Alleged Violations:\nAnnual Leave")
 
     # Define AWOL-related checkbox content
@@ -549,6 +560,25 @@ def render_awol():
                 "Desired Outcome": desired_outcome,
                 "Articles of Violation": article_list
             }
+
+            for file in uploaded_files:
+            if file is not None:
+                filename = file.name
+                ext = os.path.splitext(filename)[1].lower()
+                try:
+                    if ext == ".pdf":
+                        with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp:
+                            tmp.write(file.read())
+                            tmp.flush()
+                        with open(tmp.name, "rb") as f:
+                            merger.append(f)
+                    else:
+                        converted_path = convert_to_pdf(file, filename)
+                        if converted_path:
+                            with open(converted_path, "rb") as f:
+                                merger.append(f)
+                except Exception as e:
+                    st.warning(f"⚠️ Skipped {filename} due to error: {e}")
             
             grievance_type = st.session_state.get("grievance_type", "AWOL Grievance")
     
