@@ -157,6 +157,69 @@ def render_annual():
             " who earned a valid rating within the last appraisal cycle. Instead, the prior rating should be retained and used as the basis for performance-related decisions until a compliant rating is issued."
             " To resolve this, the Employer must audit records to identify instances where prior ratings were not used and retroactively apply the appropriate ratings where necessary. "
         },
+        "Improper change to the established annual rating period. ": {
+            "articles": ["Article 12, Section 4, 5 C.F.R § 430.208"],
+            "argument": "Annual appraisal periods are contractually defined and must not be altered without proper notice, agreement, and adherence to established procedures under Article 12. Arbitrarily changing"
+            " the rating period undermines the fairness and consistency of the performance management system and can result in ratings being based on incomplete or inconsistent data. Instead, the established"
+            " cycle must be maintained unless officially bargained and documented, with all stakeholders—including the Union—properly notified. To fix this, management should review any deviations from standard"
+            " appraisal timelines and reissue any affected appraisals using the correct period. Guidance should be reinforced at the local and national level to ensure adherence to the officially bargained rating"
+            " cycle. "
+        },
+        "Improper impact on within-grade increases, promotions, or other actions due to delay or extension. ": {
+            "articles": ["Article 12, Section 4, 5 C.F.R § 430.208"],
+            "argument": "Delays or extensions in issuing performance appraisals must not be used to withhold or defer personnel actions such as within-grade increases (WGIs), promotions, or awards unless there"
+            " is valid, documented justification. Doing so is both procedurally improper and potentially violates merit system principles and employee rights. The most recent valid rating must be used as the"
+            " basis for eligibility determinations until a new rating of record is available. To avoid future violations, management should track appraisal delays and implement safeguards to ensure that"
+            " employees are not denied timely personnel actions due to administrative errors. In cases where an action was improperly withheld, corrective actions including back pay or retroactive promotion"
+            " should be taken."
+        },
+        "Use of an expired or non-contractually compliant rating for merit promotion. ": {
+            "articles": ["Article 12, Section 4, 5 C.F.R § 430.208"],
+            "argument": "Using an expired rating (older than four years) or a rating issued outside of contractual or regulatory standards (e.g., issued without 60 days of observation) violates both Article 12"
+            " and Article 13. Such ratings lack validity and should not influence merit promotion or other employment decisions. Doing so introduces bias, unreliability, and opens the Employer to grievances or"
+            " equal opportunity complaints. Instead, only ratings that meet all criteria—including timing, observation requirements, and documentation—should be accepted in promotion packages. To prevent"
+            " recurrence, selecting officials must receive updated guidance on what constitutes an acceptable rating, and any use of invalid ratings must be rectified through re-competition or other corrective"
+            " actions."
+        },
+        "Inconsistent application of ratings for other personnel actions (e.g., RIFs). ": {
+            "articles": ["Article 12, Section 4, 5 C.F.R § 430.208"],
+            "argument": "Ratings of record must be consistently and fairly applied across all personnel actions, including reductions in force (RIFs), reassignments, and eligibility decisions."
+            " Inconsistency—such as using an outdated or unverified rating for one employee but not another—violates merit principles and the National Agreement. This creates inequity and exposes the Employer"
+            " to grievances, arbitration, or even litigation. Instead, the Employer must develop a standardized process to ensure consistent application and verification of ratings for all actions. Any"
+            " inconsistencies identified must be corrected by reapplying decisions with verified, contractually compliant ratings of record and issuing remedies where harm occurred. Going forward,"
+            " decision-makers should be required to document their sources and justification for any rating used in such actions. "
+        },
+        "Failure to provide a merit promotion appraisal upon request when no prior rating exists.": {
+            "articles": ["Article 12, Section 4, 5 C.F.R § 430.208 "],
+            "argument": "When an employee has no prior rating of record and requests an appraisal for a merit promotion, management is obligated to provide one based on available performance observations."
+            " Failure to do so results in the unjust exclusion of the employee from fair promotional opportunities, disadvantaging them without cause. This action undermines the merit-based principles and"
+            " transparency expected in promotion decisions. Instead, management should have provided an interim or summary appraisal reflecting the employee’s observed performance. Moving forward, supervisors"
+            " must respond promptly to such requests and provide a fair, timely assessment when no existing rating is available. Clear internal procedures should be established to ensure such requests are never"
+            " overlooked. "
+        },
+        "Refusal to issue Form 6850-BU after 60 days on performance plan. ": {
+            "articles": ["Article 12, Section 4, 5 C.F.R § 430.208"],
+            "argument": "When an employee has served on a performance plan for at least 60 days, they are eligible for a formal appraisal using the appropriate form. Refusing to issue the form denies the"
+            " employee documentation of their performance and delays critical personnel actions, such as promotions or awards. The appraisal process is intended to recognize work and provide feedback—denying"
+            " it weakens employee trust and accountability. Instead, the form should be completed and shared with the employee once the 60-day threshold is reached. To correct this, management should review"
+            " any pending cases where forms were withheld and issue them accordingly. Supervisors must be trained to monitor performance plan timelines and fulfill their documentation responsibilities without"
+            " delay. "
+        },
+        "Failure to extend appraisal period for new GS-4 or higher employees who haven’t completed 6 months. ": {
+            "articles": ["Article 12, Section 4, 5 C.F.R § 430.208"],
+            "argument": "If an employee in a GS-4 or higher position has not completed 6 months on their performance plan by the end of the appraisal cycle, their rating period should be extended to ensure"
+            " adequate observation. Failing to do this results in an unfair and potentially invalid appraisal, as insufficient time was provided to evaluate their performance accurately. The employee is then"
+            " judged on a limited sample of work that may not reflect their true capabilities. Instead, the appraisal period should have been formally extended to allow for a full 6 months of observation. To"
+            " fix this, supervisors must track new hires and reassigned employees to ensure appraisal timelines are adjusted. Reviews should be conducted to identify and correct any early appraisals issued"
+            " under incomplete service periods."
+        },
+        "Issuance of a “Minimally Successful” rating before 6 months of service.": {
+            "articles": ["Article 12, Section 4, 5 C.F.R § 430.208"],
+            "argument": "A rating of “Minimally Successful” issued before an employee completes 6 months of service lacks sufficient performance data and can unjustly harm their reputation and future"
+            " opportunities. This premature assessment does not allow for a fair evaluation of work patterns, adjustment to job expectations, or time to receive necessary feedback. Instead, management should"
+            " have either provided coaching or extended the appraisal period to allow the employee to demonstrate improvement. To correct this, the rating should be withdrawn or re-evaluated based on complete"
+            " and fair performance data. Supervisors must ensure that negative ratings are never assigned before adequate observation and opportunity for success."
+        },
         "Rating is inconsistent with prior feedback": {
             "articles": ["Article 21, Section 4"],
             "argument": "The rating is inconsistent with prior feedback, violating Article 21, Section 4."
