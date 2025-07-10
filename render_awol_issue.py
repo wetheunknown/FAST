@@ -518,7 +518,7 @@ for desc, info in awol_checkbox_descriptions.items():
 
         st.subheader("Alleged Violations:\nSick Leave")
 
-    for desc, info in sick_awol_checkbox_descriptions.items():
+for desc, info in sick_awol_checkbox_descriptions.items():
         checked = st.checkbox(desc, key=f"sick_awol_checkbox_{desc}")
         if checked:
             selected_reasons.append(desc)
