@@ -509,21 +509,21 @@ def render_awol():
         },
     }
 
-    for desc, info in awol_checkbox_descriptions.items():
-        checked = st.checkbox(desc, key=f"awol_checkbox_{desc}")
-        if checked:
-            selected_reasons.append(desc)
-            selected_articles.extend(info["articles"])
-            selected_arguments.append(info["argument"])
+for desc, info in awol_checkbox_descriptions.items():
+       checked = st.checkbox(desc, key=f"awol_checkbox_{desc}")
+       if checked:
+           selected_reasons.append(desc)
+           selected_articles.extend(info["articles"])
+           selected_arguments.append(info["argument"])
 
         st.subheader("Alleged Violations:\nSick Leave")
 
-    for desc, info in sick_awol_checkbox_descriptions.items():
-        checked = st.checkbox(desc, key=f"sick_awol_checkbox_{desc}")
-        if checked:
-            selected_reasons.append(desc)
-            selected_articles.extend(info["articles"])
-            selected_arguments.append(info["argument"])
+for desc, info in sick_awol_checkbox_descriptions.items():
+       checked = st.checkbox(desc, key=f"sick_awol_checkbox_{desc}")
+       if checked:
+           selected_reasons.append(desc)
+           selected_articles.extend(info["articles"])
+           selected_arguments.append(info["argument"])
 
     if st.button("Generate AWOL Grievance PDF"):
         st.session_state.final_packet_buffer = None
