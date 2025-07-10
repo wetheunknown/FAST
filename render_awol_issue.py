@@ -20,7 +20,7 @@ def render_awol():
     with fbd_col:
         fbd = calculate_fbd(st.session_state["date_received"])
         st.info(f"🗕️ File By Date (15 business days): {fbd}")
-        
+
     case_id = st.text_input("Case Number")
     steward = st.text_input("Steward's Name")
     grievant = st.text_input("Grievant's Name")
@@ -30,20 +30,11 @@ def render_awol():
     position = st.text_input("Title/Position")
     issue_description = st.text_area("Summary of Grievance", key="issue_description")
     desired_outcome = st.text_area("Requested Resolution", key="desired_outcome")
-    
-    uploaded_files = []
-    MAX_UPLOADS = 10
-    for i in range(MAX_UPLOADS):
-        uploaded_files.append(
-            st.file_uploader(
-                f"Supporting Document {i+1}",
-                type=["pdf", "docx", "txt", "jpg", "jpeg", "png"],
-                key=f"file_uploader_{i}",
-            )
-        )
+
+    # Multi-file uploader
     uploaded_files = st.file_uploader(
-        "Upload Supporting Documents (PDF, DOCX, TXT, JPG, PNG)", 
-        type=["pdf", "docx", "txt", "jpg", "jpeg", "png"], 
+        "Upload Supporting Documents (PDF, DOCX, TXT, JPG, PNG)",
+        type=["pdf", "docx", "txt", "jpg", "jpeg", "png"],
         accept_multiple_files=True,
         key="file_uploader_multi"
     )
@@ -518,19 +509,15 @@ def render_awol():
         },
     }
 
-    selected_reasons = []
-    selected_articles = []
-    selected_arguments = []
-    
-    for desc, info in awol_checkbox_descriptions.items():
+for desc, info in awol_checkbox_descriptions.items():
         checked = st.checkbox(desc, key=f"awol_checkbox_{desc}")
         if checked:
             selected_reasons.append(desc)
             selected_articles.extend(info["articles"])
             selected_arguments.append(info["argument"])
-            
+
     st.subheader("Alleged Violations:\nSick Leave")
-            
+
     for desc, info in sick_awol_checkbox_descriptions.items():
         checked = st.checkbox(desc, key=f"sick_awol_checkbox_{desc}")
         if checked:
@@ -548,7 +535,7 @@ def render_awol():
             full_argument = "\n\n".join(str(arg) for arg in selected_arguments)
             article_list = ", ".join(sorted(set(selected_articles)))
             filing_step = "Step Two - Streamlined Grievance"
-    
+
             # All fields for the cover sheet
             form_data = {
                 "Step": filing_step,
@@ -562,9 +549,8 @@ def render_awol():
                 "Frontline Manager": flmanager,
                 "Position": position,
                 "Operation": workarea,
-                # Add other fields as needed
             }
-    
+
             # Only the fields you want in the main PDF
             pdf_fields = [
                 "Steward",
@@ -574,18 +560,19 @@ def render_awol():
                 "Articles of Violation"
             ]
             pdf_data = {k: form_data[k] for k in pdf_fields if k in form_data}
-    
+
             grievance_type = st.session_state.get("grievance_type", "AWOL Grievance")
             cover_sheet_buffer = create_cover_sheet(form_data, grievance_type)  # Returns BytesIO
             base_pdf_buffer = generate_pdf(pdf_data, full_argument)            # Returns BytesIO
-    
+
             # --- Merge PDFs: cover sheet first ---
             merger = PdfMerger()
             merger.append(cover_sheet_buffer)
             merger.append(base_pdf_buffer)
-    
-            for file in uploaded_files:
-                if file is not None:
+
+            # Merge all uploaded files
+            if uploaded_files:
+                for file in uploaded_files:
                     filename = file.name
                     ext = os.path.splitext(filename)[1].lower()
                     try:
@@ -606,16 +593,16 @@ def render_awol():
                                         merger.append(f)
                     except Exception as e:
                         st.warning(f"⚠️ Skipped {filename} due to error: {e}")
-    
+
             # Write merged PDF to a BytesIO buffer for download
             merged_buffer = BytesIO()
             merger.write(merged_buffer)
             merger.close()
             merged_buffer.seek(0)
-    
+
             st.session_state.final_packet_buffer = merged_buffer
             st.session_state.final_packet_name = f"{grievant.replace(' ', '_')}_AWOL_Grievance.pdf"
-    
+
     # --- Download button ---
     if (
         "final_packet_buffer" in st.session_state
