@@ -41,7 +41,13 @@ def render_awol():
                 key=f"file_uploader_{i}",
             )
         )
-    
+    uploaded_files = st.file_uploader(
+        "Upload Supporting Documents (PDF, DOCX, TXT, JPG, PNG)", 
+        type=["pdf", "docx", "txt", "jpg", "jpeg", "png"], 
+        accept_multiple_files=True,
+        key="file_uploader_multi"
+    )
+
     st.subheader("Alleged Violations:\nAnnual Leave")
 
     # Define AWOL-related checkbox content
