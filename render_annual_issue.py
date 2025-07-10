@@ -5,7 +5,7 @@ import tempfile
 import os
 from io import BytesIO
 from PyPDF2 import PdfMerger
-from util import wrap_text_to_width, draw_wrapped_section, generate_pdf, convert_to_pdf, calculate_fbd, create_cover_sheet
+from util import wrap_text_to_width, draw_wrapped_section, generate_pdf, convert_to_pdf, calculate_fbd, create_cover_sheet, merge_pdfs
 
 def render_annual():
     annual_checkbox_descriptions = {
